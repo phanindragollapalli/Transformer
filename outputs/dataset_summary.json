@@ -1,0 +1,41 @@
+{
+  "alignment_verified": true,
+  "cipher_characters": [
+    "0",
+    "1"
+  ],
+  "cipher_length_stats": {
+    "avg": 4780.851,
+    "count": 5000,
+    "max": 21360,
+    "min": 168
+  },
+  "cipher_to_plain_length_ratio": {
+    "avg": 8.0,
+    "max": 8.0,
+    "min": 8.0
+  },
+  "conflicting_cipher_mappings": 0,
+  "data_dir": "Dataset_A1",
+  "duplicate_cipher_sequences": 3,
+  "num_pairs": 5000,
+  "phase_1_decisions": {
+    "binary_to_byte_conversion": "Group each contiguous 8 bits into one byte before standard tokenization.",
+    "sequence_handling": "Keep full sequences and rely on bucketing or dynamic batching to manage memory."
+  },
+  "plain_length_stats": {
+    "avg": 597.606,
+    "count": 5000,
+    "max": 2670,
+    "min": 21
+  },
+  "plain_unique_characters": 53,
+  "suggested_split": {
+    "seed": 42,
+    "test_ratio": 0.1,
+    "train_ratio": 0.8,
+    "val_ratio": 0.1
+  },
+  "unique_cipher_sequences": 4997,
+  "unique_plain_sequences": 4997
+}

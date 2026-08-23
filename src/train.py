@@ -1,0 +1,544 @@
+"""Shared experiment configuration and the main training entrypoint."""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from dataclasses import asdict, dataclass, replace
+from functools import partial
+from pathlib import Path
+from typing import Any, Sequence
+
+import torch
+from torch.utils.data import DataLoader
+
+if __package__ in {None, ""}:
+    sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+from src.dataset import (
+    ByteLatentParallelDataset,
+    ByteTokenizer,
+    DatasetConfig,
+    ParallelTextDataset,
+    SimpleBPETokenizer,
+    build_batch_schedule,
+    build_dataset_splits,
+    collate_blt_batch,
+    collate_tokenized_batch,
+    load_parallel_corpus,
+    load_target_tokenizer,
+    save_target_tokenizer,
+    select_lines,
+)
+from src.models.transformer import build_model, greedy_decode, trim_after_eos
+from src.utils import (
+    HistoryTracker,
+    MetricTracker,
+    Timer,
+    ensure_dir,
+    evaluate_text_metrics,
+    get_peak_memory_mb,
+    init_wandb_run,
+    move_batch_to_device,
+    plot_training_curves,
+    resolve_device,
+    reset_peak_memory_stats,
+    save_checkpoint,
+    save_json,
+    set_seed,
+)
+
+
+@dataclass(frozen=True)
+class ExperimentConfig:
+    """Single source of truth for a configuration run."""
+
+    config_id: str
+    run_name: str
+    seed: int = 42
+    train_ratio: float = 0.8
+    val_ratio: float = 0.1
+    data_dir: str = "Dataset_A1"
+    output_dir: str = "outputs"
+    checkpoint_dir: str = "outputs/checkpoints"
+    tokenizer_dir: str = "outputs/tokenizers"
+    wandb_project: str = "ANLP_A1"
+    use_wandb: bool = True
+    prefer_cuda: bool = True
+    embedding_dim: int = 256
+    ff_hidden_dim: int = 1024
+    encoder_layers: int = 4
+    decoder_layers: int = 4
+    attention_heads: int = 8
+    query_groups: int = 4
+    dropout: float = 0.1
+    learning_rate: float = 3e-4
+    weight_decay: float = 1e-2
+    batch_size: int = 4
+    max_tokens_per_batch: int = 4096
+    epochs: int = 20
+    max_source_length: int = 4096
+    max_target_length: int = 1024
+    binary_to_byte_compaction: bool = True
+    length_bucketing: bool = True
+    dynamic_batching: bool = True
+    positional_encoding: str = "sinusoidal"
+    attention_type: str = "mha"
+    normalization_type: str = "layernorm"
+    tokenization_type: str = "subword"
+    source_tokenizer_type: str = "byte"
+    target_vocab_size: int = 512
+    source_vocab_size: int = 260
+    blt_patch_size: int = 16
+    scheduler_type: str = "none"
+    gradient_clip_norm: float = 1.0
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+def build_base_config() -> ExperimentConfig:
+    """Create the baseline configuration for C1."""
+    return ExperimentConfig(config_id="C1", run_name="A1_C1_baseline")
+
+
+def build_experiment_configs() -> dict[str, ExperimentConfig]:
+    """Create the five assignment configurations with single-component changes."""
+    base = build_base_config()
+    return {
+        "C1": base,
+        "C2": replace(
+            base,
+            config_id="C2",
+            run_name="A1_C2_rope",
+            positional_encoding="rope",
+        ),
+        "C3": replace(
+            base,
+            config_id="C3",
+            run_name="A1_C3_gqa",
+            attention_type="gqa",
+        ),
+        "C4": replace(
+            base,
+            config_id="C4",
+            run_name="A1_C4_rmsnorm",
+            normalization_type="rmsnorm",
+        ),
+        "C5": replace(
+            base,
+            config_id="C5",
+            run_name="A1_C5_blt",
+            tokenization_type="blt",
+        ),
+    }
+
+
+def export_configs(
+    configs: dict[str, ExperimentConfig],
+    output_dir: str | Path = "outputs/configs",
+) -> Path:
+    """Save config metadata to disk for reproducibility and inspection."""
+    output_dir = ensure_dir(output_dir)
+    payload = {name: config.to_dict() for name, config in configs.items()}
+    output_path = output_dir / "experiment_configs.json"
+    save_json(payload, output_path)
+    return output_path
+
+
+def get_config(config_id: str) -> ExperimentConfig:
+    """Return one configuration by identifier."""
+    configs = build_experiment_configs()
+    try:
+        return configs[config_id]
+    except KeyError as exc:
+        raise KeyError(f"Unknown config_id {config_id!r}. Expected one of {sorted(configs)}.") from exc
+
+
+# ---------------------------------------------------------------------------
+# Tokenizer preparation
+# ---------------------------------------------------------------------------
+
+
+def prepare_tokenizers(
+    config: ExperimentConfig,
+    plain_train_lines: Sequence[str],
+) -> dict[str, Any]:
+    """Build or restore the source and target tokenizers for a run.
+
+    The target subword tokenizer is fitted on the training split only and
+    cached on disk so every tokenized configuration shares identical
+    vocabulary artifacts.
+    """
+    source_tokenizer = ByteTokenizer()
+    prepared: dict[str, Any] = {"source": source_tokenizer}
+    if config.tokenization_type == "blt":
+        return prepared
+    tokenizer_path = Path(config.tokenizer_dir) / f"target_bpe_vocab{config.target_vocab_size}.json"
+    if tokenizer_path.exists():
+        target_tokenizer = load_target_tokenizer(tokenizer_path)
+    else:
+        target_tokenizer = SimpleBPETokenizer(vocab_size=config.target_vocab_size)
+        target_tokenizer.fit(plain_train_lines)
+        save_target_tokenizer(target_tokenizer, tokenizer_path)
+    prepared["target"] = target_tokenizer
+    prepared["target_path"] = tokenizer_path
+    return prepared
+
+
+# ---------------------------------------------------------------------------
+# Training and validation loops
+# ---------------------------------------------------------------------------
+
+
+def make_criterion(pad_id: int) -> torch.nn.CrossEntropyLoss:
+    """Cross-entropy ignoring padded label positions."""
+    return torch.nn.CrossEntropyLoss(ignore_index=pad_id)
+
+
+def run_model_forward(model, batch: dict[str, Any]) -> torch.Tensor:
+    """Shared teacher-forced forward pass over a collated batch."""
+    return model(
+        batch["source_ids"],
+        batch["decoder_input_ids"],
+        batch["source_ids"].ne(0),
+        batch["decoder_input_ids"].ne(0),
+    )
+
+
+def train_one_epoch(
+    model,
+    loader: DataLoader,
+    optimizer: torch.optim.Optimizer,
+    criterion: torch.nn.Module,
+    device: torch.device,
+    gradient_clip_norm: float,
+    tracker: MetricTracker,
+) -> None:
+    """Run one teacher-forced training epoch, recording token-weighted loss."""
+    model.train()
+    for batch in loader:
+        batch = move_batch_to_device(batch, device)
+        optimizer.zero_grad(set_to_none=True)
+        logits = run_model_forward(model, batch)
+        loss = criterion(logits.reshape(-1, logits.size(-1)), batch["labels"].reshape(-1))
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), gradient_clip_norm)
+        optimizer.step()
+        num_tokens = int(batch["labels"].ne(0).sum())
+        tracker.update(train_loss=float(loss.detach()) * num_tokens, loss_weight=num_tokens)
+
+
+def evaluate_loss(
+    model,
+    loader: DataLoader,
+    criterion: torch.nn.Module,
+    device: torch.device,
+    tracker: MetricTracker,
+) -> None:
+    """Compute validation loss without gradients and update the tracker."""
+    model.eval()
+    with torch.no_grad():
+        for batch in loader:
+            batch = move_batch_to_device(batch, device)
+            logits = run_model_forward(model, batch)
+            loss = criterion(logits.reshape(-1, logits.size(-1)), batch["labels"].reshape(-1))
+            num_tokens = int(batch["labels"].ne(0).sum())
+            tracker.update(val_loss=float(loss) * num_tokens, loss_weight=num_tokens)
+
+
+def tracker_average(tracker: MetricTracker, metric_name: str, weight_name: str) -> float:
+    """Token-weighted average of a loss accumulated in a tracker."""
+    weight_total = tracker.counts.get(weight_name, 0)
+    if weight_total == 0:
+        return float("nan")
+    return tracker.totals[metric_name] / weight_total
+
+
+# ---------------------------------------------------------------------------
+# Greedy test-set evaluation
+# ---------------------------------------------------------------------------
+
+
+def compute_test_predictions(
+    model,
+    loader: DataLoader,
+    *,
+    config: ExperimentConfig,
+    source_tokenizer: ByteTokenizer,
+    target_tokenizer: SimpleBPETokenizer | None,
+    device: torch.device,
+) -> dict[str, Any]:
+    """Greedy-decode a data loader and compute all assignment metrics.
+
+    BLEU/ROUGE are only computed for tokenized configurations; the BLT path
+    is genuinely token-free so those n-gram-overlap metrics are skipped.
+    """
+    is_blt = config.tokenization_type == "blt"
+    bos_id = source_tokenizer.bos_id
+    eos_id = source_tokenizer.eos_id
+    pad_id = source_tokenizer.pad_id
+    hypotheses: list[str] = []
+    references: list[str] = []
+    sources: list[str] = []
+    model.eval()
+    with torch.no_grad():
+        for batch in loader:
+            batch = move_batch_to_device(batch, device)
+            sequences = greedy_decode(
+                model,
+                batch["source_ids"],
+                bos_id=bos_id,
+                eos_id=eos_id,
+                pad_id=pad_id,
+                max_length=config.max_target_length + 4,
+            )
+            trimmed_rows = trim_after_eos(sequences, eos_id=eos_id, pad_id=pad_id)
+            for row in trimmed_rows:
+                if is_blt:
+                    text = source_tokenizer.decode_to_text(row)
+                else:
+                    text = target_tokenizer.decode(row)
+                hypotheses.append(text)
+            references.extend(batch["target_text"])
+            sources.extend(batch["source_text"])
+
+    metrics = evaluate_text_metrics(hypotheses, references, include_nlp_metrics=not is_blt)
+    samples = [
+        {
+            "source_cipher": source[:96],
+            "prediction": prediction[:160],
+            "reference": reference[:160],
+        }
+        for source, prediction, reference in zip(sources, hypotheses, references)
+    ]
+    return {"metrics": metrics, "samples": samples}
+
+
+# ---------------------------------------------------------------------------
+# Experiment orchestration
+# ---------------------------------------------------------------------------
+
+
+def dataset_example_lengths(dataset: Sequence[dict[str, Any]], is_blt: bool) -> list[tuple[int, int]]:
+    """Return (source, target) lengths for every example in a dataset."""
+    source_key = "source_bytes" if is_blt else "source_ids"
+    target_key = "target_bytes" if is_blt else "target_ids"
+    return [(len(example[source_key]), len(example[target_key])) for example in dataset]
+
+
+def run_experiment(
+    config: ExperimentConfig,
+    *,
+    smoke: bool = False,
+    device_override: str | None = None,
+    epochs_override: int | None = None,
+    disable_wandb: bool = False,
+) -> dict[str, Any]:
+    """Train one configuration end-to-end and persist every artifact."""
+    set_seed(config.seed)
+    device = resolve_device(prefer_cuda=config.prefer_cuda)
+    if device_override:
+        device = torch.device(device_override)
+
+    if smoke:
+        config = replace(
+            config,
+            epochs=epochs_override or 2,
+            max_source_length=min(1024, config.max_source_length),
+            max_target_length=min(96, config.max_target_length),
+            use_wandb=False,
+        )
+
+    cipher_lines, plain_lines = load_parallel_corpus(config.data_dir)
+    splits = build_dataset_splits(len(cipher_lines), config.train_ratio, config.val_ratio, config.seed)
+    if smoke:
+        splits = {
+            "train": splits["train"][:32],
+            "val": splits["val"][:8],
+            "test": splits["test"][:8],
+        }
+
+    tokenizers = prepare_tokenizers(config, select_lines(plain_lines, splits["train"]))
+    source_tokenizer: ByteTokenizer = tokenizers["source"]
+    dataset_config = DatasetConfig(
+        max_source_length=config.max_source_length,
+        max_target_length=config.max_target_length,
+    )
+    is_blt = config.tokenization_type == "blt"
+    if is_blt:
+        datasets = {
+            name: ByteLatentParallelDataset(
+                select_lines(cipher_lines, indices),
+                select_lines(plain_lines, indices),
+                dataset_config,
+            )
+            for name, indices in splits.items()
+        }
+        target_vocab_size = source_tokenizer.vocab_size
+        collate_fn = partial(collate_blt_batch, tokenizer=source_tokenizer)
+    else:
+        target_tokenizer: SimpleBPETokenizer = tokenizers["target"]
+        datasets = {
+            name: ParallelTextDataset(
+                select_lines(cipher_lines, indices),
+                select_lines(plain_lines, indices),
+                source_tokenizer,
+                target_tokenizer,
+                dataset_config,
+            )
+            for name, indices in splits.items()
+        }
+        target_vocab_size = target_tokenizer.learned_vocab_size
+        collate_fn = partial(collate_tokenized_batch, pad_id=target_tokenizer.pad_id)
+
+    def build_loader(name: str, shuffle_batches: bool, schedule_seed: int | None) -> DataLoader:
+        lengths = dataset_example_lengths(datasets[name], is_blt)
+        schedule = build_batch_schedule(
+            lengths,
+            batch_size=config.batch_size,
+            max_tokens_per_batch=config.max_tokens_per_batch,
+            shuffle=shuffle_batches,
+            seed=schedule_seed,
+        )
+        return DataLoader(datasets[name], batch_sampler=schedule, collate_fn=collate_fn)
+
+    val_loader = build_loader("val", False, None)
+    test_loader = build_loader("test", False, None)
+
+    model = build_model(config, src_vocab_size=source_tokenizer.vocab_size, tgt_vocab_size=target_vocab_size)
+    model.to(device)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay
+    )
+    criterion = make_criterion(source_tokenizer.pad_id)
+
+    wandb_run = init_wandb_run(
+        project=config.wandb_project,
+        config={**config.to_dict(), "smoke": smoke},
+        run_name=config.run_name,
+        enabled=config.use_wandb and not disable_wandb,
+        output_dir=config.output_dir,
+    )
+
+    checkpoint_dir = ensure_dir(config.checkpoint_dir)
+    plots_dir = ensure_dir(Path(config.output_dir) / "plots")
+    logs_dir = ensure_dir(Path(config.output_dir) / "logs")
+    history = HistoryTracker()
+    best_val_loss = float("inf")
+    reset_peak_memory_stats(device)
+    total_training_timer = Timer()
+
+    parameter_count = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"[{config.run_name}] training on {device} | {parameter_count:,} parameters")
+    with total_training_timer:
+        for epoch in range(1, config.epochs + 1):
+            train_tracker = MetricTracker()
+            val_tracker = MetricTracker()
+            epoch_timer = Timer()
+            with epoch_timer:
+                train_loader = build_loader("train", True, schedule_seed=config.seed + epoch)
+                train_one_epoch(
+                    model, train_loader, optimizer, criterion, device,
+                    config.gradient_clip_norm, train_tracker,
+                )
+                evaluate_loss(model, val_loader, criterion, device, val_tracker)
+            train_loss = tracker_average(train_tracker, "train_loss", "loss_weight")
+            val_loss = tracker_average(val_tracker, "val_loss", "loss_weight")
+            history.log(
+                epoch=epoch,
+                train_loss=train_loss,
+                val_loss=val_loss,
+                epoch_time_seconds=epoch_timer.elapsed,
+            )
+            wandb_run.log({
+                "train_loss": train_loss,
+                "val_loss": val_loss,
+                "epoch_time_seconds": epoch_timer.elapsed,
+                "peak_memory_mb": get_peak_memory_mb(device),
+                "epoch": epoch,
+            })
+            print(
+                f"[{config.run_name}] epoch {epoch:02d}/{config.epochs} "
+                f"train_loss={train_loss:.4f} val_loss={val_loss:.4f} "
+                f"time={epoch_timer.elapsed:.1f}s"
+            )
+            if val_loss < best_val_loss:
+                best_val_loss = val_loss
+                save_checkpoint(
+                    model, optimizer, Path(checkpoint_dir) / f"{config.run_name}_best.pt",
+                    epoch=epoch, config=config, metrics={"val_loss": val_loss},
+                )
+            save_checkpoint(
+                model, optimizer, Path(checkpoint_dir) / f"{config.run_name}_final.pt",
+                epoch=epoch, config=config, metrics={"val_loss": val_loss},
+            )
+
+    test_results = compute_test_predictions(
+        model,
+        test_loader,
+        config=config,
+        source_tokenizer=source_tokenizer,
+        target_tokenizer=tokenizers.get("target"),
+        device=device,
+    )
+
+    peak_memory_mb = get_peak_memory_mb(device)
+    summary = {
+        "run_name": config.run_name,
+        "config_id": config.config_id,
+        "config": config.to_dict(),
+        "smoke": smoke,
+        "history": history.history,
+        "best_val_loss": best_val_loss,
+        "total_training_time_seconds": total_training_timer.elapsed,
+        "peak_memory_mb": peak_memory_mb,
+        "test_metrics": test_results["metrics"],
+        "sample_predictions": test_results["samples"][:8],
+        "num_parameters": parameter_count,
+        "wandb_run_url": getattr(wandb_run, "url", None),
+    }
+    save_json(summary, Path(logs_dir) / f"{config.run_name}.json")
+    plot_training_curves(
+        history.history,
+        plots_dir / f"{config.run_name}_curves.png",
+        title=f"{config.run_name} ({config.config_id})",
+    )
+    wandb_run.log({"test_metrics": test_results["metrics"], "peak_memory_mb": peak_memory_mb})
+    wandb_run.finish()
+
+    print(
+        f"[{config.run_name}] done in {total_training_timer.elapsed:.1f}s | "
+        f"test metrics: {summary['test_metrics']}"
+    )
+    return summary
+
+
+def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+    """Parse command-line arguments for the training entrypoint."""
+    parser = argparse.ArgumentParser(description="Train Assignment 1 configurations")
+    parser.add_argument("--config", default="C1", help="Configuration id (C1-C5) or 'all'")
+    parser.add_argument("--epochs", type=int, default=None, help="Override number of epochs")
+    parser.add_argument("--smoke", action="store_true", help="Tiny subset sanity run")
+    parser.add_argument("--no-wandb", action="store_true", help="Disable WandB logging")
+    parser.add_argument("--device", default=None, help="cpu, cuda, or leave unset for auto")
+    return parser.parse_args(argv)
+
+
+def main(argv: Sequence[str] | None = None) -> None:
+    """Export shared configs and launch requested experiment runs."""
+    export_configs(build_experiment_configs())
+    args = parse_args(argv)
+    config_ids = sorted(build_experiment_configs()) if args.config == "all" else [args.config]
+    for config_id in config_ids:
+        run_experiment(
+            get_config(config_id),
+            smoke=args.smoke,
+            device_override=args.device,
+            epochs_override=args.epochs,
+            disable_wandb=args.no_wandb,
+        )
+
+
+if __name__ == "__main__":
+    main()
