@@ -443,8 +443,6 @@ def _dp_lcs_length(first: Sequence[str], second: Sequence[str]) -> int:
 
 def lcs_token_length(first: Sequence[str], second: Sequence[str]) -> int:
     """Longest common subsequence length over token sequences."""
-    if LEVENSHTEIN_PACKAGE_AVAILABLE:
-        return len(_levenshtein_package.lcsseq(list(first), list(second)))
     return _dp_lcs_length(first, second)
 
 

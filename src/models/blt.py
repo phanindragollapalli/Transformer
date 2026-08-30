@@ -110,27 +110,30 @@ class LocalEncoder(nn.Module):
 
         n_patches = byte_ids.size(1) // self.patch_size
         valid = byte_padding_mask.view(batch_size, n_patches, self.patch_size)
+        patch_padding_mask = valid.any(dim=-1)
         key_mask = valid.reshape(batch_size * n_patches, 1, 1, self.patch_size)
+        has_valid_keys = patch_padding_mask.view(batch_size * n_patches, 1, 1, 1)
+        safe_key_mask = torch.where(has_valid_keys, key_mask, torch.ones_like(key_mask))
 
         x = self.byte_embedding(byte_ids) * self.embedding_scale
         x = x.view(batch_size * n_patches, self.patch_size, -1)
         for block in self.local_blocks:
-            x = block(x, key_mask)
+            x = block(x, safe_key_mask)
         x = self.final_norm(x)
 
         valid_float = valid.reshape(batch_size * n_patches, self.patch_size, 1).to(x.dtype)
         pooled = (x * valid_float).sum(dim=1) / valid_float.sum(dim=1).clamp(min=1.0)
         latents = self.output_projection(pooled).view(batch_size, n_patches, -1)
-        patch_padding_mask = valid.any(dim=-1)
+        latents = torch.where(patch_padding_mask.unsqueeze(-1), latents, torch.zeros_like(latents))
         return latents, patch_padding_mask
 
 
 def build_banded_causal_mask(sequence_length: int, window_size: int, device: torch.device) -> Tensor:
-    """Build a causal mask limited to a local window of past positions."""
+    """Build a causal mask limited to a local window of past positions [1, 1, q_len, k_len]."""
     base = torch.ones(sequence_length, sequence_length, dtype=torch.bool, device=device)
     causal = torch.tril(base)
     local_window = torch.triu(base, diagonal=-(window_size - 1))
-    return causal & local_window
+    return (causal & local_window).unsqueeze(0).unsqueeze(0)
 
 
 class LocalDecoder(nn.Module):

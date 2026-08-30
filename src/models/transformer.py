@@ -12,7 +12,11 @@ from torch import Tensor, nn
 
 from src.models.attention import GroupedQueryAttention, MultiHeadAttention, build_attention
 from src.models.norm import build_normalization
-from src.models.positional import RotaryPositionalEmbedding, SinusoidalPositionalEncoding
+from src.models.positional import (
+    RotaryPositionalEmbedding,
+    SinusoidalPositionalEncoding,
+    build_positional_encoding,
+)
 
 
 class FeedForward(nn.Module):

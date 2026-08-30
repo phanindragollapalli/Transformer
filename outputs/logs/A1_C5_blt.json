@@ -1,0 +1,116 @@
+{
+  "best_val_loss": 3.1207661628723145,
+  "config": {
+    "attention_heads": 8,
+    "attention_type": "mha",
+    "batch_size": 4,
+    "binary_to_byte_compaction": true,
+    "blt_patch_size": 16,
+    "checkpoint_dir": "outputs/checkpoints",
+    "config_id": "C5",
+    "data_dir": "Dataset_A1",
+    "decoder_layers": 4,
+    "dropout": 0.1,
+    "dynamic_batching": true,
+    "embedding_dim": 256,
+    "encoder_layers": 4,
+    "epochs": 2,
+    "ff_hidden_dim": 1024,
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.0003,
+    "length_bucketing": true,
+    "max_source_length": 1024,
+    "max_target_length": 96,
+    "max_tokens_per_batch": 4096,
+    "normalization_type": "layernorm",
+    "output_dir": "outputs",
+    "positional_encoding": "sinusoidal",
+    "prefer_cuda": true,
+    "query_groups": 4,
+    "run_name": "A1_C5_blt",
+    "scheduler_type": "none",
+    "seed": 42,
+    "source_tokenizer_type": "byte",
+    "source_vocab_size": 260,
+    "target_vocab_size": 512,
+    "tokenization_type": "blt",
+    "tokenizer_dir": "outputs/tokenizers",
+    "train_ratio": 0.8,
+    "use_wandb": false,
+    "val_ratio": 0.1,
+    "wandb_project": "ANLP_A1",
+    "weight_decay": 0.01
+  },
+  "config_id": "C5",
+  "history": {
+    "epoch": [
+      1.0,
+      2.0
+    ],
+    "epoch_time_seconds": [
+      0.3780947480008763,
+      0.37166295199858723
+    ],
+    "train_loss": [
+      4.853728266998865,
+      3.411459609644911
+    ],
+    "val_loss": [
+      3.6798022985458374,
+      3.1207661628723145
+    ]
+  },
+  "num_parameters": 8687108,
+  "peak_memory_mb": 326.95458984375,
+  "run_name": "A1_C5_blt",
+  "sample_predictions": [
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "Credits adapted from the Loose liner notes",
+      "source_cipher": "000000100011110000101001001101000101101101000100010000010001011000100000001010100010110100100000"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "The following day several thousand residents led by the DCAC withdrew to the Creggan and issued an ultimatum to the RUC withdraw within two hours or be driven o",
+      "source_cipher": "000101010010011000101001011100000101010001011111010111100101101000101110001110010010010100111110"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "Starting in the s and following the construction of highways that made commuting easier residents began to move away from downtown in favor of new housing subdi",
+      "source_cipher": "000100100011101000101101001000100100011001011001010111000101000101100001001001110010001001110000"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "Jeff Todd Titon and several other writers have suggested that Lead Belly had significant help with its authorship and claim it is not a genuine protest song Thi",
+      "source_cipher": "000010110010101100101010001101100001001001100100010111010101001000100101011011100001100000111001"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "In January the embassy arrived at Beijing and was received by the Yuan emperor The Burmese delegation formally acknowledged Mongol suzerainty of their kingdom a",
+      "source_cipher": "000010000010000001101100000110100101001101011110010001110101011100110011001101110110110000100100"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "Imagism has been described as the most influential movement in English poetry since the activity of the Pre Raphaelites As a poetic style it gave Modernism its ",
+      "source_cipher": "000010000010001100101101001101110101101101000011010111110001011000101001001011110011111101110000"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "On the subject of Scientology s status as a religion the German government has pointed to a decision by the Federal Labor Court of Germany That court noting Hub",
+      "source_cipher": "000011100010000001101100001001000101101001010101000100100100010100110100001011000010011000110101"
+    },
+    {
+      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "reference": "San Lorenzo Colossal Head also known as San Lorenzo Monument was reworked from a monumental throne The head stands metres ft high and measures metres ft wide by",
+      "source_cipher": "000100100010111100100010011100000111111001011111010000000101001100101111001101000010001101110000"
+    }
+  ],
+  "smoke": true,
+  "test_metrics": {
+    "bit_level_accuracy": 0.13777472322516088,
+    "levenshtein_distance": 650.0,
+    "sequence_accuracy": 0.0
+  },
+  "total_training_time_seconds": 1.2084443589992588,
+  "wandb_run_url": null
+}

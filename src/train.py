@@ -249,8 +249,8 @@ def evaluate_loss(
 
 def tracker_average(tracker: MetricTracker, metric_name: str, weight_name: str) -> float:
     """Token-weighted average of a loss accumulated in a tracker."""
-    weight_total = tracker.counts.get(weight_name, 0)
-    if weight_total == 0:
+    weight_total = tracker.totals.get(weight_name, 0.0)
+    if weight_total == 0.0:
         return float("nan")
     return tracker.totals[metric_name] / weight_total
 
