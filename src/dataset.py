@@ -1,10 +1,9 @@
-"""Dataset and tokenization utilities for Assignment 1."""
+"""Dataset and from-scratch Byte-level BPE tokenization utilities for Assignment 1."""
 
 from __future__ import annotations
 
 import json
 import random
-import re
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
@@ -16,28 +15,24 @@ from torch.utils.data import Dataset
 
 from src.utils import ascii_byte_values, bits_to_byte_values
 
-try:
-    from tokenizers import Tokenizer
-    from tokenizers.decoders import ByteLevel as ByteLevelDecoder
-    from tokenizers.models import BPE
-    from tokenizers.pre_tokenizers import ByteLevel as ByteLevelPreTokenizer
-    from tokenizers.trainers import BpeTrainer
-
-    TOKENIZERS_AVAILABLE = True
-except ImportError:
-    TOKENIZERS_AVAILABLE = False
-
-
 SPECIAL_TOKENS = ["<pad>", "<bos>", "<eos>", "<unk>"]
-WORD_END = "</w>"
-TOKEN_PATTERN = re.compile(r"\S+|\s+")
+PAD_ID = 0
+BOS_ID = 1
+EOS_ID = 2
+UNK_ID = 3
+BYTE_OFFSET = 4  # 0..255 mapped to 4..259
+BASE_VOCAB_SIZE = 260
 
 
-def load_parallel_corpus(data_dir: str | Path) -> tuple[list[str], list[str]]:
+def load_parallel_corpus(data_dir: str | Path = "dataset") -> tuple[list[str], list[str]]:
     """Load the aligned cipher/plaintext corpus from disk."""
     data_dir = Path(data_dir)
     cipher_path = data_dir / "brown_cipher.txt"
     plain_path = data_dir / "brown_plain.txt"
+    if not cipher_path.exists() or not plain_path.exists():
+        raise FileNotFoundError(
+            f"Could not find dataset files in {data_dir}. Expected brown_cipher.txt and brown_plain.txt."
+        )
     cipher_lines = cipher_path.read_text(encoding="utf-8").splitlines()
     plain_lines = plain_path.read_text(encoding="utf-8").splitlines()
     if len(cipher_lines) != len(plain_lines):
@@ -76,17 +71,15 @@ def build_dataset_splits(
 
 
 class ByteTokenizer:
-    """Direct byte tokenizer with a tiny set of control tokens."""
+    """Direct unmerged byte tokenizer used by the token-free BLT model (C5)."""
 
     def __init__(self) -> None:
-        self.special_tokens = list(SPECIAL_TOKENS)
-        self.token_to_id = {token: index for index, token in enumerate(self.special_tokens)}
-        self.pad_id = self.token_to_id["<pad>"]
-        self.bos_id = self.token_to_id["<bos>"]
-        self.eos_id = self.token_to_id["<eos>"]
-        self.unk_id = self.token_to_id["<unk>"]
-        self.byte_offset = len(self.special_tokens)
-        self.vocab_size = self.byte_offset + 256
+        self.pad_id = PAD_ID
+        self.bos_id = BOS_ID
+        self.eos_id = EOS_ID
+        self.unk_id = UNK_ID
+        self.byte_offset = BYTE_OFFSET
+        self.vocab_size = BASE_VOCAB_SIZE
 
     def byte_to_id(self, value: int) -> int:
         if not 0 <= value <= 255:
@@ -149,155 +142,229 @@ class ByteTokenizer:
         return bytes(byte_values).decode("utf-8", errors="replace")
 
 
-class SimpleBPETokenizer:
-    """A lightweight whitespace-preserving BPE tokenizer for the plaintext side."""
+class ByteBPETokenizer:
+    """100% From-scratch Byte-Level BPE Tokenizer.
 
-    def __init__(self, vocab_size: int = 512, min_pair_frequency: int = 2) -> None:
+    Learns subword merges over byte sequences (starting from 256 individual byte
+    tokens + 4 special tokens). Supports both source ciphertext bytes and target
+    plaintext UTF-8 bytes.
+    """
+
+    def __init__(self, vocab_size: int = 512, min_frequency: int = 2) -> None:
         self.vocab_size = vocab_size
-        self.min_pair_frequency = min_pair_frequency
-        self.special_tokens = list(SPECIAL_TOKENS)
-        self.token_to_id = {token: index for index, token in enumerate(self.special_tokens)}
-        self.id_to_token = {index: token for token, index in self.token_to_id.items()}
-        self.pad_id = self.token_to_id["<pad>"]
-        self.bos_id = self.token_to_id["<bos>"]
-        self.eos_id = self.token_to_id["<eos>"]
-        self.unk_id = self.token_to_id["<unk>"]
-        self.merges: list[tuple[str, str]] = []
-        self.backend_tokenizer: Tokenizer | None = None
+        self.min_frequency = min_frequency
+        self.pad_id = PAD_ID
+        self.bos_id = BOS_ID
+        self.eos_id = EOS_ID
+        self.unk_id = UNK_ID
+        self.byte_offset = BYTE_OFFSET
+
+        # Mapping from token_id -> bytes
+        self.token_to_bytes: dict[int, bytes] = {
+            i + self.byte_offset: bytes([i]) for i in range(256)
+        }
+        # Learned merges: (token_a, token_b) -> new_token_id
+        self.merges: dict[tuple[int, int], int] = {}
+        # Merge priority ranks: (token_a, token_b) -> rank_order (0, 1, 2, ...)
+        self.merge_ranks: dict[tuple[int, int], int] = {}
         self.trained = False
 
-    @staticmethod
-    def _pretokenize(text: str) -> list[str]:
-        return TOKEN_PATTERN.findall(text)
+    @property
+    def learned_vocab_size(self) -> int:
+        return BASE_VOCAB_SIZE + len(self.merges)
 
-    @staticmethod
-    def _apply_merge(symbols: tuple[str, ...], pair: tuple[str, str]) -> tuple[str, ...]:
-        merged: list[str] = []
-        index = 0
-        while index < len(symbols):
-            if index < len(symbols) - 1 and (symbols[index], symbols[index + 1]) == pair:
-                merged.append(symbols[index] + symbols[index + 1])
-                index += 2
+    def fit(self, byte_sequences: Iterable[Sequence[int] | bytes]) -> None:
+        """Learn BPE merge operations from an iterable of byte sequences."""
+        # Convert each sample to list of base token IDs
+        sequences: list[list[int]] = []
+        for raw in byte_sequences:
+            if isinstance(raw, (bytes, bytearray)):
+                byte_list = list(raw)
             else:
-                merged.append(symbols[index])
-                index += 1
-        return tuple(merged)
+                byte_list = list(raw)
+            if byte_list:
+                sequences.append([b + self.byte_offset for b in byte_list])
 
-    def fit(self, texts: Iterable[str]) -> None:
-        texts = list(texts)
-        if TOKENIZERS_AVAILABLE:
-            tokenizer = Tokenizer(BPE(unk_token="<unk>"))
-            tokenizer.pre_tokenizer = ByteLevelPreTokenizer(add_prefix_space=False)
-            tokenizer.decoder = ByteLevelDecoder()
-            trainer = BpeTrainer(
-                vocab_size=self.vocab_size,
-                min_frequency=self.min_pair_frequency,
-                special_tokens=self.special_tokens,
-            )
-            tokenizer.train_from_iterator(texts, trainer=trainer)
-            vocab = tokenizer.get_vocab()
-            self.token_to_id = dict(vocab)
-            self.id_to_token = {index: token for token, index in self.token_to_id.items()}
-            self.pad_id = self.token_to_id["<pad>"]
-            self.bos_id = self.token_to_id["<bos>"]
-            self.eos_id = self.token_to_id["<eos>"]
-            self.unk_id = self.token_to_id["<unk>"]
-            self.backend_tokenizer = tokenizer
+        num_merges_needed = self.vocab_size - BASE_VOCAB_SIZE
+        if num_merges_needed <= 0:
             self.trained = True
             return
 
-        word_frequencies: Counter[tuple[str, ...]] = Counter()
-        for text in texts:
-            for piece in self._pretokenize(text):
-                word_frequencies[tuple(list(piece) + [WORD_END])] += 1
+        for merge_idx in range(num_merges_needed):
+            pair_counts: Counter[tuple[int, int]] = Counter()
+            for seq in sequences:
+                if len(seq) < 2:
+                    continue
+                for i in range(len(seq) - 1):
+                    pair_counts[(seq[i], seq[i + 1])] += 1
 
-        symbols = {
-            symbol
-            for word in word_frequencies
-            for symbol in word
-        }
-        while len(self.special_tokens) + len(symbols) < self.vocab_size:
-            pair_frequencies: Counter[tuple[str, str]] = Counter()
-            for word, frequency in word_frequencies.items():
-                for index in range(len(word) - 1):
-                    pair_frequencies[(word[index], word[index + 1])] += frequency
-            if not pair_frequencies:
+            if not pair_counts:
                 break
-            best_pair, best_frequency = pair_frequencies.most_common(1)[0]
-            if best_frequency < self.min_pair_frequency:
-                break
-            self.merges.append(best_pair)
-            merged_frequencies: Counter[tuple[str, ...]] = Counter()
-            for word, frequency in word_frequencies.items():
-                merged_frequencies[self._apply_merge(word, best_pair)] += frequency
-            word_frequencies = merged_frequencies
-            symbols = {symbol for word in word_frequencies for symbol in word}
 
-        next_id = len(self.special_tokens)
-        for symbol in sorted(symbols):
-            if symbol not in self.token_to_id:
-                self.token_to_id[symbol] = next_id
-                self.id_to_token[next_id] = symbol
-                next_id += 1
+            best_pair, best_count = pair_counts.most_common(1)[0]
+            if best_count < self.min_frequency:
+                break
+
+            new_token_id = BASE_VOCAB_SIZE + len(self.merges)
+            self.merges[best_pair] = new_token_id
+            self.merge_ranks[best_pair] = len(self.merge_ranks)
+            self.token_to_bytes[new_token_id] = (
+                self.token_to_bytes[best_pair[0]] + self.token_to_bytes[best_pair[1]]
+            )
+
+            # Apply this merge to all training sequences
+            p0, p1 = best_pair
+            updated_sequences: list[list[int]] = []
+            for seq in sequences:
+                if len(seq) < 2:
+                    updated_sequences.append(seq)
+                    continue
+                new_seq: list[int] = []
+                idx = 0
+                while idx < len(seq):
+                    if idx < len(seq) - 1 and seq[idx] == p0 and seq[idx + 1] == p1:
+                        new_seq.append(new_token_id)
+                        idx += 2
+                    else:
+                        new_seq.append(seq[idx])
+                        idx += 1
+                updated_sequences.append(new_seq)
+            sequences = updated_sequences
+
         self.trained = True
 
-    def _ensure_trained(self) -> None:
-        if not self.trained:
-            raise RuntimeError("SimpleBPETokenizer.fit must be called before encoding")
+    def _apply_merges(self, tokens: list[int]) -> list[int]:
+        """Iteratively apply learned BPE merges in order of merge rank."""
+        if len(tokens) < 2 or not self.merge_ranks:
+            return tokens
 
-    def encode(
+        while len(tokens) >= 2:
+            # Find the pair with the smallest merge rank (highest priority)
+            pairs = [(tokens[i], tokens[i + 1]) for i in range(len(tokens) - 1)]
+            eligible_pairs = [
+                (self.merge_ranks[pair], pair)
+                for pair in pairs
+                if pair in self.merge_ranks
+            ]
+            if not eligible_pairs:
+                break
+
+            _, best_pair = min(eligible_pairs)
+            new_id = self.merges[best_pair]
+            p0, p1 = best_pair
+
+            new_tokens: list[int] = []
+            i = 0
+            while i < len(tokens):
+                if i < len(tokens) - 1 and tokens[i] == p0 and tokens[i + 1] == p1:
+                    new_tokens.append(new_id)
+                    i += 2
+                else:
+                    new_tokens.append(tokens[i])
+                    i += 1
+            tokens = new_tokens
+
+        return tokens
+
+    def encode_bytes(
+        self,
+        values: Sequence[int],
+        *,
+        add_bos: bool = False,
+        add_eos: bool = False,
+    ) -> list[int]:
+        """Tokenize a sequence of byte values (0-255) using learned BPE merges."""
+        tokens = [b + self.byte_offset for b in values]
+        tokens = self._apply_merges(tokens)
+        if add_bos:
+            tokens.insert(0, self.bos_id)
+        if add_eos:
+            tokens.append(self.eos_id)
+        return tokens
+
+    def encode_text(
         self,
         text: str,
         *,
         add_bos: bool = False,
         add_eos: bool = False,
     ) -> list[int]:
-        self._ensure_trained()
-        if self.backend_tokenizer is not None:
-            token_ids = self.backend_tokenizer.encode(text).ids
-            if add_bos:
-                token_ids.insert(0, self.bos_id)
-            if add_eos:
-                token_ids.append(self.eos_id)
-            return token_ids
+        """Tokenize UTF-8 text using learned BPE merges."""
+        return self.encode_bytes(
+            ascii_byte_values(text),
+            add_bos=add_bos,
+            add_eos=add_eos,
+        )
 
-        token_ids: list[int] = []
-        for piece in self._pretokenize(text):
-            symbols: tuple[str, ...] = tuple(list(piece) + [WORD_END])
-            for pair in self.merges:
-                symbols = self._apply_merge(symbols, pair)
-            for symbol in symbols:
-                token_ids.append(self.token_to_id.get(symbol, self.unk_id))
-        if add_bos:
-            token_ids.insert(0, self.bos_id)
-        if add_eos:
-            token_ids.append(self.eos_id)
-        return token_ids
+    def encode_binary_string(
+        self,
+        bit_string: str,
+        *,
+        add_bos: bool = False,
+        add_eos: bool = False,
+    ) -> list[int]:
+        """Tokenize binary string by grouping into bytes and applying BPE."""
+        return self.encode_bytes(
+            bits_to_byte_values(bit_string),
+            add_bos=add_bos,
+            add_eos=add_eos,
+        )
 
-    def decode(self, token_ids: Sequence[int], *, skip_special: bool = True) -> str:
-        if self.backend_tokenizer is not None:
-            filtered_ids: list[int] = []
-            for token_id in token_ids:
-                token = self.id_to_token.get(int(token_id), "<unk>")
-                if token in self.special_tokens and skip_special:
-                    continue
-                filtered_ids.append(int(token_id))
-            return self.backend_tokenizer.decode(filtered_ids)
-
-        pieces: list[str] = []
+    def decode_to_bytes(self, token_ids: Sequence[int], *, skip_special: bool = True) -> bytes:
+        """Decode a list of subword token IDs back into raw bytes."""
+        byte_chunks: list[bytes] = []
         for token_id in token_ids:
-            token = self.id_to_token.get(int(token_id), "<unk>")
-            if token in self.special_tokens:
+            if token_id < self.byte_offset:
                 if skip_special:
                     continue
-                pieces.append(token)
                 continue
-            pieces.append(token.replace(WORD_END, ""))
-        return "".join(pieces)
+            byte_val = self.token_to_bytes.get(token_id)
+            if byte_val is not None:
+                byte_chunks.append(byte_val)
+        return b"".join(byte_chunks)
 
-    @property
-    def learned_vocab_size(self) -> int:
-        return len(self.token_to_id)
+    def decode_to_text(self, token_ids: Sequence[int], *, skip_special: bool = True) -> str:
+        """Decode a list of subword token IDs back to a UTF-8 string."""
+        return self.decode_to_bytes(token_ids, skip_special=skip_special).decode(
+            "utf-8", errors="replace"
+        )
+
+    def save(self, path: str | Path) -> Path:
+        """Persist the tokenizer to a clean JSON file."""
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "vocab_size": self.vocab_size,
+            "min_frequency": self.min_frequency,
+            "merges": [
+                [p[0], p[1], new_id] for p, new_id in self.merges.items()
+            ],
+        }
+        path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        return path
+
+    @classmethod
+    def load(cls, path: str | Path) -> ByteBPETokenizer:
+        """Restore a ByteBPETokenizer from a JSON file."""
+        path = Path(path)
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        tok = cls(
+            vocab_size=payload["vocab_size"],
+            min_frequency=payload.get("min_frequency", 2),
+        )
+        for p0, p1, new_id in payload["merges"]:
+            pair = (p0, p1)
+            tok.merges[pair] = new_id
+            tok.merge_ranks[pair] = len(tok.merge_ranks)
+            tok.token_to_bytes[new_id] = (
+                tok.token_to_bytes[p0] + tok.token_to_bytes[p1]
+            )
+        tok.trained = True
+        return tok
+
+
+# Alias for backward compatibility if referenced elsewhere
+SimpleBPETokenizer = ByteBPETokenizer
 
 
 @dataclass
@@ -309,14 +376,14 @@ class DatasetConfig:
 
 
 class ParallelTextDataset(Dataset[dict[str, object]]):
-    """Tokenized dataset used by configurations C1 to C4."""
+    """Tokenized subword dataset used by configurations C1 to C4."""
 
     def __init__(
         self,
         cipher_lines: Sequence[str],
         plain_lines: Sequence[str],
-        source_tokenizer: ByteTokenizer,
-        target_tokenizer: SimpleBPETokenizer,
+        source_tokenizer: ByteBPETokenizer,
+        target_tokenizer: ByteBPETokenizer,
         config: DatasetConfig | None = None,
     ) -> None:
         if len(cipher_lines) != len(plain_lines):
@@ -327,7 +394,7 @@ class ParallelTextDataset(Dataset[dict[str, object]]):
         self.examples: list[dict[str, object]] = []
         for cipher_text, plain_text in zip(cipher_lines, plain_lines):
             source_ids = source_tokenizer.encode_binary_string(cipher_text)
-            target_ids = target_tokenizer.encode(plain_text, add_bos=True, add_eos=True)
+            target_ids = target_tokenizer.encode_text(plain_text, add_bos=True, add_eos=True)
             if self.config.max_source_length is not None:
                 source_ids = source_ids[: self.config.max_source_length]
             if self.config.max_target_length is not None:
@@ -349,7 +416,7 @@ class ParallelTextDataset(Dataset[dict[str, object]]):
 
 
 class ByteLatentParallelDataset(Dataset[dict[str, object]]):
-    """Byte-level dataset used by the BLT-style configuration."""
+    """Byte-level dataset used by the BLT-style configuration (C5)."""
 
     def __init__(
         self,
@@ -387,7 +454,7 @@ class ByteLatentParallelDataset(Dataset[dict[str, object]]):
 def collate_tokenized_batch(
     batch: Sequence[dict[str, object]],
     *,
-    pad_id: int,
+    pad_id: int = PAD_ID,
 ) -> dict[str, object]:
     """Pad a tokenized mini-batch and build decoder inputs and labels."""
     source_tensors = [torch.tensor(item["source_ids"], dtype=torch.long) for item in batch]
@@ -409,7 +476,7 @@ def collate_blt_batch(
     *,
     tokenizer: ByteTokenizer,
 ) -> dict[str, object]:
-    """Pad a byte-level mini-batch for BLT-style experiments."""
+    """Pad a byte-level mini-batch for BLT-style experiments (C5)."""
     source_tensors = [
         torch.tensor(tokenizer.encode_bytes(item["source_bytes"]), dtype=torch.long)
         for item in batch
@@ -446,13 +513,7 @@ def build_batch_schedule(
     shuffle: bool = False,
     seed: int | None = None,
 ) -> list[list[int]]:
-    """Create length-bucketed mini-batch schedules for efficient padding.
-
-    Indices are sorted by sequence length (with optional jitter when
-    shuffling so bucket composition varies across epochs), greedily packed
-    under both a per-batch example cap and a token budget cap, and the
-    resulting batch order is shuffled for training runs.
-    """
+    """Create length-bucketed mini-batch schedules for efficient padding."""
     if batch_size <= 0:
         raise ValueError("batch_size must be positive")
     rng = random.Random(seed)
@@ -488,51 +549,9 @@ def build_batch_schedule(
     return batches
 
 
-def save_target_tokenizer(tokenizer: SimpleBPETokenizer, path: str | Path) -> Path:
-    """Persist a trained target tokenizer to disk for reproducible runs."""
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if tokenizer.backend_tokenizer is not None:
-        tokenizer.backend_tokenizer.save(str(path))
-        return path
-    payload = {
-        "format": "simple_bpe_fallback",
-        "vocab_size": tokenizer.vocab_size,
-        "min_pair_frequency": tokenizer.min_pair_frequency,
-        "merges": [list(pair) for pair in tokenizer.merges],
-        "token_to_id": tokenizer.token_to_id,
-    }
-    path.write_text(json.dumps(payload), encoding="utf-8")
-    return path
+def save_target_tokenizer(tokenizer: ByteBPETokenizer, path: str | Path) -> Path:
+    return tokenizer.save(path)
 
 
-def load_target_tokenizer(path: str | Path) -> SimpleBPETokenizer:
-    """Restore a previously trained target tokenizer from disk."""
-    path = Path(path)
-    raw = path.read_text(encoding="utf-8")
-    payload = json.loads(raw)
-    if isinstance(payload, dict) and payload.get("format") == "simple_bpe_fallback":
-        tokenizer = SimpleBPETokenizer(
-            vocab_size=payload["vocab_size"],
-            min_pair_frequency=payload["min_pair_frequency"],
-        )
-        tokenizer.merges = [tuple(pair) for pair in payload["merges"]]
-        tokenizer.token_to_id = dict(payload["token_to_id"])
-        tokenizer.id_to_token = {index: token for token, index in tokenizer.token_to_id.items()}
-        tokenizer.pad_id = tokenizer.token_to_id["<pad>"]
-        tokenizer.bos_id = tokenizer.token_to_id["<bos>"]
-        tokenizer.eos_id = tokenizer.token_to_id["<eos>"]
-        tokenizer.unk_id = tokenizer.token_to_id["<unk>"]
-        tokenizer.trained = True
-        return tokenizer
-    tokenizer = SimpleBPETokenizer()
-    tokenizer.backend_tokenizer = Tokenizer.from_file(str(path))
-    vocab = tokenizer.backend_tokenizer.get_vocab()
-    tokenizer.token_to_id = dict(vocab)
-    tokenizer.id_to_token = {index: token for token, index in tokenizer.token_to_id.items()}
-    tokenizer.pad_id = tokenizer.token_to_id["<pad>"]
-    tokenizer.bos_id = tokenizer.token_to_id["<bos>"]
-    tokenizer.eos_id = tokenizer.token_to_id["<eos>"]
-    tokenizer.unk_id = tokenizer.token_to_id["<unk>"]
-    tokenizer.trained = True
-    return tokenizer
+def load_target_tokenizer(path: str | Path) -> ByteBPETokenizer:
+    return ByteBPETokenizer.load(path)
