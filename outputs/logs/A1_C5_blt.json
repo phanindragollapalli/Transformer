@@ -8,7 +8,7 @@
     "blt_patch_size": 16,
     "checkpoint_dir": "outputs/checkpoints",
     "config_id": "C5",
-    "data_dir": "Dataset_A1",
+    "data_dir": "dataset",
     "decoder_layers": 4,
     "dropout": 0.1,
     "dynamic_batching": true,
@@ -31,7 +31,7 @@
     "scheduler_type": "none",
     "seed": 42,
     "source_tokenizer_type": "byte",
-    "source_vocab_size": 260,
+    "source_vocab_size": 512,
     "target_vocab_size": 512,
     "tokenization_type": "blt",
     "tokenizer_dir": "outputs/tokenizers",
@@ -48,8 +48,8 @@
       2.0
     ],
     "epoch_time_seconds": [
-      0.3780947480008763,
-      0.37166295199858723
+      0.2898449200001778,
+      0.2797696090001409
     ],
     "train_loss": [
       4.853728266998865,
@@ -61,7 +61,7 @@
     ]
   },
   "num_parameters": 8687108,
-  "peak_memory_mb": 326.95458984375,
+  "peak_memory_mb": 323.42822265625,
   "run_name": "A1_C5_blt",
   "sample_predictions": [
     {
@@ -111,6 +111,6 @@
     "levenshtein_distance": 650.0,
     "sequence_accuracy": 0.0
   },
-  "total_training_time_seconds": 1.2084443589992588,
+  "total_training_time_seconds": 0.8939177190004557,
   "wandb_run_url": null
 }

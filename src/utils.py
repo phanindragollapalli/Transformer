@@ -23,13 +23,9 @@ except ImportError:
     wandb = None
     WANDB_AVAILABLE = False
 
-try:
-    import Levenshtein as _levenshtein_package
-
-    LEVENSHTEIN_PACKAGE_AVAILABLE = True
-except ImportError:
-    _levenshtein_package = None
-    LEVENSHTEIN_PACKAGE_AVAILABLE = False
+import Levenshtein
+from nltk.translate.bleu_score import SmoothingFunction, corpus_bleu as nltk_corpus_bleu
+from rouge_score import rouge_scorer
 
 
 def set_seed(seed: int) -> None:
@@ -310,31 +306,9 @@ def init_wandb_run(
 # ---------------------------------------------------------------------------
 
 
-def _dp_levenshtein(reference: str, hypothesis: str) -> int:
-    """Reference pure-Python Levenshtein distance used when no C package exists."""
-    if len(reference) < len(hypothesis):
-        reference, hypothesis = hypothesis, reference
-    previous = list(range(len(hypothesis) + 1))
-    for row, reference_char in enumerate(reference, start=1):
-        current = [row]
-        for column, hypothesis_char in enumerate(hypothesis, start=1):
-            substitution_cost = 0 if reference_char == hypothesis_char else 1
-            current.append(
-                min(
-                    previous[column] + 1,
-                    current[column - 1] + 1,
-                    previous[column - 1] + substitution_cost,
-                )
-            )
-        previous = current
-    return previous[-1]
-
-
 def levenshtein_distance(reference: str, hypothesis: str) -> int:
-    """Edit distance between the reference and predicted strings."""
-    if LEVENSHTEIN_PACKAGE_AVAILABLE:
-        return _levenshtein_package.distance(reference, hypothesis)
-    return _dp_levenshtein(reference, hypothesis)
+    """Edit distance between the reference and predicted strings using standard Levenshtein library."""
+    return Levenshtein.distance(reference, hypothesis)
 
 
 def text_to_bits(text: str) -> tuple[int, ...]:
@@ -381,117 +355,43 @@ def mean_bit_level_accuracy(hypotheses: Sequence[str], references: Sequence[str]
     ) / len(references)
 
 
-def _ngram_counts(tokens: Sequence[str], n: int) -> Counter[tuple[str, ...]]:
-    return Counter(tuple(tokens[index : index + n]) for index in range(len(tokens) - n + 1))
-
-
 def corpus_bleu(
     hypotheses: Sequence[str],
     references: Sequence[str],
-    max_n: int = 4,
 ) -> float:
-    """Corpus-level BLEU with add-one smoothing on the modified precisions.
-
-    Add-one smoothing keeps every configuration comparable even when short
-    sequences produce zero raw n-gram hits; the brevity penalty follows the
-    standard BLEU definition.
-    """
+    """Corpus-level BLEU using NLTK's corpus_bleu with smoothing."""
     if len(hypotheses) != len(references):
         raise ValueError("hypotheses and references must have the same length")
-    clipped_hits = [0] * max_n
-    totals = [0] * max_n
-    hypothesis_length_total = 0
-    reference_length_total = 0
-    for hypothesis, reference in zip(hypotheses, references):
-        hypothesis_tokens = hypothesis.split()
-        reference_tokens = reference.split()
-        hypothesis_length_total += len(hypothesis_tokens)
-        reference_length_total += len(reference_tokens)
-        for n in range(1, max_n + 1):
-            hypothesis_counts = _ngram_counts(hypothesis_tokens, n)
-            reference_counts = _ngram_counts(reference_tokens, n)
-            clipped_hits[n - 1] += sum(
-                min(count, reference_counts[gram]) for gram, count in hypothesis_counts.items()
-            )
-            totals[n - 1] += max(len(hypothesis_tokens) - n + 1, 0)
-    if hypothesis_length_total == 0 or reference_length_total == 0:
+    if not references:
         return 0.0
-    log_precisions = [
-        math.log((clipped_hits[i] + 1.0) / (totals[i] + 1.0)) for i in range(max_n)
-    ]
-    brevity_penalty = min(1.0, math.exp(1.0 - reference_length_total / hypothesis_length_total))
-    return brevity_penalty * math.exp(sum(log_precisions) / max_n)
-
-
-def _dp_lcs_length(first: Sequence[str], second: Sequence[str]) -> int:
-    """Pure-Python LCS length used when no accelerated package is available."""
-    if not first or not second:
-        return 0
-    if len(first) < len(second):
-        first, second = second, first
-    previous = [0] * (len(second) + 1)
-    for first_item in first:
-        current = [0]
-        for column, second_item in enumerate(second, start=1):
-            if first_item == second_item:
-                current.append(previous[column - 1] + 1)
-            else:
-                current.append(max(previous[column], current[column - 1]))
-        previous = current
-    return previous[-1]
-
-
-def lcs_token_length(first: Sequence[str], second: Sequence[str]) -> int:
-    """Longest common subsequence length over token sequences."""
-    return _dp_lcs_length(first, second)
-
-
-def rouge_n_f1(
-    hypothesis_tokens: Sequence[str],
-    reference_tokens: Sequence[str],
-    n: int,
-) -> float:
-    """F1 score of clipped n-gram overlap between hypothesis and reference."""
-    if len(hypothesis_tokens) < n or len(reference_tokens) < n:
-        return 0.0
-    hypothesis_counts = _ngram_counts(hypothesis_tokens, n)
-    reference_counts = _ngram_counts(reference_tokens, n)
-    overlap = sum(min(count, reference_counts[gram]) for gram, count in hypothesis_counts.items())
-    precision_denominator = max(len(hypothesis_tokens) - n + 1, 0)
-    recall_denominator = max(len(reference_tokens) - n + 1, 0)
-    if overlap == 0 or precision_denominator == 0 or recall_denominator == 0:
-        return 0.0
-    precision = overlap / precision_denominator
-    recall = overlap / recall_denominator
-    return 2.0 * precision * recall / (precision + recall)
-
-
-def rouge_l_f1(hypothesis_tokens: Sequence[str], reference_tokens: Sequence[str]) -> float:
-    """ROUGE-L F1 based on the longest common subsequence."""
-    if not hypothesis_tokens or not reference_tokens:
-        return 0.0
-    lcs_length = lcs_token_length(hypothesis_tokens, reference_tokens)
-    if lcs_length == 0:
-        return 0.0
-    precision = lcs_length / len(hypothesis_tokens)
-    recall = lcs_length / len(reference_tokens)
-    return 2.0 * precision * recall / (precision + recall)
+    list_of_references = [[ref.split()] for ref in references]
+    list_of_hypotheses = [hyp.split() for hyp in hypotheses]
+    smoothing = SmoothingFunction().method1
+    return float(
+        nltk_corpus_bleu(
+            list_of_references,
+            list_of_hypotheses,
+            smoothing_function=smoothing,
+        )
+    )
 
 
 def rouge_scores(
     hypotheses: Sequence[str],
     references: Sequence[str],
 ) -> dict[str, float]:
-    """Average ROUGE-1, ROUGE-2, and ROUGE-L F1 scores over whitespace tokens."""
+    """Average ROUGE-1, ROUGE-2, and ROUGE-L F1 scores using rouge-score library."""
+    if not references:
+        return {"rouge_1_f1": 0.0, "rouge_2_f1": 0.0, "rouge_l_f1": 0.0}
+    scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeL"], use_stemmer=False)
     totals = {"rouge_1_f1": 0.0, "rouge_2_f1": 0.0, "rouge_l_f1": 0.0}
-    for hypothesis, reference in zip(hypotheses, references):
-        hypothesis_tokens = hypothesis.split()
-        reference_tokens = reference.split()
-        totals["rouge_1_f1"] += rouge_n_f1(hypothesis_tokens, reference_tokens, 1)
-        totals["rouge_2_f1"] += rouge_n_f1(hypothesis_tokens, reference_tokens, 2)
-        totals["rouge_l_f1"] += rouge_l_f1(hypothesis_tokens, reference_tokens)
-    num_examples = max(len(references), 1)
-    return {name: value / num_examples for name, value in totals.items()}
+    for hyp, ref in zip(hypotheses, references):
+        scores = scorer.score(ref, hyp)
+        totals["rouge_1_f1"] += scores["rouge1"].fmeasure
+        totals["rouge_2_f1"] += scores["rouge2"].fmeasure
+        totals["rouge_l_f1"] += scores["rougeL"].fmeasure
+    num_examples = len(references)
+    return {name: val / num_examples for name, val in totals.items()}
 
 
 def evaluate_text_metrics(
@@ -500,7 +400,7 @@ def evaluate_text_metrics(
     *,
     include_nlp_metrics: bool = True,
 ) -> dict[str, float]:
-    """Compute the assignment metric suite over decoded text pairs.
+    """Compute the assignment metric suite over decoded text pairs using standard libraries.
 
     BLEU and ROUGE apply to tokenized configurations only; set
     ``include_nlp_metrics=False`` for the token-free BLT path.

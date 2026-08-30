@@ -16,18 +16,16 @@ if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from src.dataset import (
+    ByteBPETokenizer,
     ByteLatentParallelDataset,
     ByteTokenizer,
     DatasetConfig,
     ParallelTextDataset,
-    SimpleBPETokenizer,
     build_batch_schedule,
     build_dataset_splits,
     collate_blt_batch,
     collate_tokenized_batch,
     load_parallel_corpus,
-    load_target_tokenizer,
-    save_target_tokenizer,
     select_lines,
 )
 from src.models.transformer import build_model, greedy_decode, trim_after_eos
@@ -35,14 +33,16 @@ from src.utils import (
     HistoryTracker,
     MetricTracker,
     Timer,
+    ascii_byte_values,
+    bits_to_byte_values,
     ensure_dir,
     evaluate_text_metrics,
     get_peak_memory_mb,
     init_wandb_run,
     move_batch_to_device,
     plot_training_curves,
-    resolve_device,
     reset_peak_memory_stats,
+    resolve_device,
     save_checkpoint,
     save_json,
     set_seed,
@@ -58,7 +58,7 @@ class ExperimentConfig:
     seed: int = 42
     train_ratio: float = 0.8
     val_ratio: float = 0.1
-    data_dir: str = "Dataset_A1"
+    data_dir: str = "dataset"
     output_dir: str = "outputs"
     checkpoint_dir: str = "outputs/checkpoints"
     tokenizer_dir: str = "outputs/tokenizers"
@@ -86,9 +86,9 @@ class ExperimentConfig:
     attention_type: str = "mha"
     normalization_type: str = "layernorm"
     tokenization_type: str = "subword"
-    source_tokenizer_type: str = "byte"
+    source_tokenizer_type: str = "bpe"
+    source_vocab_size: int = 512
     target_vocab_size: int = 512
-    source_vocab_size: int = 260
     blt_patch_size: int = 16
     scheduler_type: str = "none"
     gradient_clip_norm: float = 1.0
@@ -130,6 +130,7 @@ def build_experiment_configs() -> dict[str, ExperimentConfig]:
             config_id="C5",
             run_name="A1_C5_blt",
             tokenization_type="blt",
+            source_tokenizer_type="byte",
         ),
     }
 
@@ -162,28 +163,47 @@ def get_config(config_id: str) -> ExperimentConfig:
 
 def prepare_tokenizers(
     config: ExperimentConfig,
+    cipher_train_lines: Sequence[str],
     plain_train_lines: Sequence[str],
 ) -> dict[str, Any]:
     """Build or restore the source and target tokenizers for a run.
 
-    The target subword tokenizer is fitted on the training split only and
-    cached on disk so every tokenized configuration shares identical
-    vocabulary artifacts.
+    For C1-C4, from-scratch ByteBPETokenizers are trained on the training
+    split's cipher bytes and plaintext bytes, respectively.
+    For C5, direct ByteTokenizers are used.
     """
-    source_tokenizer = ByteTokenizer()
-    prepared: dict[str, Any] = {"source": source_tokenizer}
     if config.tokenization_type == "blt":
-        return prepared
-    tokenizer_path = Path(config.tokenizer_dir) / f"target_bpe_vocab{config.target_vocab_size}.json"
-    if tokenizer_path.exists():
-        target_tokenizer = load_target_tokenizer(tokenizer_path)
+        byte_tok = ByteTokenizer()
+        return {"source": byte_tok, "target": byte_tok}
+
+    tokenizer_dir = ensure_dir(config.tokenizer_dir)
+
+    # Source ciphertext BPE tokenizer (BPE over 8-bit bytes)
+    source_tok_path = tokenizer_dir / f"source_bpe_vocab{config.source_vocab_size}.json"
+    if source_tok_path.exists():
+        source_tokenizer = ByteBPETokenizer.load(source_tok_path)
     else:
-        target_tokenizer = SimpleBPETokenizer(vocab_size=config.target_vocab_size)
-        target_tokenizer.fit(plain_train_lines)
-        save_target_tokenizer(target_tokenizer, tokenizer_path)
-    prepared["target"] = target_tokenizer
-    prepared["target_path"] = tokenizer_path
-    return prepared
+        source_tokenizer = ByteBPETokenizer(vocab_size=config.source_vocab_size)
+        source_byte_seqs = [bits_to_byte_values(line) for line in cipher_train_lines]
+        source_tokenizer.fit(source_byte_seqs)
+        source_tokenizer.save(source_tok_path)
+
+    # Target plaintext BPE tokenizer (BPE over UTF-8 bytes)
+    target_tok_path = tokenizer_dir / f"target_bpe_vocab{config.target_vocab_size}.json"
+    if target_tok_path.exists():
+        target_tokenizer = ByteBPETokenizer.load(target_tok_path)
+    else:
+        target_tokenizer = ByteBPETokenizer(vocab_size=config.target_vocab_size)
+        target_byte_seqs = [ascii_byte_values(line) for line in plain_train_lines]
+        target_tokenizer.fit(target_byte_seqs)
+        target_tokenizer.save(target_tok_path)
+
+    return {
+        "source": source_tokenizer,
+        "target": target_tokenizer,
+        "source_path": source_tok_path,
+        "target_path": target_tok_path,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -265,8 +285,7 @@ def compute_test_predictions(
     loader: DataLoader,
     *,
     config: ExperimentConfig,
-    source_tokenizer: ByteTokenizer,
-    target_tokenizer: SimpleBPETokenizer | None,
+    target_tokenizer: ByteTokenizer | ByteBPETokenizer,
     device: torch.device,
 ) -> dict[str, Any]:
     """Greedy-decode a data loader and compute all assignment metrics.
@@ -275,9 +294,9 @@ def compute_test_predictions(
     is genuinely token-free so those n-gram-overlap metrics are skipped.
     """
     is_blt = config.tokenization_type == "blt"
-    bos_id = source_tokenizer.bos_id
-    eos_id = source_tokenizer.eos_id
-    pad_id = source_tokenizer.pad_id
+    bos_id = target_tokenizer.bos_id
+    eos_id = target_tokenizer.eos_id
+    pad_id = target_tokenizer.pad_id
     hypotheses: list[str] = []
     references: list[str] = []
     sources: list[str] = []
@@ -295,10 +314,7 @@ def compute_test_predictions(
             )
             trimmed_rows = trim_after_eos(sequences, eos_id=eos_id, pad_id=pad_id)
             for row in trimmed_rows:
-                if is_blt:
-                    text = source_tokenizer.decode_to_text(row)
-                else:
-                    text = target_tokenizer.decode(row)
+                text = target_tokenizer.decode_to_text(row)
                 hypotheses.append(text)
             references.extend(batch["target_text"])
             sources.extend(batch["source_text"])
@@ -359,8 +375,14 @@ def run_experiment(
             "test": splits["test"][:8],
         }
 
-    tokenizers = prepare_tokenizers(config, select_lines(plain_lines, splits["train"]))
-    source_tokenizer: ByteTokenizer = tokenizers["source"]
+    tokenizers = prepare_tokenizers(
+        config,
+        select_lines(cipher_lines, splits["train"]),
+        select_lines(plain_lines, splits["train"]),
+    )
+    source_tokenizer = tokenizers["source"]
+    target_tokenizer = tokenizers["target"]
+
     dataset_config = DatasetConfig(
         max_source_length=config.max_source_length,
         max_target_length=config.max_target_length,
@@ -375,10 +397,10 @@ def run_experiment(
             )
             for name, indices in splits.items()
         }
-        target_vocab_size = source_tokenizer.vocab_size
+        src_vocab_size = source_tokenizer.vocab_size
+        tgt_vocab_size = target_tokenizer.vocab_size
         collate_fn = partial(collate_blt_batch, tokenizer=source_tokenizer)
     else:
-        target_tokenizer: SimpleBPETokenizer = tokenizers["target"]
         datasets = {
             name: ParallelTextDataset(
                 select_lines(cipher_lines, indices),
@@ -389,7 +411,8 @@ def run_experiment(
             )
             for name, indices in splits.items()
         }
-        target_vocab_size = target_tokenizer.learned_vocab_size
+        src_vocab_size = source_tokenizer.learned_vocab_size
+        tgt_vocab_size = target_tokenizer.learned_vocab_size
         collate_fn = partial(collate_tokenized_batch, pad_id=target_tokenizer.pad_id)
 
     def build_loader(name: str, shuffle_batches: bool, schedule_seed: int | None) -> DataLoader:
@@ -406,12 +429,12 @@ def run_experiment(
     val_loader = build_loader("val", False, None)
     test_loader = build_loader("test", False, None)
 
-    model = build_model(config, src_vocab_size=source_tokenizer.vocab_size, tgt_vocab_size=target_vocab_size)
+    model = build_model(config, src_vocab_size=src_vocab_size, tgt_vocab_size=tgt_vocab_size)
     model.to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay
     )
-    criterion = make_criterion(source_tokenizer.pad_id)
+    criterion = make_criterion(target_tokenizer.pad_id)
 
     wandb_run = init_wandb_run(
         project=config.wandb_project,
@@ -430,7 +453,7 @@ def run_experiment(
     total_training_timer = Timer()
 
     parameter_count = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"[{config.run_name}] training on {device} | {parameter_count:,} parameters")
+    print(f"[{config.run_name}] training on {device} | {parameter_count:,} parameters (src_vocab={src_vocab_size}, tgt_vocab={tgt_vocab_size})")
     with total_training_timer:
         for epoch in range(1, config.epochs + 1):
             train_tracker = MetricTracker()
@@ -478,8 +501,7 @@ def run_experiment(
         model,
         test_loader,
         config=config,
-        source_tokenizer=source_tokenizer,
-        target_tokenizer=tokenizers.get("target"),
+        target_tokenizer=target_tokenizer,
         device=device,
     )
 
