@@ -1,5 +1,5 @@
 {
-  "best_val_loss": 5.45593523979187,
+  "best_val_loss": 2.5639421389317185,
   "config": {
     "attention_heads": 8,
     "attention_type": "mha",
@@ -14,14 +14,14 @@
     "dynamic_batching": true,
     "embedding_dim": 256,
     "encoder_layers": 4,
-    "epochs": 2,
+    "epochs": 20,
     "ff_hidden_dim": 1024,
     "gradient_clip_norm": 1.0,
     "learning_rate": 0.0003,
     "length_bucketing": true,
     "max_source_length": 1024,
-    "max_target_length": 96,
-    "max_tokens_per_batch": 4096,
+    "max_target_length": 384,
+    "max_tokens_per_batch": 1024,
     "normalization_type": "layernorm",
     "output_dir": "outputs",
     "positional_encoding": "sinusoidal",
@@ -36,7 +36,7 @@
     "tokenization_type": "subword",
     "tokenizer_dir": "outputs/tokenizers",
     "train_ratio": 0.8,
-    "use_wandb": false,
+    "use_wandb": true,
     "val_ratio": 0.1,
     "wandb_project": "ANLP_A1",
     "weight_decay": 0.01
@@ -45,76 +45,148 @@
   "history": {
     "epoch": [
       1.0,
-      2.0
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0
     ],
     "epoch_time_seconds": [
-      0.8959005500000785,
-      0.5701269569999567
+      105.33208864600056,
+      105.40307491699969,
+      105.62554961700152,
+      105.68858134699985,
+      105.63830355899881,
+      105.64252863600086,
+      105.62435704699965,
+      125.03534329300055,
+      126.72152726199965,
+      126.68797569200069,
+      126.699178158,
+      131.47615535600016,
+      105.05682405399966,
+      105.37064276000092,
+      105.70813516699855,
+      105.66748475200075,
+      105.56868253999892,
+      105.57797893899988,
+      105.61260369000047,
+      105.57506986200133
     ],
     "train_loss": [
-      6.04490859913698,
-      5.616032941610101
+      4.276370418954356,
+      3.9277625109659473,
+      3.7183493586181844,
+      3.5005486074203684,
+      3.312591125195924,
+      3.1625600692853055,
+      3.040245127815895,
+      2.9397790947100018,
+      2.860180131689541,
+      2.792789121243376,
+      2.7313406334117327,
+      2.6803040272289587,
+      2.631256499308753,
+      2.587275549180213,
+      2.545374531786164,
+      2.505406416012106,
+      2.468206221700787,
+      2.4301495729499885,
+      2.3892169602691653,
+      2.3466133668150873
     ],
     "val_loss": [
-      5.625166893005371,
-      5.45593523979187
+      4.009436766030858,
+      3.8083055826433423,
+      3.5765170963678994,
+      3.3567933010185054,
+      3.195535764672479,
+      3.083680700215616,
+      2.9986654275399967,
+      2.928885304923097,
+      2.882731617361695,
+      2.833972998721277,
+      2.8107875088163725,
+      2.7680218085705395,
+      2.7485432111142183,
+      2.7293511873155274,
+      2.6927140615957854,
+      2.6825676914456187,
+      2.6518409958717517,
+      2.63115668900079,
+      2.6044120849818695,
+      2.5639421389317185
     ]
   },
   "num_parameters": 7761408,
-  "peak_memory_mb": 1120.0869140625,
+  "peak_memory_mb": 503.91162109375,
   "run_name": "A1_C1_baseline",
   "sample_predictions": [
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "Credits adapted from the Loose liner notes",
-      "source_cipher": "000000100011110000101001001101000101101101000100010000010001011000100000001010100010110100100000"
+      "prediction": "The route s the you cut are abymes are aby",
+      "reference": "The roads on the five levels are",
+      "source_cipher": "000101010010011000101001011100000100000001011111010100110101001000110010011011100010001100111110"
     },
     {
-      "prediction": "ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "The following day several thousand residents led by the DCAC withdrew to the Creggan and issued an ultimatum to the RUC withdraw within two hours or be driven o",
-      "source_cipher": "000101010010011000101001011100000101010001011111010111100101101000101110001110010010010100111110"
+      "prediction": "George Harrison as George Blackie",
+      "reference": "George Forth as Jack Denbeigh",
+      "source_cipher": "000001100010101100100011001000100101010101010101000100100111000000101110001111000011100000111000"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "Starting in the s and following the construction of highways that made commuting easier residents began to move away from downtown in favor of new housing subdi",
-      "source_cipher": "000100100011101000101101001000100100011001011001010111000101000101100001001001110010001001110000"
+      "prediction": "Shell Ward Mozer General Mozer",
+      "reference": "Sela Ward was born in Meridian in",
+      "source_cipher": "000100100010101100100000001100010001001001100111010100110100010000100101011011100011101100110001"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "In January the embassy arrived at Beijing and was received by the Yuan emperor The Burmese delegation formally acknowledged Mongol suzerainty of their kingdom a",
-      "source_cipher": "000010000010000001101100000110100101001101011110010001110101011100110011001101110110110000100100"
+      "prediction": "Ring the Rof The North Korean President Regiment",
+      "reference": "Rivalry of the Year vs The Undertaker",
+      "source_cipher": "000100110010011100111010001100010101111001000010010010110001011000101110001010000110110000100100"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "Jeff Todd Titon and several other writers have suggested that Lead Belly had significant help with its authorship and claim it is not a genuine protest song Thi",
-      "source_cipher": "000010110010101100101010001101100001001001100100010111010101001000100101011011100001100000111001"
+      "prediction": "NAF C FI C American Commission in",
+      "reference": "NCAA Division I All American",
+      "source_cipher": "000011110000110100001101000100010001001001110100010110110100000000101000001111010010010100111111"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "Imagism has been described as the most influential movement in English poetry since the activity of the Pre Raphaelites As a poetic style it gave Modernism its ",
-      "source_cipher": "000010000010001100101101001101110101101101000011010111110001011000101001001011110011111101110000"
+      "prediction": "Martin Patriots Natives on Native",
+      "reference": "Mary Poppins musical London stage",
+      "source_cipher": "000011000010111100111110001010010001001001100000010111010100011000110001001001110010001000100011"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "On the subject of Scientology s status as a religion the German government has pointed to a decision by the Federal Labor Court of Germany That court noting Hub",
-      "source_cipher": "000011100010000001101100001001000101101001010101000100100100010100110100001011000010011000110101"
+      "prediction": "Banguzz guerrilll Banks for tracks previously under other vocals",
+      "reference": "Banner design St Mary s Sanderstead",
+      "source_cipher": "000000110010111100100010001111100101011101000010000100100101001000100100001111010010010100110111"
     },
     {
-      "prediction": "the cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      "reference": "San Lorenzo Colossal Head also known as San Lorenzo Monument was reworked from a monumental throne The head stands metres ft high and measures metres ft wide by",
-      "source_cipher": "000100100010111100100010011100000111111001011111010000000101001100101111001101000010001101110000"
+      "prediction": "Green regregorious singer songwriter vocals",
+      "reference": "Green background indicates win points",
+      "source_cipher": "000001100011110000101001001101010101110000010000010100000101011100100010001001010010101100100010"
     }
   ],
-  "smoke": true,
+  "smoke": false,
   "test_metrics": {
-    "bit_level_accuracy": 0.13023662992166116,
-    "bleu": 7.392735292676105e-30,
-    "levenshtein_distance": 691.375,
-    "rouge_1_f1": 0.03983829445714269,
-    "rouge_2_f1": 0.0,
-    "rouge_l_f1": 0.03983829445714269,
+    "bit_level_accuracy": 0.5495930648831306,
+    "bleu": 0.012678815826301199,
+    "levenshtein_distance": 494.61,
+    "rouge_1_f1": 0.22226717243399396,
+    "rouge_2_f1": 0.03650633200122301,
+    "rouge_l_f1": 0.17107998561801382,
     "sequence_accuracy": 0.0
   },
-  "total_training_time_seconds": 1.7835083749996556,
-  "wandb_run_url": null
+  "total_training_time_seconds": 2223.0048518779986,
+  "wandb_run_url": "https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/j2scymv0"
 }

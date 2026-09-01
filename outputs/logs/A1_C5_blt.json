@@ -1,5 +1,5 @@
 {
-  "best_val_loss": 3.1207661628723145,
+  "best_val_loss": 1.3482795571939865,
   "config": {
     "attention_heads": 8,
     "attention_type": "mha",
@@ -14,14 +14,14 @@
     "dynamic_batching": true,
     "embedding_dim": 256,
     "encoder_layers": 4,
-    "epochs": 2,
+    "epochs": 20,
     "ff_hidden_dim": 1024,
     "gradient_clip_norm": 1.0,
     "learning_rate": 0.0003,
     "length_bucketing": true,
     "max_source_length": 1024,
-    "max_target_length": 96,
-    "max_tokens_per_batch": 4096,
+    "max_target_length": 384,
+    "max_tokens_per_batch": 1024,
     "normalization_type": "layernorm",
     "output_dir": "outputs",
     "positional_encoding": "sinusoidal",
@@ -36,7 +36,7 @@
     "tokenization_type": "blt",
     "tokenizer_dir": "outputs/tokenizers",
     "train_ratio": 0.8,
-    "use_wandb": false,
+    "use_wandb": true,
     "val_ratio": 0.1,
     "wandb_project": "ANLP_A1",
     "weight_decay": 0.01
@@ -45,72 +45,144 @@
   "history": {
     "epoch": [
       1.0,
-      2.0
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0
     ],
     "epoch_time_seconds": [
-      0.2898449200001778,
-      0.2797696090001409
+      86.46716087200184,
+      86.5506279600013,
+      86.81000923600004,
+      90.97361679800088,
+      87.90107982800328,
+      87.5843564780007,
+      87.79039128699878,
+      87.42760398500104,
+      87.35742734199812,
+      87.92941298799997,
+      90.31773586599957,
+      86.91477529400072,
+      86.94431070200153,
+      86.70788899200124,
+      86.48076210799991,
+      86.39707622800051,
+      86.37990606300082,
+      86.4084056669999,
+      86.5987749829983,
+      93.17190230399865
     ],
     "train_loss": [
-      4.853728266998865,
-      3.411459609644911
+      2.4635821872387766,
+      2.3390817069996572,
+      2.1089799632747503,
+      1.9469136748928066,
+      1.848117674804813,
+      1.7723590987932083,
+      1.71747151398435,
+      1.674865285119582,
+      1.6411065522574035,
+      1.6086486276339436,
+      1.5836150873357482,
+      1.562053581890499,
+      1.5391031278505314,
+      1.50872658316464,
+      1.4875021719033643,
+      1.4700961971133837,
+      1.4542276353034704,
+      1.4391727156969456,
+      1.4245946377080474,
+      1.4113319849257244
     ],
     "val_loss": [
-      3.6798022985458374,
-      3.1207661628723145
+      2.370211299956341,
+      2.1858677036331895,
+      1.9483042706047289,
+      1.820120116127502,
+      1.7416549248616575,
+      1.667526667686434,
+      1.624487999974228,
+      1.578744243791042,
+      1.5518869081662554,
+      1.5206379528719387,
+      1.5042082843084013,
+      1.4841906214419247,
+      1.4497264999809076,
+      1.4283344916209435,
+      1.4078053568445443,
+      1.3939607055470142,
+      1.3796203222857424,
+      1.3621364336460453,
+      1.3519894789618443,
+      1.3482795571939865
     ]
   },
   "num_parameters": 8687108,
-  "peak_memory_mb": 323.42822265625,
+  "peak_memory_mb": 384.63427734375,
   "run_name": "A1_C5_blt",
   "sample_predictions": [
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "Credits adapted from the Loose liner notes",
-      "source_cipher": "000000100011110000101001001101000101101101000100010000010001011000100000001010100010110100100000"
+      "prediction": "AA CAA s Childres Allies Angland Champion",
+      "reference": "NCAA Division I All American",
+      "source_cipher": "000011110000110100001101000100010001001001110100010110110100000000101000001111010010010100111111"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "The following day several thousand residents led by the DCAC withdrew to the Creggan and issued an ultimatum to the RUC withdraw within two hours or be driven o",
-      "source_cipher": "000101010010011000101001011100000101010001011111010111100101101000101110001110010010010100111110"
+      "prediction": "The season at the American States",
+      "reference": "George Forth as Jack Denbeigh",
+      "source_cipher": "000001100010101100100011001000100101010101010101000100100111000000101110001111000011100000111000"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "Starting in the s and following the construction of highways that made commuting easier residents began to move away from downtown in favor of new housing subdi",
-      "source_cipher": "000100100011101000101101001000100100011001011001010111000101000101100001001001110010001001110000"
+      "prediction": "A North Korean in a controllective and annother",
+      "reference": "A Flower Fairy Alphabet Blackie",
+      "source_cipher": "000000000110111000001010001111000101110101000111010101110100010001100001000010000010110100111001"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "Jeff Todd Titon and several other writers have suggested that Lead Belly had significant help with its authorship and claim it is not a genuine protest song Thi",
-      "source_cipher": "000010110010101100101010001101100001001001100100010111010101001000100101011011100001100000111001"
+      "prediction": "The season a particular and the century",
+      "reference": "The roads on the five levels are",
+      "source_cipher": "000101010010011000101001011100000100000001011111010100110101001000110010011011100010001100111110"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "In January the embassy arrived at Beijing and was received by the Yuan emperor The Burmese delegation formally acknowledged Mongol suzerainty of their kingdom a",
-      "source_cipher": "000010000010000001101100000110100101001101011110010001110101011100110011001101110110110000100100"
+      "prediction": "A following the Championship and character",
+      "reference": "Mary Poppins musical London stage",
+      "source_cipher": "000011000010111100111110001010010001001001100000010111010100011000110001001001110010001000100011"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "Imagism has been described as the most influential movement in English poetry since the activity of the Pre Raphaelites As a poetic style it gave Modernism its ",
-      "source_cipher": "000010000010001100101101001101110101101101000011010111110001011000101001001011110011111101110000"
+      "prediction": "The season of the Year s second cancer",
+      "reference": "Sela Ward was born in Meridian in",
+      "source_cipher": "000100100010101100100000001100010001001001100111010100110100010000100101011011100011101100110001"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "On the subject of Scientology s status as a religion the German government has pointed to a decision by the Federal Labor Court of Germany That court noting Hub",
-      "source_cipher": "000011100010000001101100001001000101101001010101000100100100010100110100001011000010011000110101"
+      "prediction": "The first of the Year States and communis",
+      "reference": "Flower Fairies of the Trees Blackie",
+      "source_cipher": "000001110010001000100011001001110101011101000010000100100111000000100000001001110011111000111001"
     },
     {
-      "prediction": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      "reference": "San Lorenzo Colossal Head also known as San Lorenzo Monument was reworked from a monumental throne The head stands metres ft high and measures metres ft wide by",
-      "source_cipher": "000100100010111100100010011100000111111001011111010000000101001100101111001101000010001101110000"
+      "prediction": "The season the captain of the Year",
+      "reference": "Banner design St Mary s Sanderstead",
+      "source_cipher": "000000110010111100100010001111100101011101000010000100100101001000100100001111010010010100110111"
     }
   ],
-  "smoke": true,
+  "smoke": false,
   "test_metrics": {
-    "bit_level_accuracy": 0.13777472322516088,
-    "levenshtein_distance": 650.0,
+    "bit_level_accuracy": 0.44808117534848735,
+    "levenshtein_distance": 472.058,
     "sequence_accuracy": 0.0
   },
-  "total_training_time_seconds": 0.8939177190004557,
-  "wandb_run_url": null
+  "total_training_time_seconds": 1756.389609984999,
+  "wandb_run_url": "https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/o8nwzt18"
 }

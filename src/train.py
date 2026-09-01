@@ -75,10 +75,10 @@ class ExperimentConfig:
     learning_rate: float = 3e-4
     weight_decay: float = 1e-2
     batch_size: int = 4
-    max_tokens_per_batch: int = 4096
+    max_tokens_per_batch: int = 1024
     epochs: int = 20
-    max_source_length: int = 4096
-    max_target_length: int = 1024
+    max_source_length: int = 1024
+    max_target_length: int = 384
     binary_to_byte_compaction: bool = True
     length_bucketing: bool = True
     dynamic_batching: bool = True
@@ -184,7 +184,8 @@ def prepare_tokenizers(
         source_tokenizer = ByteBPETokenizer.load(source_tok_path)
     else:
         source_tokenizer = ByteBPETokenizer(vocab_size=config.source_vocab_size)
-        source_byte_seqs = [bits_to_byte_values(line) for line in cipher_train_lines]
+        fit_lines = cipher_train_lines[: min(500, len(cipher_train_lines))]
+        source_byte_seqs = [bits_to_byte_values(line) for line in fit_lines]
         source_tokenizer.fit(source_byte_seqs)
         source_tokenizer.save(source_tok_path)
 
@@ -194,7 +195,8 @@ def prepare_tokenizers(
         target_tokenizer = ByteBPETokenizer.load(target_tok_path)
     else:
         target_tokenizer = ByteBPETokenizer(vocab_size=config.target_vocab_size)
-        target_byte_seqs = [ascii_byte_values(line) for line in plain_train_lines]
+        fit_lines = plain_train_lines[: min(500, len(plain_train_lines))]
+        target_byte_seqs = [ascii_byte_values(line) for line in fit_lines]
         target_tokenizer.fit(target_byte_seqs)
         target_tokenizer.save(target_tok_path)
 

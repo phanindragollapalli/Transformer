@@ -1,1 +1,99 @@
+# ==========================================
+# Byte-compiled / optimized / C-extensions
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ==========================================
+# Virtual Environments & Conda
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+anlp/
+env.bak/
+venv.bak/
+bin/
+include/
+lib/
+local/
+
+# ==========================================
+# Deep Learning Models & Weights
+# ==========================================
 *.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+*.onnx
+checkpoints/
+outputs/checkpoints/
+
+# ==========================================
+# Experiment Tracking & Logs
+# ==========================================
+wandb/
+outputs/wandb/
+runs/
+lightning_logs/
+*.log
+
+# ==========================================
+# Jupyter Notebooks & Data
+# ==========================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ==========================================
+# Testing & Code Coverage
+# ==========================================
+.coverage
+.coverage.*
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+htmlcov/
+
+# ==========================================
+# Distribution / Packaging / Build
+# ==========================================
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# IDEs & Text Editors
+# ==========================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

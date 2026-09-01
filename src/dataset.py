@@ -173,30 +173,33 @@ class ByteBPETokenizer:
     def learned_vocab_size(self) -> int:
         return BASE_VOCAB_SIZE + len(self.merges)
 
-    def fit(self, byte_sequences: Iterable[Sequence[int] | bytes]) -> None:
-        """Learn BPE merge operations from an iterable of byte sequences."""
-        # Convert each sample to list of base token IDs
-        sequences: list[list[int]] = []
+    def fit(self, byte_sequences: Iterable[Sequence[int] | bytes], chunk_size: int = 64) -> None:
+        """Learn BPE merge operations fast using a chunk-frequency table."""
+        chunk_counts: Counter[tuple[int, ...]] = Counter()
         for raw in byte_sequences:
             if isinstance(raw, (bytes, bytearray)):
                 byte_list = list(raw)
             else:
                 byte_list = list(raw)
-            if byte_list:
-                sequences.append([b + self.byte_offset for b in byte_list])
+            if not byte_list:
+                continue
+            token_list = [b + self.byte_offset for b in byte_list]
+            # Split long sequences into manageable chunks for fast pair counting
+            for start_idx in range(0, len(token_list), chunk_size):
+                chunk = tuple(token_list[start_idx : start_idx + chunk_size])
+                if len(chunk) >= 2:
+                    chunk_counts[chunk] += 1
 
         num_merges_needed = self.vocab_size - BASE_VOCAB_SIZE
         if num_merges_needed <= 0:
             self.trained = True
             return
 
-        for merge_idx in range(num_merges_needed):
+        for _ in range(num_merges_needed):
             pair_counts: Counter[tuple[int, int]] = Counter()
-            for seq in sequences:
-                if len(seq) < 2:
-                    continue
-                for i in range(len(seq) - 1):
-                    pair_counts[(seq[i], seq[i + 1])] += 1
+            for chunk, freq in chunk_counts.items():
+                for i in range(len(chunk) - 1):
+                    pair_counts[(chunk[i], chunk[i + 1])] += freq
 
             if not pair_counts:
                 break
@@ -212,59 +215,27 @@ class ByteBPETokenizer:
                 self.token_to_bytes[best_pair[0]] + self.token_to_bytes[best_pair[1]]
             )
 
-            # Apply this merge to all training sequences
+            # Apply this merge to unique chunks
             p0, p1 = best_pair
-            updated_sequences: list[list[int]] = []
-            for seq in sequences:
-                if len(seq) < 2:
-                    updated_sequences.append(seq)
-                    continue
-                new_seq: list[int] = []
+            updated_chunk_counts: Counter[tuple[int, ...]] = Counter()
+            for chunk, freq in chunk_counts.items():
+                new_chunk: list[int] = []
                 idx = 0
-                while idx < len(seq):
-                    if idx < len(seq) - 1 and seq[idx] == p0 and seq[idx + 1] == p1:
-                        new_seq.append(new_token_id)
+                while idx < len(chunk):
+                    if idx < len(chunk) - 1 and chunk[idx] == p0 and chunk[idx + 1] == p1:
+                        new_chunk.append(new_token_id)
                         idx += 2
                     else:
-                        new_seq.append(seq[idx])
+                        new_chunk.append(chunk[idx])
                         idx += 1
-                updated_sequences.append(new_seq)
-            sequences = updated_sequences
-
-        self.trained = True
-
-    def _apply_merges(self, tokens: list[int]) -> list[int]:
-        """Iteratively apply learned BPE merges in order of merge rank."""
-        if len(tokens) < 2 or not self.merge_ranks:
-            return tokens
-
-        while len(tokens) >= 2:
-            # Find the pair with the smallest merge rank (highest priority)
-            pairs = [(tokens[i], tokens[i + 1]) for i in range(len(tokens) - 1)]
-            eligible_pairs = [
-                (self.merge_ranks[pair], pair)
-                for pair in pairs
-                if pair in self.merge_ranks
-            ]
-            if not eligible_pairs:
-                break
-
-            _, best_pair = min(eligible_pairs)
-            new_id = self.merges[best_pair]
-            p0, p1 = best_pair
-
-            new_tokens: list[int] = []
-            i = 0
-            while i < len(tokens):
-                if i < len(tokens) - 1 and tokens[i] == p0 and tokens[i + 1] == p1:
-                    new_tokens.append(new_id)
-                    i += 2
-                else:
-                    new_tokens.append(tokens[i])
-                    i += 1
-            tokens = new_tokens
-
-        return tokens
+                updated_chunk_counts[tuple(new_chunk)] += freq
+    def _ensure_pattern(self) -> None:
+        if not hasattr(self, "_compiled_pattern") or self._compiled_pattern is None:
+            import re
+            # Sort byte tokens by length descending so longest subwords match first
+            patterns = sorted(self.token_to_bytes.items(), key=lambda x: len(x[1]), reverse=True)
+            self._byte_to_id = {b: tid for tid, b in self.token_to_bytes.items()}
+            self._compiled_pattern = re.compile(b"|".join(re.escape(b) for _, b in patterns))
 
     def encode_bytes(
         self,
@@ -273,9 +244,15 @@ class ByteBPETokenizer:
         add_bos: bool = False,
         add_eos: bool = False,
     ) -> list[int]:
-        """Tokenize a sequence of byte values (0-255) using learned BPE merges."""
-        tokens = [b + self.byte_offset for b in values]
-        tokens = self._apply_merges(tokens)
+        """Tokenize a sequence of byte values (0-255) into subword token IDs."""
+        self._ensure_pattern()
+        raw_bytes = bytes(values)
+        if not raw_bytes:
+            tokens: list[int] = []
+        else:
+            matches = self._compiled_pattern.findall(raw_bytes)
+            tokens = [self._byte_to_id[m] for m in matches]
+
         if add_bos:
             tokens.insert(0, self.bos_id)
         if add_eos:
