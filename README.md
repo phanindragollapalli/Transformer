@@ -8,11 +8,11 @@ This repository contains a from-scratch PyTorch implementation of an Encoder-Dec
 
 - **Hugging Face Model Checkpoints:** [https://huggingface.co/phani4104/Transformer](https://huggingface.co/phani4104/Transformer)
 - **Weights & Biases (WandB) Project:** [https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1)
-  - **C1 (Baseline):** [WandB Run j2scymv0](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/j2scymv0)
-  - **C2 (RoPE):** [WandB Run 0z87mvj2](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/0z87mvj2)
-  - **C3 (GQA):** [WandB Run m4caixvc](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/m4caixvc)
-  - **C4 (RMSNorm):** [WandB Run swevqufm](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/swevqufm)
-  - **C5 (BLT Token-Free):** [WandB Run o8nwzt18](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/o8nwzt18)
+  - **C1 (Baseline):** [WandB Run rmflfhfi](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/rmflfhfi)
+  - **C2 (RoPE):** [WandB Run p66vs720](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/p66vs720)
+  - **C3 (GQA):** [WandB Run zr218vg4](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/zr218vg4)
+  - **C4 (RMSNorm):** [WandB Run ux2iiyfy](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/ux2iiyfy)
+  - **C5 (BLT Token-Free):** [WandB Run t2fsc4do](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/t2fsc4do)
 
 ---
 
@@ -35,16 +35,15 @@ This repository contains a from-scratch PyTorch implementation of an Encoder-Dec
 │   ├── plots/                 # Training and validation loss curves
 │   └── tokenizers/            # BPE tokenizer vocabulary and merge tables
 ├── dataset/                   # Dataset directory containing line-aligned cipher and plain text
-├── plan.md                    # Detailed execution plan
 ├── README.md                  # Setup, reproduction instructions, and results
-└── Report.pdf                 # Final 6-page ablation study report
+└── Report.pdf                 # Final ablation study report
 ```
 
 ---
 
 ## ⚙️ Architectural Configurations (Ablation Study)
 
-Each variation (C2–C5) alters **exactly one** component from the baseline model (C1) to isolate its impact under identical hyperparameters (4 layers, embedding dimension $d_{\text{model}}=256$, 8 attention heads, FFN hidden dimension 1024, 20 epochs, AdamW optimizer with learning rate $3 \times 10^{-4}$).
+Each variation (C2–C5) alters **exactly one** component from the baseline model (C1) to isolate its impact under identical hyperparameters (4 layers, embedding dimension $d_{\text{model}}=256$, 8 attention heads, FFN hidden dimension 1024, 30 epochs, AdamW optimizer with learning rate $3 \times 10^{-4}$).
 
 | Configuration | Positional Encoding | Attention Mechanism | Normalization | Tokenization Strategy |
 | :--- | :--- | :--- | :--- | :--- |
@@ -58,21 +57,21 @@ Each variation (C2–C5) alters **exactly one** component from the baseline mode
 
 ## 📊 Experimental Results & Benchmarks
 
-All models were evaluated on the held-out test split (500 sequences) using **greedy decoding**:
+All models were evaluated on the held-out test split ($4,988$ sequences) using **greedy decoding**:
 
 | Config | Positional | Attention | Norm | Tokenizer | Bit Acc (%) | Seq Acc (%) | Levenshtein Dist. | BLEU | ROUGE-L | Peak GPU (MB) | Total Train Time |
 | :--- | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **C1** | Sinusoidal | MHA | LayerNorm | Subword | 54.96% | 0.00% | 494.61 | 0.0127 | 0.1711 | 503.9 MB | 2223 s |
-| **C2** | **RoPE** | MHA | LayerNorm | Subword | **86.37%** | **24.40%** | **86.45** | **0.8324** | **0.9420** | 503.9 MB | 2240 s |
-| **C3** | Sinusoidal | **GQA** | LayerNorm | Subword | 56.73% | 0.00% | 484.63 | 0.0111 | 0.1650 | 503.9 MB | 2073 s |
-| **C4** | Sinusoidal | MHA | **RMSNorm** | Subword | 55.48% | 0.00% | 494.01 | 0.0121 | 0.1656 | 503.9 MB | 2062 s |
-| **C5** | Sinusoidal | MHA | LayerNorm | **BLT** | 44.81% | 0.00% | 472.06 | N/A | N/A | 511.9 MB | **1756 s** |
+| **C1** | Sinusoidal | MHA | LayerNorm | Subword | 99.01% | 89.78% | 0.185 | 0.9742 | 0.9878 | 1212.15 MB | 1693.10 s |
+| **C2** | **RoPE** | MHA | LayerNorm | Subword | **99.60%** | **95.06%** | **0.083** | **0.9886** | **0.9930** | 1212.06 MB | 1867.87 s |
+| **C3** | Sinusoidal | **GQA** | LayerNorm | Subword | 99.00% | 89.34% | 0.206 | 0.9733 | 0.9880 | 1202.25 MB | 1630.75 s |
+| **C4** | Sinusoidal | MHA | **RMSNorm** | Subword | 99.01% | 90.15% | 0.185 | 0.9753 | 0.9880 | 1091.14 MB | 1604.79 s |
+| **C5** | Sinusoidal | MHA | LayerNorm | **BLT** | 84.15% | 3.48% | 18.338 | N/A | N/A | **608.31 MB** | **1306.09 s** |
 
 ### Key Findings & Tradeoffs:
-1. **RoPE (C2) Breakthrough:** Replacing Sinusoidal embeddings with Rotary Position Embeddings (RoPE) yielded a massive performance leap (Bit Accuracy from $54.96\%$ to $86.37\%$, Sequence Accuracy from $0\%$ to $24.40\%$, BLEU from $0.013$ to $0.832$). RoPE preserves relative token offsets directly within query-key dot products, crucial for deciphering positional dependencies in encrypted bitstreams.
-2. **GQA (C3) Efficiency:** Grouped-Query Attention ($8$ query heads grouped into $4$ key-value heads) reduced parameter size (~$83.8$ MB checkpoint vs ~$93.3$ MB) and trimmed epoch training times by $\sim 7\%$ without loss in representation capability.
-3. **RMSNorm (C4) Speedup:** RMSNorm avoids mean-centering computations, resulting in consistent $\sim 7\%$ faster training than standard LayerNorm with matching loss and accuracy.
-4. **BLT (C5) Token-Free Tradeoffs:** Operating directly on raw byte patches (patch size 16) achieved the fastest overall training time ($1756$ s vs $2223$ s for C1) by bypassing subword overhead, though fixed-patch compression presents distinct representation tradeoffs on encrypted sequences.
+1. **RoPE (C2) Breakthrough:** Replacing Sinusoidal embeddings with Rotary Position Embeddings (RoPE) yielded the highest accuracy across the board ($95.06\%$ sequence accuracy, $99.60\%$ bit accuracy, $0.083$ edit distance). RoPE preserves relative token offsets directly within query-key dot products, crucial for exact cipher sequence alignment.
+2. **GQA (C3) Efficiency:** Grouped-Query Attention ($8$ query heads grouped into $4$ key-value heads) reduced parameter size by $10\%$ ($7.16$ M vs $7.95$ M) and trimmed training time with virtually identical accuracy ($89.34\%$ vs $89.78\%$).
+3. **RMSNorm (C4) Speedup:** RMSNorm avoids mean-centering computations, resulting in $10\%$ peak GPU memory savings and $5.2\%$ faster training with matching stability and loss.
+4. **BLT (C5) Token-Free Tradeoffs:** Operating directly on raw byte patches (patch size 16) cut peak GPU memory consumption in half (**608 MB vs 1212 MB**) and sped up training by **23%** due to compressing the sequence by $16\times$ in the global transformer. Autoregressive exposure bias across 64 byte steps and fixed-patch boundary bisecting account for the exact sequence match difference.
 
 ---
 
@@ -99,19 +98,19 @@ To train a configuration, pass the config ID (`C1` through `C5`):
 
 ```bash
 # Run Baseline (C1)
-python -m src.train --config C1 --epochs 20 --batch_size 4
+python -m src.train --config C1 --epochs 30 --batch_size 4
 
 # Run RoPE (C2)
-python -m src.train --config C2 --epochs 20 --batch_size 4
+python -m src.train --config C2 --epochs 30 --batch_size 4
 
 # Run GQA (C3)
-python -m src.train --config C3 --epochs 20 --batch_size 4
+python -m src.train --config C3 --epochs 30 --batch_size 4
 
 # Run RMSNorm (C4)
-python -m src.train --config C4 --epochs 20 --batch_size 4
+python -m src.train --config C4 --epochs 30 --batch_size 4
 
 # Run Byte Latent Transformer (C5)
-python -m src.train --config C5 --epochs 20 --batch_size 4
+python -m src.train --config C5 --epochs 30 --batch_size 4
 ```
 
 ### 2. Quick Smoke Test (Tiny Subset)
