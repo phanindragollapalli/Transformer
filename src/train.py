@@ -23,9 +23,11 @@ from src.dataset import (
     ParallelTextDataset,
     build_batch_schedule,
     build_dataset_splits,
+    chunk_parallel_sentences,
     collate_blt_batch,
     collate_tokenized_batch,
     load_parallel_corpus,
+    prepare_chunked_splits,
     select_lines,
 )
 from src.models.transformer import build_model, greedy_decode, trim_after_eos
@@ -74,11 +76,12 @@ class ExperimentConfig:
     dropout: float = 0.1
     learning_rate: float = 3e-4
     weight_decay: float = 1e-2
-    batch_size: int = 4
-    max_tokens_per_batch: int = 1024
-    epochs: int = 20
-    max_source_length: int = 1024
-    max_target_length: int = 384
+    batch_size: int = 64
+    max_tokens_per_batch: int = 4096
+    epochs: int = 30
+    chunk_size_bytes: int = 64
+    max_source_length: int = 128
+    max_target_length: int = 128
     binary_to_byte_compaction: bool = True
     length_bucketing: bool = True
     dynamic_batching: bool = True
@@ -87,8 +90,8 @@ class ExperimentConfig:
     normalization_type: str = "layernorm"
     tokenization_type: str = "subword"
     source_tokenizer_type: str = "bpe"
-    source_vocab_size: int = 512
-    target_vocab_size: int = 512
+    source_vocab_size: int = 760
+    target_vocab_size: int = 760
     blt_patch_size: int = 16
     scheduler_type: str = "none"
     gradient_clip_norm: float = 1.0
@@ -177,34 +180,51 @@ def prepare_tokenizers(
         return {"source": byte_tok, "target": byte_tok}
 
     tokenizer_dir = ensure_dir(config.tokenizer_dir)
+    outputs_dir = ensure_dir(config.output_dir)
 
     # Source ciphertext BPE tokenizer (BPE over 8-bit bytes)
     source_tok_path = tokenizer_dir / f"source_bpe_vocab{config.source_vocab_size}.json"
+    source_txt_path = tokenizer_dir / "source_bpe_merges.txt"
+    source_json_path = tokenizer_dir / "source_bpe_merges.json"
     if source_tok_path.exists():
         source_tokenizer = ByteBPETokenizer.load(source_tok_path)
     else:
         source_tokenizer = ByteBPETokenizer(vocab_size=config.source_vocab_size)
-        fit_lines = cipher_train_lines[: min(500, len(cipher_train_lines))]
+        fit_lines = cipher_train_lines[: min(5000, len(cipher_train_lines))]
         source_byte_seqs = [bits_to_byte_values(line) for line in fit_lines]
         source_tokenizer.fit(source_byte_seqs)
         source_tokenizer.save(source_tok_path)
 
+    source_tokenizer.export_merge_rules(source_txt_path, source_json_path)
+    source_tokenizer.export_merge_rules(
+        outputs_dir / "source_bpe_merges.txt", outputs_dir / "source_bpe_merges.json"
+    )
+
     # Target plaintext BPE tokenizer (BPE over UTF-8 bytes)
     target_tok_path = tokenizer_dir / f"target_bpe_vocab{config.target_vocab_size}.json"
+    target_txt_path = tokenizer_dir / "target_bpe_merges.txt"
+    target_json_path = tokenizer_dir / "target_bpe_merges.json"
     if target_tok_path.exists():
         target_tokenizer = ByteBPETokenizer.load(target_tok_path)
     else:
         target_tokenizer = ByteBPETokenizer(vocab_size=config.target_vocab_size)
-        fit_lines = plain_train_lines[: min(500, len(plain_train_lines))]
+        fit_lines = plain_train_lines[: min(5000, len(plain_train_lines))]
         target_byte_seqs = [ascii_byte_values(line) for line in fit_lines]
         target_tokenizer.fit(target_byte_seqs)
         target_tokenizer.save(target_tok_path)
+
+    target_tokenizer.export_merge_rules(target_txt_path, target_json_path)
+    target_tokenizer.export_merge_rules(
+        outputs_dir / "target_bpe_merges.txt", outputs_dir / "target_bpe_merges.json"
+    )
 
     return {
         "source": source_tokenizer,
         "target": target_tokenizer,
         "source_path": source_tok_path,
         "target_path": target_tok_path,
+        "source_merges_txt": source_txt_path,
+        "target_merges_txt": target_txt_path,
     }
 
 
@@ -351,36 +371,40 @@ def run_experiment(
     smoke: bool = False,
     device_override: str | None = None,
     epochs_override: int | None = None,
+    batch_size_override: int | None = None,
     disable_wandb: bool = False,
 ) -> dict[str, Any]:
     """Train one configuration end-to-end and persist every artifact."""
+    if epochs_override is not None:
+        config = replace(config, epochs=epochs_override)
+    if batch_size_override is not None:
+        config = replace(config, batch_size=batch_size_override)
+    if smoke:
+        config = replace(config, epochs=min(config.epochs, epochs_override or 2), use_wandb=False)
+
     set_seed(config.seed)
     device = resolve_device(prefer_cuda=config.prefer_cuda)
     if device_override:
         device = torch.device(device_override)
 
+    chunked_splits = prepare_chunked_splits(
+        data_dir=config.data_dir,
+        chunk_size_bytes=config.chunk_size_bytes,
+        train_ratio=config.train_ratio,
+        val_ratio=config.val_ratio,
+        seed=config.seed,
+    )
     if smoke:
-        config = replace(
-            config,
-            epochs=epochs_override or 2,
-            max_source_length=min(1024, config.max_source_length),
-            max_target_length=min(96, config.max_target_length),
-            use_wandb=False,
-        )
-
-    cipher_lines, plain_lines = load_parallel_corpus(config.data_dir)
-    splits = build_dataset_splits(len(cipher_lines), config.train_ratio, config.val_ratio, config.seed)
-    if smoke:
-        splits = {
-            "train": splits["train"][:32],
-            "val": splits["val"][:8],
-            "test": splits["test"][:8],
+        chunked_splits = {
+            "train": (chunked_splits["train"][0][:64], chunked_splits["train"][1][:64]),
+            "val": (chunked_splits["val"][0][:16], chunked_splits["val"][1][:16]),
+            "test": (chunked_splits["test"][0][:16], chunked_splits["test"][1][:16]),
         }
 
     tokenizers = prepare_tokenizers(
         config,
-        select_lines(cipher_lines, splits["train"]),
-        select_lines(plain_lines, splits["train"]),
+        chunked_splits["train"][0],
+        chunked_splits["train"][1],
     )
     source_tokenizer = tokenizers["source"]
     target_tokenizer = tokenizers["target"]
@@ -393,11 +417,11 @@ def run_experiment(
     if is_blt:
         datasets = {
             name: ByteLatentParallelDataset(
-                select_lines(cipher_lines, indices),
-                select_lines(plain_lines, indices),
+                c_chunks,
+                p_chunks,
                 dataset_config,
             )
-            for name, indices in splits.items()
+            for name, (c_chunks, p_chunks) in chunked_splits.items()
         }
         src_vocab_size = source_tokenizer.vocab_size
         tgt_vocab_size = target_tokenizer.vocab_size
@@ -405,13 +429,13 @@ def run_experiment(
     else:
         datasets = {
             name: ParallelTextDataset(
-                select_lines(cipher_lines, indices),
-                select_lines(plain_lines, indices),
+                c_chunks,
+                p_chunks,
                 source_tokenizer,
                 target_tokenizer,
                 dataset_config,
             )
-            for name, indices in splits.items()
+            for name, (c_chunks, p_chunks) in chunked_splits.items()
         }
         src_vocab_size = source_tokenizer.learned_vocab_size
         tgt_vocab_size = target_tokenizer.learned_vocab_size
@@ -543,6 +567,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train Assignment 1 configurations")
     parser.add_argument("--config", default="C1", help="Configuration id (C1-C5) or 'all'")
     parser.add_argument("--epochs", type=int, default=None, help="Override number of epochs")
+    parser.add_argument("--batch-size", type=int, default=None, help="Override batch size")
     parser.add_argument("--smoke", action="store_true", help="Tiny subset sanity run")
     parser.add_argument("--no-wandb", action="store_true", help="Disable WandB logging")
     parser.add_argument("--device", default=None, help="cpu, cuda, or leave unset for auto")
@@ -560,6 +585,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             smoke=args.smoke,
             device_override=args.device,
             epochs_override=args.epochs,
+            batch_size_override=args.batch_size,
             disable_wandb=args.no_wandb,
         )
 

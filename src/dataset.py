@@ -7,7 +7,7 @@ import random
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Any, Iterable, Sequence
 
 import torch
 from torch.nn.utils.rnn import pad_sequence
@@ -44,6 +44,40 @@ def load_parallel_corpus(data_dir: str | Path = "dataset") -> tuple[list[str], l
     return cipher_lines, plain_lines
 
 
+def chunk_parallel_sentences(
+    cipher_lines: Sequence[str],
+    plain_lines: Sequence[str],
+    chunk_size_bytes: int = 64,
+) -> tuple[list[str], list[str]]:
+    """Segment paired sentence lines into aligned 64-byte chunks.
+
+    Each 64-byte segment of plaintext corresponds to 64 * 8 = 512 bits of ciphertext.
+    Final chunks of variable length preserve the exact bit/byte alignment.
+    """
+    if len(cipher_lines) != len(plain_lines):
+        raise ValueError("cipher_lines and plain_lines must have the same length")
+    if chunk_size_bytes <= 0:
+        raise ValueError("chunk_size_bytes must be positive")
+
+    cipher_chunks: list[str] = []
+    plain_chunks: list[str] = []
+
+    for c_line, p_line in zip(cipher_lines, plain_lines):
+        p_bytes = p_line.encode("utf-8")
+        if len(c_line) != len(p_bytes) * 8:
+            raise ValueError(
+                f"Unaligned pair: cipher bit length {len(c_line)} != plain byte length {len(p_bytes)} * 8"
+            )
+        for offset in range(0, len(p_bytes), chunk_size_bytes):
+            chunk_p_bytes = p_bytes[offset : offset + chunk_size_bytes]
+            chunk_p = chunk_p_bytes.decode("utf-8")
+            chunk_c = c_line[offset * 8 : (offset + len(chunk_p_bytes)) * 8]
+            cipher_chunks.append(chunk_c)
+            plain_chunks.append(chunk_p)
+
+    return cipher_chunks, plain_chunks
+
+
 def build_dataset_splits(
     num_examples: int,
     train_ratio: float = 0.8,
@@ -68,6 +102,32 @@ def build_dataset_splits(
         "val": indices[train_end:val_end],
         "test": indices[val_end:],
     }
+
+
+def prepare_chunked_splits(
+    data_dir: str | Path = "dataset",
+    chunk_size_bytes: int = 64,
+    train_ratio: float = 0.8,
+    val_ratio: float = 0.1,
+    seed: int = 42,
+) -> dict[str, tuple[list[str], list[str]]]:
+    """Load corpus, split at sentence level, and segment each split into 64-byte chunks."""
+    cipher_lines, plain_lines = load_parallel_corpus(data_dir)
+    splits = build_dataset_splits(
+        len(cipher_lines),
+        train_ratio=train_ratio,
+        val_ratio=val_ratio,
+        seed=seed,
+    )
+    result: dict[str, tuple[list[str], list[str]]] = {}
+    for split_name, indices in splits.items():
+        c_lines = [cipher_lines[i] for i in indices]
+        p_lines = [plain_lines[i] for i in indices]
+        c_chunks, p_chunks = chunk_parallel_sentences(
+            c_lines, p_lines, chunk_size_bytes=chunk_size_bytes
+        )
+        result[split_name] = (c_chunks, p_chunks)
+    return result
 
 
 class ByteTokenizer:
@@ -229,6 +289,71 @@ class ByteBPETokenizer:
                         new_chunk.append(chunk[idx])
                         idx += 1
                 updated_chunk_counts[tuple(new_chunk)] += freq
+            chunk_counts = updated_chunk_counts
+
+        self.trained = True
+        self._compiled_pattern = None
+
+    def export_merge_rules(
+        self,
+        path_txt: str | Path,
+        path_json: str | Path | None = None,
+    ) -> dict[str, Path]:
+        """Export human-readable and structured merge rules to the outputs directory."""
+        path_txt = Path(path_txt)
+        path_txt.parent.mkdir(parents=True, exist_ok=True)
+
+        lines: list[str] = [
+            f"# Learned BPE Merge Rules",
+            f"# Total merges: {len(self.merges)}",
+            f"# Base vocab size: {BASE_VOCAB_SIZE}, Target vocab size: {self.vocab_size}, Learned vocab size: {self.learned_vocab_size}",
+            f"# Format: Rank | Pair (token_a, token_b) -> new_token_id | Byte Hex | Decoded String",
+            "-" * 80,
+        ]
+
+        json_records: list[dict[str, Any]] = []
+
+        for rank, (pair, new_id) in enumerate(self.merges.items(), start=1):
+            p0, p1 = pair
+            b0 = self.token_to_bytes.get(p0, b"")
+            b1 = self.token_to_bytes.get(p1, b"")
+            merged_bytes = self.token_to_bytes.get(new_id, b0 + b1)
+            merged_hex = merged_bytes.hex()
+
+            try:
+                decoded_str = merged_bytes.decode("utf-8")
+                repr_str = repr(decoded_str)
+            except UnicodeDecodeError:
+                decoded_str = None
+                repr_str = f"hex:{merged_hex}"
+
+            lines.append(
+                f"{rank:4d} | ({p0:4d}, {p1:4d}) -> {new_id:4d} | hex: {merged_hex:16s} | {repr_str}"
+            )
+
+            json_records.append(
+                {
+                    "rank": rank,
+                    "pair_ids": list(pair),
+                    "new_token_id": new_id,
+                    "token_a_hex": b0.hex(),
+                    "token_b_hex": b1.hex(),
+                    "merged_hex": merged_hex,
+                    "decoded_text": decoded_str,
+                }
+            )
+
+        path_txt.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        result = {"txt": path_txt}
+
+        if path_json is not None:
+            path_json = Path(path_json)
+            path_json.parent.mkdir(parents=True, exist_ok=True)
+            path_json.write_text(json.dumps(json_records, indent=2), encoding="utf-8")
+            result["json"] = path_json
+
+        return result
+
     def _ensure_pattern(self) -> None:
         if not hasattr(self, "_compiled_pattern") or self._compiled_pattern is None:
             import re

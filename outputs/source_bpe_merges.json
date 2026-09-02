@@ -1,0 +1,6002 @@
+[
+  {
+    "rank": 1,
+    "pair_ids": [
+      45,
+      116
+    ],
+    "new_token_id": 260,
+    "token_a_hex": "29",
+    "token_b_hex": "70",
+    "merged_hex": "2970",
+    "decoded_text": ")p"
+  },
+  {
+    "rank": 2,
+    "pair_ids": [
+      89,
+      22
+    ],
+    "new_token_id": 261,
+    "token_a_hex": "55",
+    "token_b_hex": "12",
+    "merged_hex": "5512",
+    "decoded_text": "U\u0012"
+  },
+  {
+    "rank": 3,
+    "pair_ids": [
+      91,
+      26
+    ],
+    "new_token_id": 262,
+    "token_a_hex": "57",
+    "token_b_hex": "16",
+    "merged_hex": "5716",
+    "decoded_text": "W\u0016"
+  },
+  {
+    "rank": 4,
+    "pair_ids": [
+      47,
+      112
+    ],
+    "new_token_id": 263,
+    "token_a_hex": "2b",
+    "token_b_hex": "6c",
+    "merged_hex": "2b6c",
+    "decoded_text": "+l"
+  },
+  {
+    "rank": 5,
+    "pair_ids": [
+      40,
+      114
+    ],
+    "new_token_id": 264,
+    "token_a_hex": "24",
+    "token_b_hex": "6e",
+    "merged_hex": "246e",
+    "decoded_text": "$n"
+  },
+  {
+    "rank": 6,
+    "pair_ids": [
+      91,
+      20
+    ],
+    "new_token_id": 265,
+    "token_a_hex": "57",
+    "token_b_hex": "10",
+    "merged_hex": "5710",
+    "decoded_text": "W\u0010"
+  },
+  {
+    "rank": 7,
+    "pair_ids": [
+      57,
+      22
+    ],
+    "new_token_id": 266,
+    "token_a_hex": "35",
+    "token_b_hex": "12",
+    "merged_hex": "3512",
+    "decoded_text": "5\u0012"
+  },
+  {
+    "rank": 8,
+    "pair_ids": [
+      87,
+      101
+    ],
+    "new_token_id": 267,
+    "token_a_hex": "53",
+    "token_b_hex": "61",
+    "merged_hex": "5361",
+    "decoded_text": "Sa"
+  },
+  {
+    "rank": 9,
+    "pair_ids": [
+      22,
+      72
+    ],
+    "new_token_id": 268,
+    "token_a_hex": "12",
+    "token_b_hex": "44",
+    "merged_hex": "1244",
+    "decoded_text": "\u0012D"
+  },
+  {
+    "rank": 10,
+    "pair_ids": [
+      22,
+      70
+    ],
+    "new_token_id": 269,
+    "token_a_hex": "12",
+    "token_b_hex": "42",
+    "merged_hex": "1242",
+    "decoded_text": "\u0012B"
+  },
+  {
+    "rank": 11,
+    "pair_ids": [
+      112,
+      40
+    ],
+    "new_token_id": 270,
+    "token_a_hex": "6c",
+    "token_b_hex": "24",
+    "merged_hex": "6c24",
+    "decoded_text": "l$"
+  },
+  {
+    "rank": 12,
+    "pair_ids": [
+      69,
+      26
+    ],
+    "new_token_id": 271,
+    "token_a_hex": "41",
+    "token_b_hex": "16",
+    "merged_hex": "4116",
+    "decoded_text": "A\u0016"
+  },
+  {
+    "rank": 13,
+    "pair_ids": [
+      69,
+      20
+    ],
+    "new_token_id": 272,
+    "token_a_hex": "41",
+    "token_b_hex": "10",
+    "merged_hex": "4110",
+    "decoded_text": "A\u0010"
+  },
+  {
+    "rank": 14,
+    "pair_ids": [
+      67,
+      116
+    ],
+    "new_token_id": 273,
+    "token_a_hex": "3f",
+    "token_b_hex": "70",
+    "merged_hex": "3f70",
+    "decoded_text": "?p"
+  },
+  {
+    "rank": 15,
+    "pair_ids": [
+      57,
+      42
+    ],
+    "new_token_id": 274,
+    "token_a_hex": "35",
+    "token_b_hex": "26",
+    "merged_hex": "3526",
+    "decoded_text": "5&"
+  },
+  {
+    "rank": 16,
+    "pair_ids": [
+      54,
+      114
+    ],
+    "new_token_id": 275,
+    "token_a_hex": "32",
+    "token_b_hex": "6e",
+    "merged_hex": "326e",
+    "decoded_text": "2n"
+  },
+  {
+    "rank": 17,
+    "pair_ids": [
+      60,
+      60
+    ],
+    "new_token_id": 276,
+    "token_a_hex": "38",
+    "token_b_hex": "38",
+    "merged_hex": "3838",
+    "decoded_text": "88"
+  },
+  {
+    "rank": 18,
+    "pair_ids": [
+      101,
+      62
+    ],
+    "new_token_id": 277,
+    "token_a_hex": "61",
+    "token_b_hex": "3a",
+    "merged_hex": "613a",
+    "decoded_text": "a:"
+  },
+  {
+    "rank": 19,
+    "pair_ids": [
+      41,
+      114
+    ],
+    "new_token_id": 278,
+    "token_a_hex": "25",
+    "token_b_hex": "6e",
+    "merged_hex": "256e",
+    "decoded_text": "%n"
+  },
+  {
+    "rank": 20,
+    "pair_ids": [
+      74,
+      98
+    ],
+    "new_token_id": 279,
+    "token_a_hex": "46",
+    "token_b_hex": "5e",
+    "merged_hex": "465e",
+    "decoded_text": "F^"
+  },
+  {
+    "rank": 21,
+    "pair_ids": [
+      71,
+      22
+    ],
+    "new_token_id": 280,
+    "token_a_hex": "43",
+    "token_b_hex": "12",
+    "merged_hex": "4312",
+    "decoded_text": "C\u0012"
+  },
+  {
+    "rank": 22,
+    "pair_ids": [
+      39,
+      22
+    ],
+    "new_token_id": 281,
+    "token_a_hex": "23",
+    "token_b_hex": "12",
+    "merged_hex": "2312",
+    "decoded_text": "#\u0012"
+  },
+  {
+    "rank": 23,
+    "pair_ids": [
+      90,
+      20
+    ],
+    "new_token_id": 282,
+    "token_a_hex": "56",
+    "token_b_hex": "10",
+    "merged_hex": "5610",
+    "decoded_text": "V\u0010"
+  },
+  {
+    "rank": 24,
+    "pair_ids": [
+      44,
+      116
+    ],
+    "new_token_id": 283,
+    "token_a_hex": "28",
+    "token_b_hex": "70",
+    "merged_hex": "2870",
+    "decoded_text": "(p"
+  },
+  {
+    "rank": 25,
+    "pair_ids": [
+      74,
+      92
+    ],
+    "new_token_id": 284,
+    "token_a_hex": "46",
+    "token_b_hex": "58",
+    "merged_hex": "4658",
+    "decoded_text": "FX"
+  },
+  {
+    "rank": 26,
+    "pair_ids": [
+      65,
+      112
+    ],
+    "new_token_id": 285,
+    "token_a_hex": "3d",
+    "token_b_hex": "6c",
+    "merged_hex": "3d6c",
+    "decoded_text": "=l"
+  },
+  {
+    "rank": 27,
+    "pair_ids": [
+      90,
+      26
+    ],
+    "new_token_id": 286,
+    "token_a_hex": "56",
+    "token_b_hex": "16",
+    "merged_hex": "5616",
+    "decoded_text": "V\u0016"
+  },
+  {
+    "rank": 28,
+    "pair_ids": [
+      38,
+      116
+    ],
+    "new_token_id": 287,
+    "token_a_hex": "22",
+    "token_b_hex": "70",
+    "merged_hex": "2270",
+    "decoded_text": "\"p"
+  },
+  {
+    "rank": 29,
+    "pair_ids": [
+      87,
+      72
+    ],
+    "new_token_id": 288,
+    "token_a_hex": "53",
+    "token_b_hex": "44",
+    "merged_hex": "5344",
+    "decoded_text": "SD"
+  },
+  {
+    "rank": 30,
+    "pair_ids": [
+      91,
+      72
+    ],
+    "new_token_id": 289,
+    "token_a_hex": "57",
+    "token_b_hex": "44",
+    "merged_hex": "5744",
+    "decoded_text": "WD"
+  },
+  {
+    "rank": 31,
+    "pair_ids": [
+      96,
+      26
+    ],
+    "new_token_id": 290,
+    "token_a_hex": "5c",
+    "token_b_hex": "16",
+    "merged_hex": "5c16",
+    "decoded_text": "\\\u0016"
+  },
+  {
+    "rank": 32,
+    "pair_ids": [
+      51,
+      114
+    ],
+    "new_token_id": 291,
+    "token_a_hex": "2f",
+    "token_b_hex": "6e",
+    "merged_hex": "2f6e",
+    "decoded_text": "/n"
+  },
+  {
+    "rank": 33,
+    "pair_ids": [
+      73,
+      101
+    ],
+    "new_token_id": 292,
+    "token_a_hex": "45",
+    "token_b_hex": "61",
+    "merged_hex": "4561",
+    "decoded_text": "Ea"
+  },
+  {
+    "rank": 34,
+    "pair_ids": [
+      88,
+      22
+    ],
+    "new_token_id": 293,
+    "token_a_hex": "54",
+    "token_b_hex": "12",
+    "merged_hex": "5412",
+    "decoded_text": "T\u0012"
+  },
+  {
+    "rank": 35,
+    "pair_ids": [
+      96,
+      20
+    ],
+    "new_token_id": 294,
+    "token_a_hex": "5c",
+    "token_b_hex": "10",
+    "merged_hex": "5c10",
+    "decoded_text": "\\\u0010"
+  },
+  {
+    "rank": 36,
+    "pair_ids": [
+      91,
+      70
+    ],
+    "new_token_id": 295,
+    "token_a_hex": "57",
+    "token_b_hex": "42",
+    "merged_hex": "5742",
+    "decoded_text": "WB"
+  },
+  {
+    "rank": 37,
+    "pair_ids": [
+      46,
+      112
+    ],
+    "new_token_id": 296,
+    "token_a_hex": "2a",
+    "token_b_hex": "6c",
+    "merged_hex": "2a6c",
+    "decoded_text": "*l"
+  },
+  {
+    "rank": 38,
+    "pair_ids": [
+      87,
+      70
+    ],
+    "new_token_id": 297,
+    "token_a_hex": "53",
+    "token_b_hex": "42",
+    "merged_hex": "5342",
+    "decoded_text": "SB"
+  },
+  {
+    "rank": 39,
+    "pair_ids": [
+      44,
+      36
+    ],
+    "new_token_id": 298,
+    "token_a_hex": "28",
+    "token_b_hex": "20",
+    "merged_hex": "2820",
+    "decoded_text": "( "
+  },
+  {
+    "rank": 40,
+    "pair_ids": [
+      95,
+      92
+    ],
+    "new_token_id": 299,
+    "token_a_hex": "5b",
+    "token_b_hex": "58",
+    "merged_hex": "5b58",
+    "decoded_text": "[X"
+  },
+  {
+    "rank": 41,
+    "pair_ids": [
+      95,
+      98
+    ],
+    "new_token_id": 300,
+    "token_a_hex": "5b",
+    "token_b_hex": "5e",
+    "merged_hex": "5b5e",
+    "decoded_text": "[^"
+  },
+  {
+    "rank": 42,
+    "pair_ids": [
+      270,
+      94
+    ],
+    "new_token_id": 301,
+    "token_a_hex": "6c24",
+    "token_b_hex": "5a",
+    "merged_hex": "6c245a",
+    "decoded_text": "l$Z"
+  },
+  {
+    "rank": 43,
+    "pair_ids": [
+      87,
+      98
+    ],
+    "new_token_id": 302,
+    "token_a_hex": "53",
+    "token_b_hex": "5e",
+    "merged_hex": "535e",
+    "decoded_text": "S^"
+  },
+  {
+    "rank": 44,
+    "pair_ids": [
+      56,
+      22
+    ],
+    "new_token_id": 303,
+    "token_a_hex": "34",
+    "token_b_hex": "12",
+    "merged_hex": "3412",
+    "decoded_text": "4\u0012"
+  },
+  {
+    "rank": 45,
+    "pair_ids": [
+      268,
+      94
+    ],
+    "new_token_id": 304,
+    "token_a_hex": "1244",
+    "token_b_hex": "5a",
+    "merged_hex": "12445a",
+    "decoded_text": "\u0012DZ"
+  },
+  {
+    "rank": 46,
+    "pair_ids": [
+      41,
+      66
+    ],
+    "new_token_id": 305,
+    "token_a_hex": "25",
+    "token_b_hex": "3e",
+    "merged_hex": "253e",
+    "decoded_text": "%>"
+  },
+  {
+    "rank": 47,
+    "pair_ids": [
+      47,
+      66
+    ],
+    "new_token_id": 306,
+    "token_a_hex": "2b",
+    "token_b_hex": "3e",
+    "merged_hex": "2b3e",
+    "decoded_text": "+>"
+  },
+  {
+    "rank": 48,
+    "pair_ids": [
+      49,
+      66
+    ],
+    "new_token_id": 307,
+    "token_a_hex": "2d",
+    "token_b_hex": "3e",
+    "merged_hex": "2d3e",
+    "decoded_text": "->"
+  },
+  {
+    "rank": 49,
+    "pair_ids": [
+      36,
+      36
+    ],
+    "new_token_id": 308,
+    "token_a_hex": "20",
+    "token_b_hex": "20",
+    "merged_hex": "2020",
+    "decoded_text": "  "
+  },
+  {
+    "rank": 50,
+    "pair_ids": [
+      86,
+      101
+    ],
+    "new_token_id": 309,
+    "token_a_hex": "52",
+    "token_b_hex": "61",
+    "merged_hex": "5261",
+    "decoded_text": "Ra"
+  },
+  {
+    "rank": 51,
+    "pair_ids": [
+      57,
+      68
+    ],
+    "new_token_id": 310,
+    "token_a_hex": "35",
+    "token_b_hex": "40",
+    "merged_hex": "3540",
+    "decoded_text": "5@"
+  },
+  {
+    "rank": 52,
+    "pair_ids": [
+      45,
+      263
+    ],
+    "new_token_id": 311,
+    "token_a_hex": "29",
+    "token_b_hex": "2b6c",
+    "merged_hex": "292b6c",
+    "decoded_text": ")+l"
+  },
+  {
+    "rank": 53,
+    "pair_ids": [
+      45,
+      38
+    ],
+    "new_token_id": 312,
+    "token_a_hex": "29",
+    "token_b_hex": "22",
+    "merged_hex": "2922",
+    "decoded_text": ")\""
+  },
+  {
+    "rank": 54,
+    "pair_ids": [
+      277,
+      40
+    ],
+    "new_token_id": 313,
+    "token_a_hex": "613a",
+    "token_b_hex": "24",
+    "merged_hex": "613a24",
+    "decoded_text": "a:$"
+  },
+  {
+    "rank": 55,
+    "pair_ids": [
+      57,
+      114
+    ],
+    "new_token_id": 314,
+    "token_a_hex": "35",
+    "token_b_hex": "6e",
+    "merged_hex": "356e",
+    "decoded_text": "5n"
+  },
+  {
+    "rank": 56,
+    "pair_ids": [
+      74,
+      93
+    ],
+    "new_token_id": 315,
+    "token_a_hex": "46",
+    "token_b_hex": "59",
+    "merged_hex": "4659",
+    "decoded_text": "FY"
+  },
+  {
+    "rank": 57,
+    "pair_ids": [
+      89,
+      68
+    ],
+    "new_token_id": 316,
+    "token_a_hex": "55",
+    "token_b_hex": "40",
+    "merged_hex": "5540",
+    "decoded_text": "U@"
+  },
+  {
+    "rank": 58,
+    "pair_ids": [
+      40,
+      64
+    ],
+    "new_token_id": 317,
+    "token_a_hex": "24",
+    "token_b_hex": "3c",
+    "merged_hex": "243c",
+    "decoded_text": "$<"
+  },
+  {
+    "rank": 59,
+    "pair_ids": [
+      60,
+      116
+    ],
+    "new_token_id": 318,
+    "token_a_hex": "38",
+    "token_b_hex": "70",
+    "merged_hex": "3870",
+    "decoded_text": "8p"
+  },
+  {
+    "rank": 60,
+    "pair_ids": [
+      274,
+      260
+    ],
+    "new_token_id": 319,
+    "token_a_hex": "3526",
+    "token_b_hex": "2970",
+    "merged_hex": "35262970",
+    "decoded_text": "5&)p"
+  },
+  {
+    "rank": 61,
+    "pair_ids": [
+      74,
+      26
+    ],
+    "new_token_id": 320,
+    "token_a_hex": "46",
+    "token_b_hex": "16",
+    "merged_hex": "4616",
+    "decoded_text": "F\u0016"
+  },
+  {
+    "rank": 62,
+    "pair_ids": [
+      74,
+      99
+    ],
+    "new_token_id": 321,
+    "token_a_hex": "46",
+    "token_b_hex": "5f",
+    "merged_hex": "465f",
+    "decoded_text": "F_"
+  },
+  {
+    "rank": 63,
+    "pair_ids": [
+      87,
+      92
+    ],
+    "new_token_id": 322,
+    "token_a_hex": "53",
+    "token_b_hex": "58",
+    "merged_hex": "5358",
+    "decoded_text": "SX"
+  },
+  {
+    "rank": 64,
+    "pair_ids": [
+      74,
+      20
+    ],
+    "new_token_id": 323,
+    "token_a_hex": "46",
+    "token_b_hex": "10",
+    "merged_hex": "4610",
+    "decoded_text": "F\u0010"
+  },
+  {
+    "rank": 65,
+    "pair_ids": [
+      49,
+      40
+    ],
+    "new_token_id": 324,
+    "token_a_hex": "2d",
+    "token_b_hex": "24",
+    "merged_hex": "2d24",
+    "decoded_text": "-$"
+  },
+  {
+    "rank": 66,
+    "pair_ids": [
+      49,
+      38
+    ],
+    "new_token_id": 325,
+    "token_a_hex": "2d",
+    "token_b_hex": "22",
+    "merged_hex": "2d22",
+    "decoded_text": "-\""
+  },
+  {
+    "rank": 67,
+    "pair_ids": [
+      97,
+      98
+    ],
+    "new_token_id": 326,
+    "token_a_hex": "5d",
+    "token_b_hex": "5e",
+    "merged_hex": "5d5e",
+    "decoded_text": "]^"
+  },
+  {
+    "rank": 68,
+    "pair_ids": [
+      96,
+      91
+    ],
+    "new_token_id": 327,
+    "token_a_hex": "5c",
+    "token_b_hex": "57",
+    "merged_hex": "5c57",
+    "decoded_text": "\\W"
+  },
+  {
+    "rank": 69,
+    "pair_ids": [
+      87,
+      55
+    ],
+    "new_token_id": 328,
+    "token_a_hex": "53",
+    "token_b_hex": "33",
+    "merged_hex": "5333",
+    "decoded_text": "S3"
+  },
+  {
+    "rank": 70,
+    "pair_ids": [
+      301,
+      261
+    ],
+    "new_token_id": 329,
+    "token_a_hex": "6c245a",
+    "token_b_hex": "5512",
+    "merged_hex": "6c245a5512",
+    "decoded_text": "l$ZU\u0012"
+  },
+  {
+    "rank": 71,
+    "pair_ids": [
+      276,
+      265
+    ],
+    "new_token_id": 330,
+    "token_a_hex": "3838",
+    "token_b_hex": "5710",
+    "merged_hex": "38385710",
+    "decoded_text": "88W\u0010"
+  },
+  {
+    "rank": 72,
+    "pair_ids": [
+      284,
+      262
+    ],
+    "new_token_id": 331,
+    "token_a_hex": "4658",
+    "token_b_hex": "5716",
+    "merged_hex": "46585716",
+    "decoded_text": "FXW\u0016"
+  },
+  {
+    "rank": 73,
+    "pair_ids": [
+      39,
+      66
+    ],
+    "new_token_id": 332,
+    "token_a_hex": "23",
+    "token_b_hex": "3e",
+    "merged_hex": "233e",
+    "decoded_text": "#>"
+  },
+  {
+    "rank": 74,
+    "pair_ids": [
+      43,
+      38
+    ],
+    "new_token_id": 333,
+    "token_a_hex": "27",
+    "token_b_hex": "22",
+    "merged_hex": "2722",
+    "decoded_text": "'\""
+  },
+  {
+    "rank": 75,
+    "pair_ids": [
+      85,
+      98
+    ],
+    "new_token_id": 334,
+    "token_a_hex": "51",
+    "token_b_hex": "5e",
+    "merged_hex": "515e",
+    "decoded_text": "Q^"
+  },
+  {
+    "rank": 76,
+    "pair_ids": [
+      51,
+      38
+    ],
+    "new_token_id": 335,
+    "token_a_hex": "2f",
+    "token_b_hex": "22",
+    "merged_hex": "2f22",
+    "decoded_text": "/\""
+  },
+  {
+    "rank": 77,
+    "pair_ids": [
+      97,
+      92
+    ],
+    "new_token_id": 336,
+    "token_a_hex": "5d",
+    "token_b_hex": "58",
+    "merged_hex": "5d58",
+    "decoded_text": "]X"
+  },
+  {
+    "rank": 78,
+    "pair_ids": [
+      97,
+      70
+    ],
+    "new_token_id": 337,
+    "token_a_hex": "5d",
+    "token_b_hex": "42",
+    "merged_hex": "5d42",
+    "decoded_text": "]B"
+  },
+  {
+    "rank": 79,
+    "pair_ids": [
+      85,
+      96
+    ],
+    "new_token_id": 338,
+    "token_a_hex": "51",
+    "token_b_hex": "5c",
+    "merged_hex": "515c",
+    "decoded_text": "Q\\"
+  },
+  {
+    "rank": 80,
+    "pair_ids": [
+      87,
+      94
+    ],
+    "new_token_id": 339,
+    "token_a_hex": "53",
+    "token_b_hex": "5a",
+    "merged_hex": "535a",
+    "decoded_text": "SZ"
+  },
+  {
+    "rank": 81,
+    "pair_ids": [
+      62,
+      112
+    ],
+    "new_token_id": 340,
+    "token_a_hex": "3a",
+    "token_b_hex": "6c",
+    "merged_hex": "3a6c",
+    "decoded_text": ":l"
+  },
+  {
+    "rank": 82,
+    "pair_ids": [
+      279,
+      264
+    ],
+    "new_token_id": 341,
+    "token_a_hex": "465e",
+    "token_b_hex": "246e",
+    "merged_hex": "465e246e",
+    "decoded_text": "F^$n"
+  },
+  {
+    "rank": 83,
+    "pair_ids": [
+      313,
+      266
+    ],
+    "new_token_id": 342,
+    "token_a_hex": "613a24",
+    "token_b_hex": "3512",
+    "merged_hex": "613a243512",
+    "decoded_text": "a:$5\u0012"
+  },
+  {
+    "rank": 84,
+    "pair_ids": [
+      22,
+      91
+    ],
+    "new_token_id": 343,
+    "token_a_hex": "12",
+    "token_b_hex": "57",
+    "merged_hex": "1257",
+    "decoded_text": "\u0012W"
+  },
+  {
+    "rank": 85,
+    "pair_ids": [
+      22,
+      93
+    ],
+    "new_token_id": 344,
+    "token_a_hex": "12",
+    "token_b_hex": "59",
+    "merged_hex": "1259",
+    "decoded_text": "\u0012Y"
+  },
+  {
+    "rank": 86,
+    "pair_ids": [
+      53,
+      96
+    ],
+    "new_token_id": 345,
+    "token_a_hex": "31",
+    "token_b_hex": "5c",
+    "merged_hex": "315c",
+    "decoded_text": "1\\"
+  },
+  {
+    "rank": 87,
+    "pair_ids": [
+      50,
+      36
+    ],
+    "new_token_id": 346,
+    "token_a_hex": "2e",
+    "token_b_hex": "20",
+    "merged_hex": "2e20",
+    "decoded_text": ". "
+  },
+  {
+    "rank": 88,
+    "pair_ids": [
+      304,
+      267
+    ],
+    "new_token_id": 347,
+    "token_a_hex": "12445a",
+    "token_b_hex": "5361",
+    "merged_hex": "12445a5361",
+    "decoded_text": "\u0012DZSa"
+  },
+  {
+    "rank": 89,
+    "pair_ids": [
+      36,
+      64
+    ],
+    "new_token_id": 348,
+    "token_a_hex": "20",
+    "token_b_hex": "3c",
+    "merged_hex": "203c",
+    "decoded_text": " <"
+  },
+  {
+    "rank": 90,
+    "pair_ids": [
+      269,
+      311
+    ],
+    "new_token_id": 349,
+    "token_a_hex": "1242",
+    "token_b_hex": "292b6c",
+    "merged_hex": "1242292b6c",
+    "decoded_text": "\u0012B)+l"
+  },
+  {
+    "rank": 91,
+    "pair_ids": [
+      51,
+      60
+    ],
+    "new_token_id": 350,
+    "token_a_hex": "2f",
+    "token_b_hex": "38",
+    "merged_hex": "2f38",
+    "decoded_text": "/8"
+  },
+  {
+    "rank": 92,
+    "pair_ids": [
+      97,
+      72
+    ],
+    "new_token_id": 351,
+    "token_a_hex": "5d",
+    "token_b_hex": "44",
+    "merged_hex": "5d44",
+    "decoded_text": "]D"
+  },
+  {
+    "rank": 93,
+    "pair_ids": [
+      39,
+      38
+    ],
+    "new_token_id": 352,
+    "token_a_hex": "23",
+    "token_b_hex": "22",
+    "merged_hex": "2322",
+    "decoded_text": "#\""
+  },
+  {
+    "rank": 94,
+    "pair_ids": [
+      22,
+      99
+    ],
+    "new_token_id": 353,
+    "token_a_hex": "12",
+    "token_b_hex": "5f",
+    "merged_hex": "125f",
+    "decoded_text": "\u0012_"
+  },
+  {
+    "rank": 95,
+    "pair_ids": [
+      57,
+      282
+    ],
+    "new_token_id": 354,
+    "token_a_hex": "35",
+    "token_b_hex": "5610",
+    "merged_hex": "355610",
+    "decoded_text": "5V\u0010"
+  },
+  {
+    "rank": 96,
+    "pair_ids": [
+      95,
+      70
+    ],
+    "new_token_id": 355,
+    "token_a_hex": "5b",
+    "token_b_hex": "42",
+    "merged_hex": "5b42",
+    "decoded_text": "[B"
+  },
+  {
+    "rank": 97,
+    "pair_ids": [
+      45,
+      66
+    ],
+    "new_token_id": 356,
+    "token_a_hex": "29",
+    "token_b_hex": "3e",
+    "merged_hex": "293e",
+    "decoded_text": ")>"
+  },
+  {
+    "rank": 98,
+    "pair_ids": [
+      57,
+      116
+    ],
+    "new_token_id": 357,
+    "token_a_hex": "35",
+    "token_b_hex": "70",
+    "merged_hex": "3570",
+    "decoded_text": "5p"
+  },
+  {
+    "rank": 99,
+    "pair_ids": [
+      95,
+      72
+    ],
+    "new_token_id": 358,
+    "token_a_hex": "5b",
+    "token_b_hex": "44",
+    "merged_hex": "5b44",
+    "decoded_text": "[D"
+  },
+  {
+    "rank": 100,
+    "pair_ids": [
+      68,
+      93
+    ],
+    "new_token_id": 359,
+    "token_a_hex": "40",
+    "token_b_hex": "59",
+    "merged_hex": "4059",
+    "decoded_text": "@Y"
+  },
+  {
+    "rank": 101,
+    "pair_ids": [
+      60,
+      114
+    ],
+    "new_token_id": 360,
+    "token_a_hex": "38",
+    "token_b_hex": "6e",
+    "merged_hex": "386e",
+    "decoded_text": "8n"
+  },
+  {
+    "rank": 102,
+    "pair_ids": [
+      68,
+      99
+    ],
+    "new_token_id": 361,
+    "token_a_hex": "40",
+    "token_b_hex": "5f",
+    "merged_hex": "405f",
+    "decoded_text": "@_"
+  },
+  {
+    "rank": 103,
+    "pair_ids": [
+      87,
+      278
+    ],
+    "new_token_id": 362,
+    "token_a_hex": "53",
+    "token_b_hex": "256e",
+    "merged_hex": "53256e",
+    "decoded_text": "S%n"
+  },
+  {
+    "rank": 104,
+    "pair_ids": [
+      47,
+      283
+    ],
+    "new_token_id": 363,
+    "token_a_hex": "2b",
+    "token_b_hex": "2870",
+    "merged_hex": "2b2870",
+    "decoded_text": "+(p"
+  },
+  {
+    "rank": 105,
+    "pair_ids": [
+      50,
+      64
+    ],
+    "new_token_id": 364,
+    "token_a_hex": "2e",
+    "token_b_hex": "3c",
+    "merged_hex": "2e3c",
+    "decoded_text": ".<"
+  },
+  {
+    "rank": 106,
+    "pair_ids": [
+      89,
+      286
+    ],
+    "new_token_id": 365,
+    "token_a_hex": "55",
+    "token_b_hex": "5616",
+    "merged_hex": "555616",
+    "decoded_text": "UV\u0016"
+  },
+  {
+    "rank": 107,
+    "pair_ids": [
+      79,
+      26
+    ],
+    "new_token_id": 366,
+    "token_a_hex": "4b",
+    "token_b_hex": "16",
+    "merged_hex": "4b16",
+    "decoded_text": "K\u0016"
+  },
+  {
+    "rank": 108,
+    "pair_ids": [
+      91,
+      98
+    ],
+    "new_token_id": 367,
+    "token_a_hex": "57",
+    "token_b_hex": "5e",
+    "merged_hex": "575e",
+    "decoded_text": "W^"
+  },
+  {
+    "rank": 109,
+    "pair_ids": [
+      85,
+      99
+    ],
+    "new_token_id": 368,
+    "token_a_hex": "51",
+    "token_b_hex": "5f",
+    "merged_hex": "515f",
+    "decoded_text": "Q_"
+  },
+  {
+    "rank": 110,
+    "pair_ids": [
+      91,
+      92
+    ],
+    "new_token_id": 369,
+    "token_a_hex": "57",
+    "token_b_hex": "58",
+    "merged_hex": "5758",
+    "decoded_text": "WX"
+  },
+  {
+    "rank": 111,
+    "pair_ids": [
+      40,
+      36
+    ],
+    "new_token_id": 370,
+    "token_a_hex": "24",
+    "token_b_hex": "20",
+    "merged_hex": "2420",
+    "decoded_text": "$ "
+  },
+  {
+    "rank": 112,
+    "pair_ids": [
+      68,
+      87
+    ],
+    "new_token_id": 371,
+    "token_a_hex": "40",
+    "token_b_hex": "53",
+    "merged_hex": "4053",
+    "decoded_text": "@S"
+  },
+  {
+    "rank": 113,
+    "pair_ids": [
+      37,
+      66
+    ],
+    "new_token_id": 372,
+    "token_a_hex": "21",
+    "token_b_hex": "3e",
+    "merged_hex": "213e",
+    "decoded_text": "!>"
+  },
+  {
+    "rank": 114,
+    "pair_ids": [
+      79,
+      20
+    ],
+    "new_token_id": 373,
+    "token_a_hex": "4b",
+    "token_b_hex": "10",
+    "merged_hex": "4b10",
+    "decoded_text": "K\u0010"
+  },
+  {
+    "rank": 115,
+    "pair_ids": [
+      59,
+      112
+    ],
+    "new_token_id": 374,
+    "token_a_hex": "37",
+    "token_b_hex": "6c",
+    "merged_hex": "376c",
+    "decoded_text": "7l"
+  },
+  {
+    "rank": 116,
+    "pair_ids": [
+      93,
+      96
+    ],
+    "new_token_id": 375,
+    "token_a_hex": "59",
+    "token_b_hex": "5c",
+    "merged_hex": "595c",
+    "decoded_text": "Y\\"
+  },
+  {
+    "rank": 117,
+    "pair_ids": [
+      68,
+      89
+    ],
+    "new_token_id": 376,
+    "token_a_hex": "40",
+    "token_b_hex": "55",
+    "merged_hex": "4055",
+    "decoded_text": "@U"
+  },
+  {
+    "rank": 118,
+    "pair_ids": [
+      51,
+      66
+    ],
+    "new_token_id": 377,
+    "token_a_hex": "2f",
+    "token_b_hex": "3e",
+    "merged_hex": "2f3e",
+    "decoded_text": "/>"
+  },
+  {
+    "rank": 119,
+    "pair_ids": [
+      67,
+      40
+    ],
+    "new_token_id": 378,
+    "token_a_hex": "3f",
+    "token_b_hex": "24",
+    "merged_hex": "3f24",
+    "decoded_text": "?$"
+  },
+  {
+    "rank": 120,
+    "pair_ids": [
+      97,
+      20
+    ],
+    "new_token_id": 379,
+    "token_a_hex": "5d",
+    "token_b_hex": "10",
+    "merged_hex": "5d10",
+    "decoded_text": "]\u0010"
+  },
+  {
+    "rank": 121,
+    "pair_ids": [
+      67,
+      68
+    ],
+    "new_token_id": 380,
+    "token_a_hex": "3f",
+    "token_b_hex": "40",
+    "merged_hex": "3f40",
+    "decoded_text": "?@"
+  },
+  {
+    "rank": 122,
+    "pair_ids": [
+      36,
+      38
+    ],
+    "new_token_id": 381,
+    "token_a_hex": "20",
+    "token_b_hex": "22",
+    "merged_hex": "2022",
+    "decoded_text": " \""
+  },
+  {
+    "rank": 123,
+    "pair_ids": [
+      55,
+      47
+    ],
+    "new_token_id": 382,
+    "token_a_hex": "33",
+    "token_b_hex": "2b",
+    "merged_hex": "332b",
+    "decoded_text": "3+"
+  },
+  {
+    "rank": 124,
+    "pair_ids": [
+      91,
+      293
+    ],
+    "new_token_id": 383,
+    "token_a_hex": "57",
+    "token_b_hex": "5412",
+    "merged_hex": "575412",
+    "decoded_text": "WT\u0012"
+  },
+  {
+    "rank": 125,
+    "pair_ids": [
+      53,
+      68
+    ],
+    "new_token_id": 384,
+    "token_a_hex": "31",
+    "token_b_hex": "40",
+    "merged_hex": "3140",
+    "decoded_text": "1@"
+  },
+  {
+    "rank": 126,
+    "pair_ids": [
+      83,
+      101
+    ],
+    "new_token_id": 385,
+    "token_a_hex": "4f",
+    "token_b_hex": "61",
+    "merged_hex": "4f61",
+    "decoded_text": "Oa"
+  },
+  {
+    "rank": 127,
+    "pair_ids": [
+      99,
+      51
+    ],
+    "new_token_id": 386,
+    "token_a_hex": "5f",
+    "token_b_hex": "2f",
+    "merged_hex": "5f2f",
+    "decoded_text": "_/"
+  },
+  {
+    "rank": 128,
+    "pair_ids": [
+      40,
+      296
+    ],
+    "new_token_id": 387,
+    "token_a_hex": "24",
+    "token_b_hex": "2a6c",
+    "merged_hex": "242a6c",
+    "decoded_text": "$*l"
+  },
+  {
+    "rank": 129,
+    "pair_ids": [
+      87,
+      96
+    ],
+    "new_token_id": 388,
+    "token_a_hex": "53",
+    "token_b_hex": "5c",
+    "merged_hex": "535c",
+    "decoded_text": "S\\"
+  },
+  {
+    "rank": 130,
+    "pair_ids": [
+      99,
+      68
+    ],
+    "new_token_id": 389,
+    "token_a_hex": "5f",
+    "token_b_hex": "40",
+    "merged_hex": "5f40",
+    "decoded_text": "_@"
+  },
+  {
+    "rank": 131,
+    "pair_ids": [
+      46,
+      116
+    ],
+    "new_token_id": 390,
+    "token_a_hex": "2a",
+    "token_b_hex": "70",
+    "merged_hex": "2a70",
+    "decoded_text": "*p"
+  },
+  {
+    "rank": 132,
+    "pair_ids": [
+      39,
+      116
+    ],
+    "new_token_id": 391,
+    "token_a_hex": "23",
+    "token_b_hex": "70",
+    "merged_hex": "2370",
+    "decoded_text": "#p"
+  },
+  {
+    "rank": 133,
+    "pair_ids": [
+      88,
+      26
+    ],
+    "new_token_id": 392,
+    "token_a_hex": "54",
+    "token_b_hex": "16",
+    "merged_hex": "5416",
+    "decoded_text": "T\u0016"
+  },
+  {
+    "rank": 134,
+    "pair_ids": [
+      69,
+      70
+    ],
+    "new_token_id": 393,
+    "token_a_hex": "41",
+    "token_b_hex": "42",
+    "merged_hex": "4142",
+    "decoded_text": "AB"
+  },
+  {
+    "rank": 135,
+    "pair_ids": [
+      45,
+      303
+    ],
+    "new_token_id": 394,
+    "token_a_hex": "29",
+    "token_b_hex": "3412",
+    "merged_hex": "293412",
+    "decoded_text": ")4\u0012"
+  },
+  {
+    "rank": 136,
+    "pair_ids": [
+      36,
+      114
+    ],
+    "new_token_id": 395,
+    "token_a_hex": "20",
+    "token_b_hex": "6e",
+    "merged_hex": "206e",
+    "decoded_text": " n"
+  },
+  {
+    "rank": 137,
+    "pair_ids": [
+      22,
+      85
+    ],
+    "new_token_id": 396,
+    "token_a_hex": "12",
+    "token_b_hex": "51",
+    "merged_hex": "1251",
+    "decoded_text": "\u0012Q"
+  },
+  {
+    "rank": 138,
+    "pair_ids": [
+      50,
+      114
+    ],
+    "new_token_id": 397,
+    "token_a_hex": "2e",
+    "token_b_hex": "6e",
+    "merged_hex": "2e6e",
+    "decoded_text": ".n"
+  },
+  {
+    "rank": 139,
+    "pair_ids": [
+      97,
+      84
+    ],
+    "new_token_id": 398,
+    "token_a_hex": "5d",
+    "token_b_hex": "50",
+    "merged_hex": "5d50",
+    "decoded_text": "]P"
+  },
+  {
+    "rank": 140,
+    "pair_ids": [
+      97,
+      71
+    ],
+    "new_token_id": 399,
+    "token_a_hex": "5d",
+    "token_b_hex": "43",
+    "merged_hex": "5d43",
+    "decoded_text": "]C"
+  },
+  {
+    "rank": 141,
+    "pair_ids": [
+      97,
+      73
+    ],
+    "new_token_id": 400,
+    "token_a_hex": "5d",
+    "token_b_hex": "45",
+    "merged_hex": "5d45",
+    "decoded_text": "]E"
+  },
+  {
+    "rank": 142,
+    "pair_ids": [
+      36,
+      62
+    ],
+    "new_token_id": 401,
+    "token_a_hex": "20",
+    "token_b_hex": "3a",
+    "merged_hex": "203a",
+    "decoded_text": " :"
+  },
+  {
+    "rank": 143,
+    "pair_ids": [
+      97,
+      90
+    ],
+    "new_token_id": 402,
+    "token_a_hex": "5d",
+    "token_b_hex": "56",
+    "merged_hex": "5d56",
+    "decoded_text": "]V"
+  },
+  {
+    "rank": 144,
+    "pair_ids": [
+      97,
+      26
+    ],
+    "new_token_id": 403,
+    "token_a_hex": "5d",
+    "token_b_hex": "16",
+    "merged_hex": "5d16",
+    "decoded_text": "]\u0016"
+  },
+  {
+    "rank": 145,
+    "pair_ids": [
+      50,
+      44
+    ],
+    "new_token_id": 404,
+    "token_a_hex": "2e",
+    "token_b_hex": "28",
+    "merged_hex": "2e28",
+    "decoded_text": ".("
+  },
+  {
+    "rank": 146,
+    "pair_ids": [
+      47,
+      38
+    ],
+    "new_token_id": 405,
+    "token_a_hex": "2b",
+    "token_b_hex": "22",
+    "merged_hex": "2b22",
+    "decoded_text": "+\""
+  },
+  {
+    "rank": 147,
+    "pair_ids": [
+      49,
+      64
+    ],
+    "new_token_id": 406,
+    "token_a_hex": "2d",
+    "token_b_hex": "3c",
+    "merged_hex": "2d3c",
+    "decoded_text": "-<"
+  },
+  {
+    "rank": 148,
+    "pair_ids": [
+      53,
+      98
+    ],
+    "new_token_id": 407,
+    "token_a_hex": "31",
+    "token_b_hex": "5e",
+    "merged_hex": "315e",
+    "decoded_text": "1^"
+  },
+  {
+    "rank": 149,
+    "pair_ids": [
+      37,
+      61
+    ],
+    "new_token_id": 408,
+    "token_a_hex": "21",
+    "token_b_hex": "39",
+    "merged_hex": "2139",
+    "decoded_text": "!9"
+  },
+  {
+    "rank": 150,
+    "pair_ids": [
+      69,
+      72
+    ],
+    "new_token_id": 409,
+    "token_a_hex": "41",
+    "token_b_hex": "44",
+    "merged_hex": "4144",
+    "decoded_text": "AD"
+  },
+  {
+    "rank": 151,
+    "pair_ids": [
+      91,
+      51
+    ],
+    "new_token_id": 410,
+    "token_a_hex": "57",
+    "token_b_hex": "2f",
+    "merged_hex": "572f",
+    "decoded_text": "W/"
+  },
+  {
+    "rank": 152,
+    "pair_ids": [
+      37,
+      390
+    ],
+    "new_token_id": 411,
+    "token_a_hex": "21",
+    "token_b_hex": "2a70",
+    "merged_hex": "212a70",
+    "decoded_text": "!*p"
+  },
+  {
+    "rank": 153,
+    "pair_ids": [
+      67,
+      88
+    ],
+    "new_token_id": 412,
+    "token_a_hex": "3f",
+    "token_b_hex": "54",
+    "merged_hex": "3f54",
+    "decoded_text": "?T"
+  },
+  {
+    "rank": 154,
+    "pair_ids": [
+      43,
+      114
+    ],
+    "new_token_id": 413,
+    "token_a_hex": "27",
+    "token_b_hex": "6e",
+    "merged_hex": "276e",
+    "decoded_text": "'n"
+  },
+  {
+    "rank": 155,
+    "pair_ids": [
+      37,
+      112
+    ],
+    "new_token_id": 414,
+    "token_a_hex": "21",
+    "token_b_hex": "6c",
+    "merged_hex": "216c",
+    "decoded_text": "!l"
+  },
+  {
+    "rank": 156,
+    "pair_ids": [
+      66,
+      57
+    ],
+    "new_token_id": 415,
+    "token_a_hex": "3e",
+    "token_b_hex": "35",
+    "merged_hex": "3e35",
+    "decoded_text": ">5"
+  },
+  {
+    "rank": 157,
+    "pair_ids": [
+      308,
+      283
+    ],
+    "new_token_id": 416,
+    "token_a_hex": "2020",
+    "token_b_hex": "2870",
+    "merged_hex": "20202870",
+    "decoded_text": "  (p"
+  },
+  {
+    "rank": 158,
+    "pair_ids": [
+      41,
+      40
+    ],
+    "new_token_id": 417,
+    "token_a_hex": "25",
+    "token_b_hex": "24",
+    "merged_hex": "2524",
+    "decoded_text": "%$"
+  },
+  {
+    "rank": 159,
+    "pair_ids": [
+      85,
+      93
+    ],
+    "new_token_id": 418,
+    "token_a_hex": "51",
+    "token_b_hex": "59",
+    "merged_hex": "5159",
+    "decoded_text": "QY"
+  },
+  {
+    "rank": 160,
+    "pair_ids": [
+      37,
+      38
+    ],
+    "new_token_id": 419,
+    "token_a_hex": "21",
+    "token_b_hex": "22",
+    "merged_hex": "2122",
+    "decoded_text": "!\""
+  },
+  {
+    "rank": 161,
+    "pair_ids": [
+      89,
+      96
+    ],
+    "new_token_id": 420,
+    "token_a_hex": "55",
+    "token_b_hex": "5c",
+    "merged_hex": "555c",
+    "decoded_text": "U\\"
+  },
+  {
+    "rank": 162,
+    "pair_ids": [
+      51,
+      67
+    ],
+    "new_token_id": 421,
+    "token_a_hex": "2f",
+    "token_b_hex": "3f",
+    "merged_hex": "2f3f",
+    "decoded_text": "/?"
+  },
+  {
+    "rank": 163,
+    "pair_ids": [
+      39,
+      58
+    ],
+    "new_token_id": 422,
+    "token_a_hex": "23",
+    "token_b_hex": "36",
+    "merged_hex": "2336",
+    "decoded_text": "#6"
+  },
+  {
+    "rank": 164,
+    "pair_ids": [
+      94,
+      93
+    ],
+    "new_token_id": 423,
+    "token_a_hex": "5a",
+    "token_b_hex": "59",
+    "merged_hex": "5a59",
+    "decoded_text": "ZY"
+  },
+  {
+    "rank": 165,
+    "pair_ids": [
+      57,
+      43
+    ],
+    "new_token_id": 424,
+    "token_a_hex": "35",
+    "token_b_hex": "27",
+    "merged_hex": "3527",
+    "decoded_text": "5'"
+  },
+  {
+    "rank": 166,
+    "pair_ids": [
+      64,
+      45
+    ],
+    "new_token_id": 425,
+    "token_a_hex": "3c",
+    "token_b_hex": "29",
+    "merged_hex": "3c29",
+    "decoded_text": "<)"
+  },
+  {
+    "rank": 167,
+    "pair_ids": [
+      57,
+      96
+    ],
+    "new_token_id": 426,
+    "token_a_hex": "35",
+    "token_b_hex": "5c",
+    "merged_hex": "355c",
+    "decoded_text": "5\\"
+  },
+  {
+    "rank": 168,
+    "pair_ids": [
+      91,
+      309
+    ],
+    "new_token_id": 427,
+    "token_a_hex": "57",
+    "token_b_hex": "5261",
+    "merged_hex": "575261",
+    "decoded_text": "WRa"
+  },
+  {
+    "rank": 169,
+    "pair_ids": [
+      51,
+      36
+    ],
+    "new_token_id": 428,
+    "token_a_hex": "2f",
+    "token_b_hex": "20",
+    "merged_hex": "2f20",
+    "decoded_text": "/ "
+  },
+  {
+    "rank": 170,
+    "pair_ids": [
+      75,
+      70
+    ],
+    "new_token_id": 429,
+    "token_a_hex": "47",
+    "token_b_hex": "42",
+    "merged_hex": "4742",
+    "decoded_text": "GB"
+  },
+  {
+    "rank": 171,
+    "pair_ids": [
+      38,
+      91
+    ],
+    "new_token_id": 430,
+    "token_a_hex": "22",
+    "token_b_hex": "57",
+    "merged_hex": "2257",
+    "decoded_text": "\"W"
+  },
+  {
+    "rank": 172,
+    "pair_ids": [
+      49,
+      114
+    ],
+    "new_token_id": 431,
+    "token_a_hex": "2d",
+    "token_b_hex": "6e",
+    "merged_hex": "2d6e",
+    "decoded_text": "-n"
+  },
+  {
+    "rank": 173,
+    "pair_ids": [
+      302,
+      286
+    ],
+    "new_token_id": 432,
+    "token_a_hex": "535e",
+    "token_b_hex": "5616",
+    "merged_hex": "535e5616",
+    "decoded_text": "S^V\u0016"
+  },
+  {
+    "rank": 174,
+    "pair_ids": [
+      412,
+      20
+    ],
+    "new_token_id": 433,
+    "token_a_hex": "3f54",
+    "token_b_hex": "10",
+    "merged_hex": "3f5410",
+    "decoded_text": "?T\u0010"
+  },
+  {
+    "rank": 175,
+    "pair_ids": [
+      60,
+      67
+    ],
+    "new_token_id": 434,
+    "token_a_hex": "38",
+    "token_b_hex": "3f",
+    "merged_hex": "383f",
+    "decoded_text": "8?"
+  },
+  {
+    "rank": 176,
+    "pair_ids": [
+      307,
+      282
+    ],
+    "new_token_id": 435,
+    "token_a_hex": "2d3e",
+    "token_b_hex": "5610",
+    "merged_hex": "2d3e5610",
+    "decoded_text": "->V\u0010"
+  },
+  {
+    "rank": 177,
+    "pair_ids": [
+      87,
+      20
+    ],
+    "new_token_id": 436,
+    "token_a_hex": "53",
+    "token_b_hex": "10",
+    "merged_hex": "5310",
+    "decoded_text": "S\u0010"
+  },
+  {
+    "rank": 178,
+    "pair_ids": [
+      43,
+      287
+    ],
+    "new_token_id": 437,
+    "token_a_hex": "27",
+    "token_b_hex": "2270",
+    "merged_hex": "272270",
+    "decoded_text": "'\"p"
+  },
+  {
+    "rank": 179,
+    "pair_ids": [
+      310,
+      20
+    ],
+    "new_token_id": 438,
+    "token_a_hex": "3540",
+    "token_b_hex": "10",
+    "merged_hex": "354010",
+    "decoded_text": "5@\u0010"
+  },
+  {
+    "rank": 180,
+    "pair_ids": [
+      87,
+      26
+    ],
+    "new_token_id": 439,
+    "token_a_hex": "53",
+    "token_b_hex": "16",
+    "merged_hex": "5316",
+    "decoded_text": "S\u0016"
+  },
+  {
+    "rank": 181,
+    "pair_ids": [
+      45,
+      22
+    ],
+    "new_token_id": 440,
+    "token_a_hex": "29",
+    "token_b_hex": "12",
+    "merged_hex": "2912",
+    "decoded_text": ")\u0012"
+  },
+  {
+    "rank": 182,
+    "pair_ids": [
+      85,
+      68
+    ],
+    "new_token_id": 441,
+    "token_a_hex": "51",
+    "token_b_hex": "40",
+    "merged_hex": "5140",
+    "decoded_text": "Q@"
+  },
+  {
+    "rank": 183,
+    "pair_ids": [
+      89,
+      98
+    ],
+    "new_token_id": 442,
+    "token_a_hex": "55",
+    "token_b_hex": "5e",
+    "merged_hex": "555e",
+    "decoded_text": "U^"
+  },
+  {
+    "rank": 184,
+    "pair_ids": [
+      42,
+      114
+    ],
+    "new_token_id": 443,
+    "token_a_hex": "26",
+    "token_b_hex": "6e",
+    "merged_hex": "266e",
+    "decoded_text": "&n"
+  },
+  {
+    "rank": 185,
+    "pair_ids": [
+      333,
+      59
+    ],
+    "new_token_id": 444,
+    "token_a_hex": "2722",
+    "token_b_hex": "37",
+    "merged_hex": "272237",
+    "decoded_text": "'\"7"
+  },
+  {
+    "rank": 186,
+    "pair_ids": [
+      61,
+      96
+    ],
+    "new_token_id": 445,
+    "token_a_hex": "39",
+    "token_b_hex": "5c",
+    "merged_hex": "395c",
+    "decoded_text": "9\\"
+  },
+  {
+    "rank": 187,
+    "pair_ids": [
+      298,
+      47
+    ],
+    "new_token_id": 446,
+    "token_a_hex": "2820",
+    "token_b_hex": "2b",
+    "merged_hex": "28202b",
+    "decoded_text": "( +"
+  },
+  {
+    "rank": 188,
+    "pair_ids": [
+      45,
+      43
+    ],
+    "new_token_id": 447,
+    "token_a_hex": "29",
+    "token_b_hex": "27",
+    "merged_hex": "2927",
+    "decoded_text": ")'"
+  },
+  {
+    "rank": 189,
+    "pair_ids": [
+      37,
+      287
+    ],
+    "new_token_id": 448,
+    "token_a_hex": "21",
+    "token_b_hex": "2270",
+    "merged_hex": "212270",
+    "decoded_text": "!\"p"
+  },
+  {
+    "rank": 190,
+    "pair_ids": [
+      44,
+      62
+    ],
+    "new_token_id": 449,
+    "token_a_hex": "28",
+    "token_b_hex": "3a",
+    "merged_hex": "283a",
+    "decoded_text": "(:"
+  },
+  {
+    "rank": 191,
+    "pair_ids": [
+      49,
+      39
+    ],
+    "new_token_id": 450,
+    "token_a_hex": "2d",
+    "token_b_hex": "23",
+    "merged_hex": "2d23",
+    "decoded_text": "-#"
+  },
+  {
+    "rank": 192,
+    "pair_ids": [
+      95,
+      89
+    ],
+    "new_token_id": 451,
+    "token_a_hex": "5b",
+    "token_b_hex": "55",
+    "merged_hex": "5b55",
+    "decoded_text": "[U"
+  },
+  {
+    "rank": 193,
+    "pair_ids": [
+      55,
+      114
+    ],
+    "new_token_id": 452,
+    "token_a_hex": "33",
+    "token_b_hex": "6e",
+    "merged_hex": "336e",
+    "decoded_text": "3n"
+  },
+  {
+    "rank": 194,
+    "pair_ids": [
+      94,
+      99
+    ],
+    "new_token_id": 453,
+    "token_a_hex": "5a",
+    "token_b_hex": "5f",
+    "merged_hex": "5a5f",
+    "decoded_text": "Z_"
+  },
+  {
+    "rank": 195,
+    "pair_ids": [
+      22,
+      73
+    ],
+    "new_token_id": 454,
+    "token_a_hex": "12",
+    "token_b_hex": "45",
+    "merged_hex": "1245",
+    "decoded_text": "\u0012E"
+  },
+  {
+    "rank": 196,
+    "pair_ids": [
+      69,
+      99
+    ],
+    "new_token_id": 455,
+    "token_a_hex": "41",
+    "token_b_hex": "5f",
+    "merged_hex": "415f",
+    "decoded_text": "A_"
+  },
+  {
+    "rank": 197,
+    "pair_ids": [
+      75,
+      72
+    ],
+    "new_token_id": 456,
+    "token_a_hex": "47",
+    "token_b_hex": "44",
+    "merged_hex": "4744",
+    "decoded_text": "GD"
+  },
+  {
+    "rank": 198,
+    "pair_ids": [
+      51,
+      62
+    ],
+    "new_token_id": 457,
+    "token_a_hex": "2f",
+    "token_b_hex": "3a",
+    "merged_hex": "2f3a",
+    "decoded_text": "/:"
+  },
+  {
+    "rank": 199,
+    "pair_ids": [
+      67,
+      294
+    ],
+    "new_token_id": 458,
+    "token_a_hex": "3f",
+    "token_b_hex": "5c10",
+    "merged_hex": "3f5c10",
+    "decoded_text": "?\\\u0010"
+  },
+  {
+    "rank": 200,
+    "pair_ids": [
+      89,
+      26
+    ],
+    "new_token_id": 459,
+    "token_a_hex": "55",
+    "token_b_hex": "16",
+    "merged_hex": "5516",
+    "decoded_text": "U\u0016"
+  },
+  {
+    "rank": 201,
+    "pair_ids": [
+      88,
+      93
+    ],
+    "new_token_id": 460,
+    "token_a_hex": "54",
+    "token_b_hex": "59",
+    "merged_hex": "5459",
+    "decoded_text": "TY"
+  },
+  {
+    "rank": 202,
+    "pair_ids": [
+      316,
+      26
+    ],
+    "new_token_id": 461,
+    "token_a_hex": "5540",
+    "token_b_hex": "16",
+    "merged_hex": "554016",
+    "decoded_text": "U@\u0016"
+  },
+  {
+    "rank": 203,
+    "pair_ids": [
+      97,
+      95
+    ],
+    "new_token_id": 462,
+    "token_a_hex": "5d",
+    "token_b_hex": "5b",
+    "merged_hex": "5d5b",
+    "decoded_text": "]["
+  },
+  {
+    "rank": 204,
+    "pair_ids": [
+      22,
+      88
+    ],
+    "new_token_id": 463,
+    "token_a_hex": "12",
+    "token_b_hex": "54",
+    "merged_hex": "1254",
+    "decoded_text": "\u0012T"
+  },
+  {
+    "rank": 205,
+    "pair_ids": [
+      101,
+      61
+    ],
+    "new_token_id": 464,
+    "token_a_hex": "61",
+    "token_b_hex": "39",
+    "merged_hex": "6139",
+    "decoded_text": "a9"
+  },
+  {
+    "rank": 206,
+    "pair_ids": [
+      91,
+      91
+    ],
+    "new_token_id": 465,
+    "token_a_hex": "57",
+    "token_b_hex": "57",
+    "merged_hex": "5757",
+    "decoded_text": "WW"
+  },
+  {
+    "rank": 207,
+    "pair_ids": [
+      95,
+      87
+    ],
+    "new_token_id": 466,
+    "token_a_hex": "5b",
+    "token_b_hex": "53",
+    "merged_hex": "5b53",
+    "decoded_text": "[S"
+  },
+  {
+    "rank": 208,
+    "pair_ids": [
+      306,
+      116
+    ],
+    "new_token_id": 467,
+    "token_a_hex": "2b3e",
+    "token_b_hex": "70",
+    "merged_hex": "2b3e70",
+    "decoded_text": "+>p"
+  },
+  {
+    "rank": 209,
+    "pair_ids": [
+      61,
+      327
+    ],
+    "new_token_id": 468,
+    "token_a_hex": "39",
+    "token_b_hex": "5c57",
+    "merged_hex": "395c57",
+    "decoded_text": "9\\W"
+  },
+  {
+    "rank": 210,
+    "pair_ids": [
+      22,
+      86
+    ],
+    "new_token_id": 469,
+    "token_a_hex": "12",
+    "token_b_hex": "52",
+    "merged_hex": "1252",
+    "decoded_text": "\u0012R"
+  },
+  {
+    "rank": 211,
+    "pair_ids": [
+      49,
+      116
+    ],
+    "new_token_id": 470,
+    "token_a_hex": "2d",
+    "token_b_hex": "70",
+    "merged_hex": "2d70",
+    "decoded_text": "-p"
+  },
+  {
+    "rank": 212,
+    "pair_ids": [
+      49,
+      43
+    ],
+    "new_token_id": 471,
+    "token_a_hex": "2d",
+    "token_b_hex": "27",
+    "merged_hex": "2d27",
+    "decoded_text": "-'"
+  },
+  {
+    "rank": 213,
+    "pair_ids": [
+      101,
+      51
+    ],
+    "new_token_id": 472,
+    "token_a_hex": "61",
+    "token_b_hex": "2f",
+    "merged_hex": "612f",
+    "decoded_text": "a/"
+  },
+  {
+    "rank": 214,
+    "pair_ids": [
+      94,
+      20
+    ],
+    "new_token_id": 473,
+    "token_a_hex": "5a",
+    "token_b_hex": "10",
+    "merged_hex": "5a10",
+    "decoded_text": "Z\u0010"
+  },
+  {
+    "rank": 215,
+    "pair_ids": [
+      25,
+      42
+    ],
+    "new_token_id": 474,
+    "token_a_hex": "15",
+    "token_b_hex": "26",
+    "merged_hex": "1526",
+    "decoded_text": "\u0015&"
+  },
+  {
+    "rank": 216,
+    "pair_ids": [
+      89,
+      20
+    ],
+    "new_token_id": 475,
+    "token_a_hex": "55",
+    "token_b_hex": "10",
+    "merged_hex": "5510",
+    "decoded_text": "U\u0010"
+  },
+  {
+    "rank": 217,
+    "pair_ids": [
+      322,
+      278
+    ],
+    "new_token_id": 476,
+    "token_a_hex": "5358",
+    "token_b_hex": "256e",
+    "merged_hex": "5358256e",
+    "decoded_text": "SX%n"
+  },
+  {
+    "rank": 218,
+    "pair_ids": [
+      45,
+      114
+    ],
+    "new_token_id": 477,
+    "token_a_hex": "29",
+    "token_b_hex": "6e",
+    "merged_hex": "296e",
+    "decoded_text": ")n"
+  },
+  {
+    "rank": 219,
+    "pair_ids": [
+      39,
+      41
+    ],
+    "new_token_id": 478,
+    "token_a_hex": "23",
+    "token_b_hex": "25",
+    "merged_hex": "2325",
+    "decoded_text": "#%"
+  },
+  {
+    "rank": 220,
+    "pair_ids": [
+      91,
+      73
+    ],
+    "new_token_id": 479,
+    "token_a_hex": "57",
+    "token_b_hex": "45",
+    "merged_hex": "5745",
+    "decoded_text": "WE"
+  },
+  {
+    "rank": 221,
+    "pair_ids": [
+      98,
+      99
+    ],
+    "new_token_id": 480,
+    "token_a_hex": "5e",
+    "token_b_hex": "5f",
+    "merged_hex": "5e5f",
+    "decoded_text": "^_"
+  },
+  {
+    "rank": 222,
+    "pair_ids": [
+      69,
+      93
+    ],
+    "new_token_id": 481,
+    "token_a_hex": "41",
+    "token_b_hex": "59",
+    "merged_hex": "4159",
+    "decoded_text": "AY"
+  },
+  {
+    "rank": 223,
+    "pair_ids": [
+      446,
+      116
+    ],
+    "new_token_id": 482,
+    "token_a_hex": "28202b",
+    "token_b_hex": "70",
+    "merged_hex": "28202b70",
+    "decoded_text": "( +p"
+  },
+  {
+    "rank": 224,
+    "pair_ids": [
+      91,
+      94
+    ],
+    "new_token_id": 483,
+    "token_a_hex": "57",
+    "token_b_hex": "5a",
+    "merged_hex": "575a",
+    "decoded_text": "WZ"
+  },
+  {
+    "rank": 225,
+    "pair_ids": [
+      85,
+      72
+    ],
+    "new_token_id": 484,
+    "token_a_hex": "51",
+    "token_b_hex": "44",
+    "merged_hex": "5144",
+    "decoded_text": "QD"
+  },
+  {
+    "rank": 226,
+    "pair_ids": [
+      101,
+      65
+    ],
+    "new_token_id": 485,
+    "token_a_hex": "61",
+    "token_b_hex": "3d",
+    "merged_hex": "613d",
+    "decoded_text": "a="
+  },
+  {
+    "rank": 227,
+    "pair_ids": [
+      345,
+      293
+    ],
+    "new_token_id": 486,
+    "token_a_hex": "315c",
+    "token_b_hex": "5412",
+    "merged_hex": "315c5412",
+    "decoded_text": "1\\T\u0012"
+  },
+  {
+    "rank": 228,
+    "pair_ids": [
+      22,
+      71
+    ],
+    "new_token_id": 487,
+    "token_a_hex": "12",
+    "token_b_hex": "43",
+    "merged_hex": "1243",
+    "decoded_text": "\u0012C"
+  },
+  {
+    "rank": 229,
+    "pair_ids": [
+      61,
+      294
+    ],
+    "new_token_id": 488,
+    "token_a_hex": "39",
+    "token_b_hex": "5c10",
+    "merged_hex": "395c10",
+    "decoded_text": "9\\\u0010"
+  },
+  {
+    "rank": 230,
+    "pair_ids": [
+      40,
+      65
+    ],
+    "new_token_id": 489,
+    "token_a_hex": "24",
+    "token_b_hex": "3d",
+    "merged_hex": "243d",
+    "decoded_text": "$="
+  },
+  {
+    "rank": 231,
+    "pair_ids": [
+      53,
+      272
+    ],
+    "new_token_id": 490,
+    "token_a_hex": "31",
+    "token_b_hex": "4110",
+    "merged_hex": "314110",
+    "decoded_text": "1A\u0010"
+  },
+  {
+    "rank": 232,
+    "pair_ids": [
+      22,
+      75
+    ],
+    "new_token_id": 491,
+    "token_a_hex": "12",
+    "token_b_hex": "47",
+    "merged_hex": "1247",
+    "decoded_text": "\u0012G"
+  },
+  {
+    "rank": 233,
+    "pair_ids": [
+      22,
+      69
+    ],
+    "new_token_id": 492,
+    "token_a_hex": "12",
+    "token_b_hex": "41",
+    "merged_hex": "1241",
+    "decoded_text": "\u0012A"
+  },
+  {
+    "rank": 234,
+    "pair_ids": [
+      95,
+      99
+    ],
+    "new_token_id": 493,
+    "token_a_hex": "5b",
+    "token_b_hex": "5f",
+    "merged_hex": "5b5f",
+    "decoded_text": "[_"
+  },
+  {
+    "rank": 235,
+    "pair_ids": [
+      317,
+      112
+    ],
+    "new_token_id": 494,
+    "token_a_hex": "243c",
+    "token_b_hex": "6c",
+    "merged_hex": "243c6c",
+    "decoded_text": "$<l"
+  },
+  {
+    "rank": 236,
+    "pair_ids": [
+      95,
+      93
+    ],
+    "new_token_id": 495,
+    "token_a_hex": "5b",
+    "token_b_hex": "59",
+    "merged_hex": "5b59",
+    "decoded_text": "[Y"
+  },
+  {
+    "rank": 237,
+    "pair_ids": [
+      50,
+      63
+    ],
+    "new_token_id": 496,
+    "token_a_hex": "2e",
+    "token_b_hex": "3b",
+    "merged_hex": "2e3b",
+    "decoded_text": ".;"
+  },
+  {
+    "rank": 238,
+    "pair_ids": [
+      54,
+      62
+    ],
+    "new_token_id": 497,
+    "token_a_hex": "32",
+    "token_b_hex": "3a",
+    "merged_hex": "323a",
+    "decoded_text": "2:"
+  },
+  {
+    "rank": 239,
+    "pair_ids": [
+      299,
+      443
+    ],
+    "new_token_id": 498,
+    "token_a_hex": "5b58",
+    "token_b_hex": "266e",
+    "merged_hex": "5b58266e",
+    "decoded_text": "[X&n"
+  },
+  {
+    "rank": 240,
+    "pair_ids": [
+      74,
+      72
+    ],
+    "new_token_id": 499,
+    "token_a_hex": "46",
+    "token_b_hex": "44",
+    "merged_hex": "4644",
+    "decoded_text": "FD"
+  },
+  {
+    "rank": 241,
+    "pair_ids": [
+      98,
+      93
+    ],
+    "new_token_id": 500,
+    "token_a_hex": "5e",
+    "token_b_hex": "59",
+    "merged_hex": "5e59",
+    "decoded_text": "^Y"
+  },
+  {
+    "rank": 242,
+    "pair_ids": [
+      22,
+      98
+    ],
+    "new_token_id": 501,
+    "token_a_hex": "12",
+    "token_b_hex": "5e",
+    "merged_hex": "125e",
+    "decoded_text": "\u0012^"
+  },
+  {
+    "rank": 243,
+    "pair_ids": [
+      66,
+      67
+    ],
+    "new_token_id": 502,
+    "token_a_hex": "3e",
+    "token_b_hex": "3f",
+    "merged_hex": "3e3f",
+    "decoded_text": ">?"
+  },
+  {
+    "rank": 244,
+    "pair_ids": [
+      85,
+      92
+    ],
+    "new_token_id": 503,
+    "token_a_hex": "51",
+    "token_b_hex": "58",
+    "merged_hex": "5158",
+    "decoded_text": "QX"
+  },
+  {
+    "rank": 245,
+    "pair_ids": [
+      40,
+      61
+    ],
+    "new_token_id": 504,
+    "token_a_hex": "24",
+    "token_b_hex": "39",
+    "merged_hex": "2439",
+    "decoded_text": "$9"
+  },
+  {
+    "rank": 246,
+    "pair_ids": [
+      300,
+      459
+    ],
+    "new_token_id": 505,
+    "token_a_hex": "5b5e",
+    "token_b_hex": "5516",
+    "merged_hex": "5b5e5516",
+    "decoded_text": "[^U\u0016"
+  },
+  {
+    "rank": 247,
+    "pair_ids": [
+      335,
+      303
+    ],
+    "new_token_id": 506,
+    "token_a_hex": "2f22",
+    "token_b_hex": "3412",
+    "merged_hex": "2f223412",
+    "decoded_text": "/\"4\u0012"
+  },
+  {
+    "rank": 248,
+    "pair_ids": [
+      39,
+      64
+    ],
+    "new_token_id": 507,
+    "token_a_hex": "23",
+    "token_b_hex": "3c",
+    "merged_hex": "233c",
+    "decoded_text": "#<"
+  },
+  {
+    "rank": 249,
+    "pair_ids": [
+      85,
+      70
+    ],
+    "new_token_id": 508,
+    "token_a_hex": "51",
+    "token_b_hex": "42",
+    "merged_hex": "5142",
+    "decoded_text": "QB"
+  },
+  {
+    "rank": 250,
+    "pair_ids": [
+      22,
+      87
+    ],
+    "new_token_id": 509,
+    "token_a_hex": "12",
+    "token_b_hex": "53",
+    "merged_hex": "1253",
+    "decoded_text": "\u0012S"
+  },
+  {
+    "rank": 251,
+    "pair_ids": [
+      60,
+      61
+    ],
+    "new_token_id": 510,
+    "token_a_hex": "38",
+    "token_b_hex": "39",
+    "merged_hex": "3839",
+    "decoded_text": "89"
+  },
+  {
+    "rank": 252,
+    "pair_ids": [
+      87,
+      73
+    ],
+    "new_token_id": 511,
+    "token_a_hex": "53",
+    "token_b_hex": "45",
+    "merged_hex": "5345",
+    "decoded_text": "SE"
+  },
+  {
+    "rank": 253,
+    "pair_ids": [
+      305,
+      475
+    ],
+    "new_token_id": 512,
+    "token_a_hex": "253e",
+    "token_b_hex": "5510",
+    "merged_hex": "253e5510",
+    "decoded_text": "%>U\u0010"
+  },
+  {
+    "rank": 254,
+    "pair_ids": [
+      328,
+      114
+    ],
+    "new_token_id": 513,
+    "token_a_hex": "5333",
+    "token_b_hex": "6e",
+    "merged_hex": "53336e",
+    "decoded_text": "S3n"
+  },
+  {
+    "rank": 255,
+    "pair_ids": [
+      91,
+      87
+    ],
+    "new_token_id": 514,
+    "token_a_hex": "57",
+    "token_b_hex": "53",
+    "merged_hex": "5753",
+    "decoded_text": "WS"
+  },
+  {
+    "rank": 256,
+    "pair_ids": [
+      67,
+      61
+    ],
+    "new_token_id": 515,
+    "token_a_hex": "3f",
+    "token_b_hex": "39",
+    "merged_hex": "3f39",
+    "decoded_text": "?9"
+  },
+  {
+    "rank": 257,
+    "pair_ids": [
+      91,
+      86
+    ],
+    "new_token_id": 516,
+    "token_a_hex": "57",
+    "token_b_hex": "52",
+    "merged_hex": "5752",
+    "decoded_text": "WR"
+  },
+  {
+    "rank": 258,
+    "pair_ids": [
+      270,
+      379
+    ],
+    "new_token_id": 517,
+    "token_a_hex": "6c24",
+    "token_b_hex": "5d10",
+    "merged_hex": "6c245d10",
+    "decoded_text": "l$]\u0010"
+  },
+  {
+    "rank": 259,
+    "pair_ids": [
+      474,
+      260
+    ],
+    "new_token_id": 518,
+    "token_a_hex": "1526",
+    "token_b_hex": "2970",
+    "merged_hex": "15262970",
+    "decoded_text": "\u0015&)p"
+  },
+  {
+    "rank": 260,
+    "pair_ids": [
+      87,
+      71
+    ],
+    "new_token_id": 519,
+    "token_a_hex": "53",
+    "token_b_hex": "43",
+    "merged_hex": "5343",
+    "decoded_text": "SC"
+  },
+  {
+    "rank": 261,
+    "pair_ids": [
+      95,
+      71
+    ],
+    "new_token_id": 520,
+    "token_a_hex": "5b",
+    "token_b_hex": "43",
+    "merged_hex": "5b43",
+    "decoded_text": "[C"
+  },
+  {
+    "rank": 262,
+    "pair_ids": [
+      375,
+      85
+    ],
+    "new_token_id": 521,
+    "token_a_hex": "595c",
+    "token_b_hex": "51",
+    "merged_hex": "595c51",
+    "decoded_text": "Y\\Q"
+  },
+  {
+    "rank": 263,
+    "pair_ids": [
+      22,
+      89
+    ],
+    "new_token_id": 522,
+    "token_a_hex": "12",
+    "token_b_hex": "55",
+    "merged_hex": "1255",
+    "decoded_text": "\u0012U"
+  },
+  {
+    "rank": 264,
+    "pair_ids": [
+      346,
+      112
+    ],
+    "new_token_id": 523,
+    "token_a_hex": "2e20",
+    "token_b_hex": "6c",
+    "merged_hex": "2e206c",
+    "decoded_text": ". l"
+  },
+  {
+    "rank": 265,
+    "pair_ids": [
+      74,
+      70
+    ],
+    "new_token_id": 524,
+    "token_a_hex": "46",
+    "token_b_hex": "42",
+    "merged_hex": "4642",
+    "decoded_text": "FB"
+  },
+  {
+    "rank": 266,
+    "pair_ids": [
+      73,
+      98
+    ],
+    "new_token_id": 525,
+    "token_a_hex": "45",
+    "token_b_hex": "5e",
+    "merged_hex": "455e",
+    "decoded_text": "E^"
+  },
+  {
+    "rank": 267,
+    "pair_ids": [
+      44,
+      65
+    ],
+    "new_token_id": 526,
+    "token_a_hex": "28",
+    "token_b_hex": "3d",
+    "merged_hex": "283d",
+    "decoded_text": "(="
+  },
+  {
+    "rank": 268,
+    "pair_ids": [
+      41,
+      39
+    ],
+    "new_token_id": 527,
+    "token_a_hex": "25",
+    "token_b_hex": "23",
+    "merged_hex": "2523",
+    "decoded_text": "%#"
+  },
+  {
+    "rank": 269,
+    "pair_ids": [
+      99,
+      93
+    ],
+    "new_token_id": 528,
+    "token_a_hex": "5f",
+    "token_b_hex": "59",
+    "merged_hex": "5f59",
+    "decoded_text": "_Y"
+  },
+  {
+    "rank": 270,
+    "pair_ids": [
+      404,
+      112
+    ],
+    "new_token_id": 529,
+    "token_a_hex": "2e28",
+    "token_b_hex": "6c",
+    "merged_hex": "2e286c",
+    "decoded_text": ".(l"
+  },
+  {
+    "rank": 271,
+    "pair_ids": [
+      338,
+      309
+    ],
+    "new_token_id": 530,
+    "token_a_hex": "515c",
+    "token_b_hex": "5261",
+    "merged_hex": "515c5261",
+    "decoded_text": "Q\\Ra"
+  },
+  {
+    "rank": 272,
+    "pair_ids": [
+      44,
+      38
+    ],
+    "new_token_id": 531,
+    "token_a_hex": "28",
+    "token_b_hex": "22",
+    "merged_hex": "2822",
+    "decoded_text": "(\""
+  },
+  {
+    "rank": 273,
+    "pair_ids": [
+      45,
+      112
+    ],
+    "new_token_id": 532,
+    "token_a_hex": "29",
+    "token_b_hex": "6c",
+    "merged_hex": "296c",
+    "decoded_text": ")l"
+  },
+  {
+    "rank": 274,
+    "pair_ids": [
+      277,
+      391
+    ],
+    "new_token_id": 533,
+    "token_a_hex": "613a",
+    "token_b_hex": "2370",
+    "merged_hex": "613a2370",
+    "decoded_text": "a:#p"
+  },
+  {
+    "rank": 275,
+    "pair_ids": [
+      91,
+      55
+    ],
+    "new_token_id": 534,
+    "token_a_hex": "57",
+    "token_b_hex": "33",
+    "merged_hex": "5733",
+    "decoded_text": "W3"
+  },
+  {
+    "rank": 276,
+    "pair_ids": [
+      90,
+      93
+    ],
+    "new_token_id": 535,
+    "token_a_hex": "56",
+    "token_b_hex": "59",
+    "merged_hex": "5659",
+    "decoded_text": "VY"
+  },
+  {
+    "rank": 277,
+    "pair_ids": [
+      51,
+      296
+    ],
+    "new_token_id": 536,
+    "token_a_hex": "2f",
+    "token_b_hex": "2a6c",
+    "merged_hex": "2f2a6c",
+    "decoded_text": "/*l"
+  },
+  {
+    "rank": 278,
+    "pair_ids": [
+      90,
+      87
+    ],
+    "new_token_id": 537,
+    "token_a_hex": "56",
+    "token_b_hex": "53",
+    "merged_hex": "5653",
+    "decoded_text": "VS"
+  },
+  {
+    "rank": 279,
+    "pair_ids": [
+      41,
+      64
+    ],
+    "new_token_id": 538,
+    "token_a_hex": "25",
+    "token_b_hex": "3c",
+    "merged_hex": "253c",
+    "decoded_text": "%<"
+  },
+  {
+    "rank": 280,
+    "pair_ids": [
+      41,
+      55
+    ],
+    "new_token_id": 539,
+    "token_a_hex": "25",
+    "token_b_hex": "33",
+    "merged_hex": "2533",
+    "decoded_text": "%3"
+  },
+  {
+    "rank": 281,
+    "pair_ids": [
+      51,
+      273
+    ],
+    "new_token_id": 540,
+    "token_a_hex": "2f",
+    "token_b_hex": "3f70",
+    "merged_hex": "2f3f70",
+    "decoded_text": "/?p"
+  },
+  {
+    "rank": 282,
+    "pair_ids": [
+      99,
+      99
+    ],
+    "new_token_id": 541,
+    "token_a_hex": "5f",
+    "token_b_hex": "5f",
+    "merged_hex": "5f5f",
+    "decoded_text": "__"
+  },
+  {
+    "rank": 283,
+    "pair_ids": [
+      57,
+      272
+    ],
+    "new_token_id": 542,
+    "token_a_hex": "35",
+    "token_b_hex": "4110",
+    "merged_hex": "354110",
+    "decoded_text": "5A\u0010"
+  },
+  {
+    "rank": 284,
+    "pair_ids": [
+      40,
+      38
+    ],
+    "new_token_id": 543,
+    "token_a_hex": "24",
+    "token_b_hex": "22",
+    "merged_hex": "2422",
+    "decoded_text": "$\""
+  },
+  {
+    "rank": 285,
+    "pair_ids": [
+      85,
+      271
+    ],
+    "new_token_id": 544,
+    "token_a_hex": "51",
+    "token_b_hex": "4116",
+    "merged_hex": "514116",
+    "decoded_text": "QA\u0016"
+  },
+  {
+    "rank": 286,
+    "pair_ids": [
+      91,
+      89
+    ],
+    "new_token_id": 545,
+    "token_a_hex": "57",
+    "token_b_hex": "55",
+    "merged_hex": "5755",
+    "decoded_text": "WU"
+  },
+  {
+    "rank": 287,
+    "pair_ids": [
+      44,
+      49
+    ],
+    "new_token_id": 546,
+    "token_a_hex": "28",
+    "token_b_hex": "2d",
+    "merged_hex": "282d",
+    "decoded_text": "(-"
+  },
+  {
+    "rank": 288,
+    "pair_ids": [
+      298,
+      112
+    ],
+    "new_token_id": 547,
+    "token_a_hex": "2820",
+    "token_b_hex": "6c",
+    "merged_hex": "28206c",
+    "decoded_text": "( l"
+  },
+  {
+    "rank": 289,
+    "pair_ids": [
+      37,
+      36
+    ],
+    "new_token_id": 548,
+    "token_a_hex": "21",
+    "token_b_hex": "20",
+    "merged_hex": "2120",
+    "decoded_text": "! "
+  },
+  {
+    "rank": 290,
+    "pair_ids": [
+      95,
+      73
+    ],
+    "new_token_id": 549,
+    "token_a_hex": "5b",
+    "token_b_hex": "45",
+    "merged_hex": "5b45",
+    "decoded_text": "[E"
+  },
+  {
+    "rank": 291,
+    "pair_ids": [
+      49,
+      281
+    ],
+    "new_token_id": 550,
+    "token_a_hex": "2d",
+    "token_b_hex": "2312",
+    "merged_hex": "2d2312",
+    "decoded_text": "-#\u0012"
+  },
+  {
+    "rank": 292,
+    "pair_ids": [
+      45,
+      40
+    ],
+    "new_token_id": 551,
+    "token_a_hex": "29",
+    "token_b_hex": "24",
+    "merged_hex": "2924",
+    "decoded_text": ")$"
+  },
+  {
+    "rank": 293,
+    "pair_ids": [
+      40,
+      46
+    ],
+    "new_token_id": 552,
+    "token_a_hex": "24",
+    "token_b_hex": "2a",
+    "merged_hex": "242a",
+    "decoded_text": "$*"
+  },
+  {
+    "rank": 294,
+    "pair_ids": [
+      90,
+      99
+    ],
+    "new_token_id": 553,
+    "token_a_hex": "56",
+    "token_b_hex": "5f",
+    "merged_hex": "565f",
+    "decoded_text": "V_"
+  },
+  {
+    "rank": 295,
+    "pair_ids": [
+      95,
+      96
+    ],
+    "new_token_id": 554,
+    "token_a_hex": "5b",
+    "token_b_hex": "5c",
+    "merged_hex": "5b5c",
+    "decoded_text": "[\\"
+  },
+  {
+    "rank": 296,
+    "pair_ids": [
+      67,
+      96
+    ],
+    "new_token_id": 555,
+    "token_a_hex": "3f",
+    "token_b_hex": "5c",
+    "merged_hex": "3f5c",
+    "decoded_text": "?\\"
+  },
+  {
+    "rank": 297,
+    "pair_ids": [
+      45,
+      281
+    ],
+    "new_token_id": 556,
+    "token_a_hex": "29",
+    "token_b_hex": "2312",
+    "merged_hex": "292312",
+    "decoded_text": ")#\u0012"
+  },
+  {
+    "rank": 298,
+    "pair_ids": [
+      87,
+      280
+    ],
+    "new_token_id": 557,
+    "token_a_hex": "53",
+    "token_b_hex": "4312",
+    "merged_hex": "534312",
+    "decoded_text": "SC\u0012"
+  },
+  {
+    "rank": 299,
+    "pair_ids": [
+      91,
+      71
+    ],
+    "new_token_id": 558,
+    "token_a_hex": "57",
+    "token_b_hex": "43",
+    "merged_hex": "5743",
+    "decoded_text": "WC"
+  },
+  {
+    "rank": 300,
+    "pair_ids": [
+      289,
+      101
+    ],
+    "new_token_id": 559,
+    "token_a_hex": "5744",
+    "token_b_hex": "61",
+    "merged_hex": "574461",
+    "decoded_text": "WDa"
+  },
+  {
+    "rank": 301,
+    "pair_ids": [
+      69,
+      87
+    ],
+    "new_token_id": 560,
+    "token_a_hex": "41",
+    "token_b_hex": "53",
+    "merged_hex": "4153",
+    "decoded_text": "AS"
+  },
+  {
+    "rank": 302,
+    "pair_ids": [
+      22,
+      68
+    ],
+    "new_token_id": 561,
+    "token_a_hex": "12",
+    "token_b_hex": "40",
+    "merged_hex": "1240",
+    "decoded_text": "\u0012@"
+  },
+  {
+    "rank": 303,
+    "pair_ids": [
+      45,
+      39
+    ],
+    "new_token_id": 562,
+    "token_a_hex": "29",
+    "token_b_hex": "23",
+    "merged_hex": "2923",
+    "decoded_text": ")#"
+  },
+  {
+    "rank": 304,
+    "pair_ids": [
+      40,
+      285
+    ],
+    "new_token_id": 563,
+    "token_a_hex": "24",
+    "token_b_hex": "3d6c",
+    "merged_hex": "243d6c",
+    "decoded_text": "$=l"
+  },
+  {
+    "rank": 305,
+    "pair_ids": [
+      95,
+      85
+    ],
+    "new_token_id": 564,
+    "token_a_hex": "5b",
+    "token_b_hex": "51",
+    "merged_hex": "5b51",
+    "decoded_text": "[Q"
+  },
+  {
+    "rank": 306,
+    "pair_ids": [
+      99,
+      20
+    ],
+    "new_token_id": 565,
+    "token_a_hex": "5f",
+    "token_b_hex": "10",
+    "merged_hex": "5f10",
+    "decoded_text": "_\u0010"
+  },
+  {
+    "rank": 307,
+    "pair_ids": [
+      22,
+      92
+    ],
+    "new_token_id": 566,
+    "token_a_hex": "12",
+    "token_b_hex": "58",
+    "merged_hex": "1258",
+    "decoded_text": "\u0012X"
+  },
+  {
+    "rank": 308,
+    "pair_ids": [
+      62,
+      40
+    ],
+    "new_token_id": 567,
+    "token_a_hex": "3a",
+    "token_b_hex": "24",
+    "merged_hex": "3a24",
+    "decoded_text": ":$"
+  },
+  {
+    "rank": 309,
+    "pair_ids": [
+      97,
+      97
+    ],
+    "new_token_id": 568,
+    "token_a_hex": "5d",
+    "token_b_hex": "5d",
+    "merged_hex": "5d5d",
+    "decoded_text": "]]"
+  },
+  {
+    "rank": 310,
+    "pair_ids": [
+      74,
+      87
+    ],
+    "new_token_id": 569,
+    "token_a_hex": "46",
+    "token_b_hex": "53",
+    "merged_hex": "4653",
+    "decoded_text": "FS"
+  },
+  {
+    "rank": 311,
+    "pair_ids": [
+      57,
+      414
+    ],
+    "new_token_id": 570,
+    "token_a_hex": "35",
+    "token_b_hex": "216c",
+    "merged_hex": "35216c",
+    "decoded_text": "5!l"
+  },
+  {
+    "rank": 312,
+    "pair_ids": [
+      38,
+      42
+    ],
+    "new_token_id": 571,
+    "token_a_hex": "22",
+    "token_b_hex": "26",
+    "merged_hex": "2226",
+    "decoded_text": "\"&"
+  },
+  {
+    "rank": 313,
+    "pair_ids": [
+      55,
+      37
+    ],
+    "new_token_id": 572,
+    "token_a_hex": "33",
+    "token_b_hex": "21",
+    "merged_hex": "3321",
+    "decoded_text": "3!"
+  },
+  {
+    "rank": 314,
+    "pair_ids": [
+      73,
+      99
+    ],
+    "new_token_id": 573,
+    "token_a_hex": "45",
+    "token_b_hex": "5f",
+    "merged_hex": "455f",
+    "decoded_text": "E_"
+  },
+  {
+    "rank": 315,
+    "pair_ids": [
+      97,
+      74
+    ],
+    "new_token_id": 574,
+    "token_a_hex": "5d",
+    "token_b_hex": "46",
+    "merged_hex": "5d46",
+    "decoded_text": "]F"
+  },
+  {
+    "rank": 316,
+    "pair_ids": [
+      353,
+      392
+    ],
+    "new_token_id": 575,
+    "token_a_hex": "125f",
+    "token_b_hex": "5416",
+    "merged_hex": "125f5416",
+    "decoded_text": "\u0012_T\u0016"
+  },
+  {
+    "rank": 317,
+    "pair_ids": [
+      50,
+      38
+    ],
+    "new_token_id": 576,
+    "token_a_hex": "2e",
+    "token_b_hex": "22",
+    "merged_hex": "2e22",
+    "decoded_text": ".\""
+  },
+  {
+    "rank": 318,
+    "pair_ids": [
+      55,
+      43
+    ],
+    "new_token_id": 577,
+    "token_a_hex": "33",
+    "token_b_hex": "27",
+    "merged_hex": "3327",
+    "decoded_text": "3'"
+  },
+  {
+    "rank": 319,
+    "pair_ids": [
+      50,
+      39
+    ],
+    "new_token_id": 578,
+    "token_a_hex": "2e",
+    "token_b_hex": "23",
+    "merged_hex": "2e23",
+    "decoded_text": ".#"
+  },
+  {
+    "rank": 320,
+    "pair_ids": [
+      36,
+      285
+    ],
+    "new_token_id": 579,
+    "token_a_hex": "20",
+    "token_b_hex": "3d6c",
+    "merged_hex": "203d6c",
+    "decoded_text": " =l"
+  },
+  {
+    "rank": 321,
+    "pair_ids": [
+      36,
+      65
+    ],
+    "new_token_id": 580,
+    "token_a_hex": "20",
+    "token_b_hex": "3d",
+    "merged_hex": "203d",
+    "decoded_text": " ="
+  },
+  {
+    "rank": 322,
+    "pair_ids": [
+      69,
+      73
+    ],
+    "new_token_id": 581,
+    "token_a_hex": "41",
+    "token_b_hex": "45",
+    "merged_hex": "4145",
+    "decoded_text": "AE"
+  },
+  {
+    "rank": 323,
+    "pair_ids": [
+      96,
+      87
+    ],
+    "new_token_id": 582,
+    "token_a_hex": "5c",
+    "token_b_hex": "53",
+    "merged_hex": "5c53",
+    "decoded_text": "\\S"
+  },
+  {
+    "rank": 324,
+    "pair_ids": [
+      94,
+      26
+    ],
+    "new_token_id": 583,
+    "token_a_hex": "5a",
+    "token_b_hex": "16",
+    "merged_hex": "5a16",
+    "decoded_text": "Z\u0016"
+  },
+  {
+    "rank": 325,
+    "pair_ids": [
+      268,
+      403
+    ],
+    "new_token_id": 584,
+    "token_a_hex": "1244",
+    "token_b_hex": "5d16",
+    "merged_hex": "12445d16",
+    "decoded_text": "\u0012D]\u0016"
+  },
+  {
+    "rank": 326,
+    "pair_ids": [
+      36,
+      112
+    ],
+    "new_token_id": 585,
+    "token_a_hex": "20",
+    "token_b_hex": "6c",
+    "merged_hex": "206c",
+    "decoded_text": " l"
+  },
+  {
+    "rank": 327,
+    "pair_ids": [
+      64,
+      39
+    ],
+    "new_token_id": 586,
+    "token_a_hex": "3c",
+    "token_b_hex": "23",
+    "merged_hex": "3c23",
+    "decoded_text": "<#"
+  },
+  {
+    "rank": 328,
+    "pair_ids": [
+      101,
+      411
+    ],
+    "new_token_id": 587,
+    "token_a_hex": "61",
+    "token_b_hex": "212a70",
+    "merged_hex": "61212a70",
+    "decoded_text": "a!*p"
+  },
+  {
+    "rank": 329,
+    "pair_ids": [
+      95,
+      91
+    ],
+    "new_token_id": 588,
+    "token_a_hex": "5b",
+    "token_b_hex": "57",
+    "merged_hex": "5b57",
+    "decoded_text": "[W"
+  },
+  {
+    "rank": 330,
+    "pair_ids": [
+      66,
+      61
+    ],
+    "new_token_id": 589,
+    "token_a_hex": "3e",
+    "token_b_hex": "39",
+    "merged_hex": "3e39",
+    "decoded_text": ">9"
+  },
+  {
+    "rank": 331,
+    "pair_ids": [
+      22,
+      84
+    ],
+    "new_token_id": 590,
+    "token_a_hex": "12",
+    "token_b_hex": "50",
+    "merged_hex": "1250",
+    "decoded_text": "\u0012P"
+  },
+  {
+    "rank": 332,
+    "pair_ids": [
+      70,
+      93
+    ],
+    "new_token_id": 591,
+    "token_a_hex": "42",
+    "token_b_hex": "59",
+    "merged_hex": "4259",
+    "decoded_text": "BY"
+  },
+  {
+    "rank": 333,
+    "pair_ids": [
+      60,
+      95
+    ],
+    "new_token_id": 592,
+    "token_a_hex": "38",
+    "token_b_hex": "5b",
+    "merged_hex": "385b",
+    "decoded_text": "8["
+  },
+  {
+    "rank": 334,
+    "pair_ids": [
+      53,
+      74
+    ],
+    "new_token_id": 593,
+    "token_a_hex": "31",
+    "token_b_hex": "46",
+    "merged_hex": "3146",
+    "decoded_text": "1F"
+  },
+  {
+    "rank": 335,
+    "pair_ids": [
+      94,
+      261
+    ],
+    "new_token_id": 594,
+    "token_a_hex": "5a",
+    "token_b_hex": "5512",
+    "merged_hex": "5a5512",
+    "decoded_text": "ZU\u0012"
+  },
+  {
+    "rank": 336,
+    "pair_ids": [
+      91,
+      85
+    ],
+    "new_token_id": 595,
+    "token_a_hex": "57",
+    "token_b_hex": "51",
+    "merged_hex": "5751",
+    "decoded_text": "WQ"
+  },
+  {
+    "rank": 337,
+    "pair_ids": [
+      45,
+      51
+    ],
+    "new_token_id": 596,
+    "token_a_hex": "29",
+    "token_b_hex": "2f",
+    "merged_hex": "292f",
+    "decoded_text": ")/"
+  },
+  {
+    "rank": 338,
+    "pair_ids": [
+      36,
+      39
+    ],
+    "new_token_id": 597,
+    "token_a_hex": "20",
+    "token_b_hex": "23",
+    "merged_hex": "2023",
+    "decoded_text": " #"
+  },
+  {
+    "rank": 339,
+    "pair_ids": [
+      22,
+      104
+    ],
+    "new_token_id": 598,
+    "token_a_hex": "12",
+    "token_b_hex": "64",
+    "merged_hex": "1264",
+    "decoded_text": "\u0012d"
+  },
+  {
+    "rank": 340,
+    "pair_ids": [
+      89,
+      271
+    ],
+    "new_token_id": 599,
+    "token_a_hex": "55",
+    "token_b_hex": "4116",
+    "merged_hex": "554116",
+    "decoded_text": "UA\u0016"
+  },
+  {
+    "rank": 341,
+    "pair_ids": [
+      36,
+      61
+    ],
+    "new_token_id": 600,
+    "token_a_hex": "20",
+    "token_b_hex": "39",
+    "merged_hex": "2039",
+    "decoded_text": " 9"
+  },
+  {
+    "rank": 342,
+    "pair_ids": [
+      98,
+      85
+    ],
+    "new_token_id": 601,
+    "token_a_hex": "5e",
+    "token_b_hex": "51",
+    "merged_hex": "5e51",
+    "decoded_text": "^Q"
+  },
+  {
+    "rank": 343,
+    "pair_ids": [
+      269,
+      397
+    ],
+    "new_token_id": 602,
+    "token_a_hex": "1242",
+    "token_b_hex": "2e6e",
+    "merged_hex": "12422e6e",
+    "decoded_text": "\u0012B.n"
+  },
+  {
+    "rank": 344,
+    "pair_ids": [
+      49,
+      65
+    ],
+    "new_token_id": 603,
+    "token_a_hex": "2d",
+    "token_b_hex": "3d",
+    "merged_hex": "2d3d",
+    "decoded_text": "-="
+  },
+  {
+    "rank": 345,
+    "pair_ids": [
+      50,
+      61
+    ],
+    "new_token_id": 604,
+    "token_a_hex": "2e",
+    "token_b_hex": "39",
+    "merged_hex": "2e39",
+    "decoded_text": ".9"
+  },
+  {
+    "rank": 346,
+    "pair_ids": [
+      47,
+      273
+    ],
+    "new_token_id": 605,
+    "token_a_hex": "2b",
+    "token_b_hex": "3f70",
+    "merged_hex": "2b3f70",
+    "decoded_text": "+?p"
+  },
+  {
+    "rank": 347,
+    "pair_ids": [
+      405,
+      40
+    ],
+    "new_token_id": 606,
+    "token_a_hex": "2b22",
+    "token_b_hex": "24",
+    "merged_hex": "2b2224",
+    "decoded_text": "+\"$"
+  },
+  {
+    "rank": 348,
+    "pair_ids": [
+      308,
+      112
+    ],
+    "new_token_id": 607,
+    "token_a_hex": "2020",
+    "token_b_hex": "6c",
+    "merged_hex": "20206c",
+    "decoded_text": "  l"
+  },
+  {
+    "rank": 349,
+    "pair_ids": [
+      74,
+      91
+    ],
+    "new_token_id": 608,
+    "token_a_hex": "46",
+    "token_b_hex": "57",
+    "merged_hex": "4657",
+    "decoded_text": "FW"
+  },
+  {
+    "rank": 350,
+    "pair_ids": [
+      45,
+      64
+    ],
+    "new_token_id": 609,
+    "token_a_hex": "29",
+    "token_b_hex": "3c",
+    "merged_hex": "293c",
+    "decoded_text": ")<"
+  },
+  {
+    "rank": 351,
+    "pair_ids": [
+      99,
+      392
+    ],
+    "new_token_id": 610,
+    "token_a_hex": "5f",
+    "token_b_hex": "5416",
+    "merged_hex": "5f5416",
+    "decoded_text": "_T\u0016"
+  },
+  {
+    "rank": 352,
+    "pair_ids": [
+      51,
+      112
+    ],
+    "new_token_id": 611,
+    "token_a_hex": "2f",
+    "token_b_hex": "6c",
+    "merged_hex": "2f6c",
+    "decoded_text": "/l"
+  },
+  {
+    "rank": 353,
+    "pair_ids": [
+      22,
+      102
+    ],
+    "new_token_id": 612,
+    "token_a_hex": "12",
+    "token_b_hex": "62",
+    "merged_hex": "1262",
+    "decoded_text": "\u0012b"
+  },
+  {
+    "rank": 354,
+    "pair_ids": [
+      93,
+      290
+    ],
+    "new_token_id": 613,
+    "token_a_hex": "59",
+    "token_b_hex": "5c16",
+    "merged_hex": "595c16",
+    "decoded_text": "Y\\\u0016"
+  },
+  {
+    "rank": 355,
+    "pair_ids": [
+      73,
+      91
+    ],
+    "new_token_id": 614,
+    "token_a_hex": "45",
+    "token_b_hex": "57",
+    "merged_hex": "4557",
+    "decoded_text": "EW"
+  },
+  {
+    "rank": 356,
+    "pair_ids": [
+      426,
+      72
+    ],
+    "new_token_id": 615,
+    "token_a_hex": "355c",
+    "token_b_hex": "44",
+    "merged_hex": "355c44",
+    "decoded_text": "5\\D"
+  },
+  {
+    "rank": 357,
+    "pair_ids": [
+      56,
+      64
+    ],
+    "new_token_id": 616,
+    "token_a_hex": "34",
+    "token_b_hex": "3c",
+    "merged_hex": "343c",
+    "decoded_text": "4<"
+  },
+  {
+    "rank": 358,
+    "pair_ids": [
+      87,
+      95
+    ],
+    "new_token_id": 617,
+    "token_a_hex": "53",
+    "token_b_hex": "5b",
+    "merged_hex": "535b",
+    "decoded_text": "S["
+  },
+  {
+    "rank": 359,
+    "pair_ids": [
+      47,
+      60
+    ],
+    "new_token_id": 618,
+    "token_a_hex": "2b",
+    "token_b_hex": "38",
+    "merged_hex": "2b38",
+    "decoded_text": "+8"
+  },
+  {
+    "rank": 360,
+    "pair_ids": [
+      94,
+      267
+    ],
+    "new_token_id": 619,
+    "token_a_hex": "5a",
+    "token_b_hex": "5361",
+    "merged_hex": "5a5361",
+    "decoded_text": "ZSa"
+  },
+  {
+    "rank": 361,
+    "pair_ids": [
+      87,
+      86
+    ],
+    "new_token_id": 620,
+    "token_a_hex": "53",
+    "token_b_hex": "52",
+    "merged_hex": "5352",
+    "decoded_text": "SR"
+  },
+  {
+    "rank": 362,
+    "pair_ids": [
+      101,
+      44
+    ],
+    "new_token_id": 621,
+    "token_a_hex": "61",
+    "token_b_hex": "28",
+    "merged_hex": "6128",
+    "decoded_text": "a("
+  },
+  {
+    "rank": 363,
+    "pair_ids": [
+      44,
+      60
+    ],
+    "new_token_id": 622,
+    "token_a_hex": "28",
+    "token_b_hex": "38",
+    "merged_hex": "2838",
+    "decoded_text": "(8"
+  },
+  {
+    "rank": 364,
+    "pair_ids": [
+      91,
+      88
+    ],
+    "new_token_id": 623,
+    "token_a_hex": "57",
+    "token_b_hex": "54",
+    "merged_hex": "5754",
+    "decoded_text": "WT"
+  },
+  {
+    "rank": 365,
+    "pair_ids": [
+      63,
+      66
+    ],
+    "new_token_id": 624,
+    "token_a_hex": "3b",
+    "token_b_hex": "3e",
+    "merged_hex": "3b3e",
+    "decoded_text": ";>"
+  },
+  {
+    "rank": 366,
+    "pair_ids": [
+      334,
+      26
+    ],
+    "new_token_id": 625,
+    "token_a_hex": "515e",
+    "token_b_hex": "16",
+    "merged_hex": "515e16",
+    "decoded_text": "Q^\u0016"
+  },
+  {
+    "rank": 367,
+    "pair_ids": [
+      87,
+      292
+    ],
+    "new_token_id": 626,
+    "token_a_hex": "53",
+    "token_b_hex": "4561",
+    "merged_hex": "534561",
+    "decoded_text": "SEa"
+  },
+  {
+    "rank": 368,
+    "pair_ids": [
+      51,
+      46
+    ],
+    "new_token_id": 627,
+    "token_a_hex": "2f",
+    "token_b_hex": "2a",
+    "merged_hex": "2f2a",
+    "decoded_text": "/*"
+  },
+  {
+    "rank": 369,
+    "pair_ids": [
+      101,
+      66
+    ],
+    "new_token_id": 628,
+    "token_a_hex": "61",
+    "token_b_hex": "3e",
+    "merged_hex": "613e",
+    "decoded_text": "a>"
+  },
+  {
+    "rank": 370,
+    "pair_ids": [
+      75,
+      98
+    ],
+    "new_token_id": 629,
+    "token_a_hex": "47",
+    "token_b_hex": "5e",
+    "merged_hex": "475e",
+    "decoded_text": "G^"
+  },
+  {
+    "rank": 371,
+    "pair_ids": [
+      37,
+      116
+    ],
+    "new_token_id": 630,
+    "token_a_hex": "21",
+    "token_b_hex": "70",
+    "merged_hex": "2170",
+    "decoded_text": "!p"
+  },
+  {
+    "rank": 372,
+    "pair_ids": [
+      49,
+      55
+    ],
+    "new_token_id": 631,
+    "token_a_hex": "2d",
+    "token_b_hex": "33",
+    "merged_hex": "2d33",
+    "decoded_text": "-3"
+  },
+  {
+    "rank": 373,
+    "pair_ids": [
+      344,
+      413
+    ],
+    "new_token_id": 632,
+    "token_a_hex": "1259",
+    "token_b_hex": "276e",
+    "merged_hex": "1259276e",
+    "decoded_text": "\u0012Y'n"
+  },
+  {
+    "rank": 374,
+    "pair_ids": [
+      87,
+      88
+    ],
+    "new_token_id": 633,
+    "token_a_hex": "53",
+    "token_b_hex": "54",
+    "merged_hex": "5354",
+    "decoded_text": "ST"
+  },
+  {
+    "rank": 375,
+    "pair_ids": [
+      91,
+      280
+    ],
+    "new_token_id": 634,
+    "token_a_hex": "57",
+    "token_b_hex": "4312",
+    "merged_hex": "574312",
+    "decoded_text": "WC\u0012"
+  },
+  {
+    "rank": 376,
+    "pair_ids": [
+      73,
+      93
+    ],
+    "new_token_id": 635,
+    "token_a_hex": "45",
+    "token_b_hex": "59",
+    "merged_hex": "4559",
+    "decoded_text": "EY"
+  },
+  {
+    "rank": 377,
+    "pair_ids": [
+      101,
+      48
+    ],
+    "new_token_id": 636,
+    "token_a_hex": "61",
+    "token_b_hex": "2c",
+    "merged_hex": "612c",
+    "decoded_text": "a,"
+  },
+  {
+    "rank": 378,
+    "pair_ids": [
+      424,
+      332
+    ],
+    "new_token_id": 637,
+    "token_a_hex": "3527",
+    "token_b_hex": "233e",
+    "merged_hex": "3527233e",
+    "decoded_text": "5'#>"
+  },
+  {
+    "rank": 379,
+    "pair_ids": [
+      68,
+      91
+    ],
+    "new_token_id": 638,
+    "token_a_hex": "40",
+    "token_b_hex": "57",
+    "merged_hex": "4057",
+    "decoded_text": "@W"
+  },
+  {
+    "rank": 380,
+    "pair_ids": [
+      69,
+      89
+    ],
+    "new_token_id": 639,
+    "token_a_hex": "41",
+    "token_b_hex": "55",
+    "merged_hex": "4155",
+    "decoded_text": "AU"
+  },
+  {
+    "rank": 381,
+    "pair_ids": [
+      36,
+      45
+    ],
+    "new_token_id": 640,
+    "token_a_hex": "20",
+    "token_b_hex": "29",
+    "merged_hex": "2029",
+    "decoded_text": " )"
+  },
+  {
+    "rank": 382,
+    "pair_ids": [
+      57,
+      98
+    ],
+    "new_token_id": 641,
+    "token_a_hex": "35",
+    "token_b_hex": "5e",
+    "merged_hex": "355e",
+    "decoded_text": "5^"
+  },
+  {
+    "rank": 383,
+    "pair_ids": [
+      53,
+      323
+    ],
+    "new_token_id": 642,
+    "token_a_hex": "31",
+    "token_b_hex": "4610",
+    "merged_hex": "314610",
+    "decoded_text": "1F\u0010"
+  },
+  {
+    "rank": 384,
+    "pair_ids": [
+      54,
+      43
+    ],
+    "new_token_id": 643,
+    "token_a_hex": "32",
+    "token_b_hex": "27",
+    "merged_hex": "3227",
+    "decoded_text": "2'"
+  },
+  {
+    "rank": 385,
+    "pair_ids": [
+      48,
+      114
+    ],
+    "new_token_id": 644,
+    "token_a_hex": "2c",
+    "token_b_hex": "6e",
+    "merged_hex": "2c6e",
+    "decoded_text": ",n"
+  },
+  {
+    "rank": 386,
+    "pair_ids": [
+      63,
+      490
+    ],
+    "new_token_id": 645,
+    "token_a_hex": "3b",
+    "token_b_hex": "314110",
+    "merged_hex": "3b314110",
+    "decoded_text": ";1A\u0010"
+  },
+  {
+    "rank": 387,
+    "pair_ids": [
+      22,
+      74
+    ],
+    "new_token_id": 646,
+    "token_a_hex": "12",
+    "token_b_hex": "46",
+    "merged_hex": "1246",
+    "decoded_text": "\u0012F"
+  },
+  {
+    "rank": 388,
+    "pair_ids": [
+      91,
+      96
+    ],
+    "new_token_id": 647,
+    "token_a_hex": "57",
+    "token_b_hex": "5c",
+    "merged_hex": "575c",
+    "decoded_text": "W\\"
+  },
+  {
+    "rank": 389,
+    "pair_ids": [
+      75,
+      92
+    ],
+    "new_token_id": 648,
+    "token_a_hex": "47",
+    "token_b_hex": "58",
+    "merged_hex": "4758",
+    "decoded_text": "GX"
+  },
+  {
+    "rank": 390,
+    "pair_ids": [
+      381,
+      112
+    ],
+    "new_token_id": 649,
+    "token_a_hex": "2022",
+    "token_b_hex": "6c",
+    "merged_hex": "20226c",
+    "decoded_text": " \"l"
+  },
+  {
+    "rank": 391,
+    "pair_ids": [
+      101,
+      42
+    ],
+    "new_token_id": 650,
+    "token_a_hex": "61",
+    "token_b_hex": "26",
+    "merged_hex": "6126",
+    "decoded_text": "a&"
+  },
+  {
+    "rank": 392,
+    "pair_ids": [
+      44,
+      448
+    ],
+    "new_token_id": 651,
+    "token_a_hex": "28",
+    "token_b_hex": "212270",
+    "merged_hex": "28212270",
+    "decoded_text": "(!\"p"
+  },
+  {
+    "rank": 393,
+    "pair_ids": [
+      315,
+      336
+    ],
+    "new_token_id": 652,
+    "token_a_hex": "4659",
+    "token_b_hex": "5d58",
+    "merged_hex": "46595d58",
+    "decoded_text": "FY]X"
+  },
+  {
+    "rank": 394,
+    "pair_ids": [
+      45,
+      47
+    ],
+    "new_token_id": 653,
+    "token_a_hex": "29",
+    "token_b_hex": "2b",
+    "merged_hex": "292b",
+    "decoded_text": ")+"
+  },
+  {
+    "rank": 395,
+    "pair_ids": [
+      96,
+      93
+    ],
+    "new_token_id": 654,
+    "token_a_hex": "5c",
+    "token_b_hex": "59",
+    "merged_hex": "5c59",
+    "decoded_text": "\\Y"
+  },
+  {
+    "rank": 396,
+    "pair_ids": [
+      40,
+      266
+    ],
+    "new_token_id": 655,
+    "token_a_hex": "24",
+    "token_b_hex": "3512",
+    "merged_hex": "243512",
+    "decoded_text": "$5\u0012"
+  },
+  {
+    "rank": 397,
+    "pair_ids": [
+      51,
+      40
+    ],
+    "new_token_id": 656,
+    "token_a_hex": "2f",
+    "token_b_hex": "24",
+    "merged_hex": "2f24",
+    "decoded_text": "/$"
+  },
+  {
+    "rank": 398,
+    "pair_ids": [
+      45,
+      56
+    ],
+    "new_token_id": 657,
+    "token_a_hex": "29",
+    "token_b_hex": "34",
+    "merged_hex": "2934",
+    "decoded_text": ")4"
+  },
+  {
+    "rank": 399,
+    "pair_ids": [
+      428,
+      116
+    ],
+    "new_token_id": 658,
+    "token_a_hex": "2f20",
+    "token_b_hex": "70",
+    "merged_hex": "2f2070",
+    "decoded_text": "/ p"
+  },
+  {
+    "rank": 400,
+    "pair_ids": [
+      91,
+      292
+    ],
+    "new_token_id": 659,
+    "token_a_hex": "57",
+    "token_b_hex": "4561",
+    "merged_hex": "574561",
+    "decoded_text": "WEa"
+  },
+  {
+    "rank": 401,
+    "pair_ids": [
+      58,
+      540
+    ],
+    "new_token_id": 660,
+    "token_a_hex": "36",
+    "token_b_hex": "2f3f70",
+    "merged_hex": "362f3f70",
+    "decoded_text": "6/?p"
+  },
+  {
+    "rank": 402,
+    "pair_ids": [
+      41,
+      458
+    ],
+    "new_token_id": 661,
+    "token_a_hex": "25",
+    "token_b_hex": "3f5c10",
+    "merged_hex": "253f5c10",
+    "decoded_text": "%?\\\u0010"
+  },
+  {
+    "rank": 403,
+    "pair_ids": [
+      69,
+      71
+    ],
+    "new_token_id": 662,
+    "token_a_hex": "41",
+    "token_b_hex": "43",
+    "merged_hex": "4143",
+    "decoded_text": "AC"
+  },
+  {
+    "rank": 404,
+    "pair_ids": [
+      88,
+      99
+    ],
+    "new_token_id": 663,
+    "token_a_hex": "54",
+    "token_b_hex": "5f",
+    "merged_hex": "545f",
+    "decoded_text": "T_"
+  },
+  {
+    "rank": 405,
+    "pair_ids": [
+      420,
+      70
+    ],
+    "new_token_id": 664,
+    "token_a_hex": "555c",
+    "token_b_hex": "42",
+    "merged_hex": "555c42",
+    "decoded_text": "U\\B"
+  },
+  {
+    "rank": 406,
+    "pair_ids": [
+      70,
+      99
+    ],
+    "new_token_id": 665,
+    "token_a_hex": "42",
+    "token_b_hex": "5f",
+    "merged_hex": "425f",
+    "decoded_text": "B_"
+  },
+  {
+    "rank": 407,
+    "pair_ids": [
+      51,
+      47
+    ],
+    "new_token_id": 666,
+    "token_a_hex": "2f",
+    "token_b_hex": "2b",
+    "merged_hex": "2f2b",
+    "decoded_text": "/+"
+  },
+  {
+    "rank": 408,
+    "pair_ids": [
+      70,
+      72
+    ],
+    "new_token_id": 667,
+    "token_a_hex": "42",
+    "token_b_hex": "44",
+    "merged_hex": "4244",
+    "decoded_text": "BD"
+  },
+  {
+    "rank": 409,
+    "pair_ids": [
+      89,
+      99
+    ],
+    "new_token_id": 668,
+    "token_a_hex": "55",
+    "token_b_hex": "5f",
+    "merged_hex": "555f",
+    "decoded_text": "U_"
+  },
+  {
+    "rank": 410,
+    "pair_ids": [
+      85,
+      87
+    ],
+    "new_token_id": 669,
+    "token_a_hex": "51",
+    "token_b_hex": "53",
+    "merged_hex": "5153",
+    "decoded_text": "QS"
+  },
+  {
+    "rank": 411,
+    "pair_ids": [
+      60,
+      265
+    ],
+    "new_token_id": 670,
+    "token_a_hex": "38",
+    "token_b_hex": "5710",
+    "merged_hex": "385710",
+    "decoded_text": "8W\u0010"
+  },
+  {
+    "rank": 412,
+    "pair_ids": [
+      380,
+      20
+    ],
+    "new_token_id": 671,
+    "token_a_hex": "3f40",
+    "token_b_hex": "10",
+    "merged_hex": "3f4010",
+    "decoded_text": "?@\u0010"
+  },
+  {
+    "rank": 413,
+    "pair_ids": [
+      60,
+      38
+    ],
+    "new_token_id": 672,
+    "token_a_hex": "38",
+    "token_b_hex": "22",
+    "merged_hex": "3822",
+    "decoded_text": "8\""
+  },
+  {
+    "rank": 414,
+    "pair_ids": [
+      95,
+      68
+    ],
+    "new_token_id": 673,
+    "token_a_hex": "5b",
+    "token_b_hex": "40",
+    "merged_hex": "5b40",
+    "decoded_text": "[@"
+  },
+  {
+    "rank": 415,
+    "pair_ids": [
+      44,
+      285
+    ],
+    "new_token_id": 674,
+    "token_a_hex": "28",
+    "token_b_hex": "3d6c",
+    "merged_hex": "283d6c",
+    "decoded_text": "(=l"
+  },
+  {
+    "rank": 416,
+    "pair_ids": [
+      22,
+      105
+    ],
+    "new_token_id": 675,
+    "token_a_hex": "12",
+    "token_b_hex": "65",
+    "merged_hex": "1265",
+    "decoded_text": "\u0012e"
+  },
+  {
+    "rank": 417,
+    "pair_ids": [
+      22,
+      90
+    ],
+    "new_token_id": 676,
+    "token_a_hex": "12",
+    "token_b_hex": "56",
+    "merged_hex": "1256",
+    "decoded_text": "\u0012V"
+  },
+  {
+    "rank": 418,
+    "pair_ids": [
+      91,
+      74
+    ],
+    "new_token_id": 677,
+    "token_a_hex": "57",
+    "token_b_hex": "46",
+    "merged_hex": "5746",
+    "decoded_text": "WF"
+  },
+  {
+    "rank": 419,
+    "pair_ids": [
+      87,
+      97
+    ],
+    "new_token_id": 678,
+    "token_a_hex": "53",
+    "token_b_hex": "5d",
+    "merged_hex": "535d",
+    "decoded_text": "S]"
+  },
+  {
+    "rank": 420,
+    "pair_ids": [
+      99,
+      291
+    ],
+    "new_token_id": 679,
+    "token_a_hex": "5f",
+    "token_b_hex": "2f6e",
+    "merged_hex": "5f2f6e",
+    "decoded_text": "_/n"
+  },
+  {
+    "rank": 421,
+    "pair_ids": [
+      95,
+      94
+    ],
+    "new_token_id": 680,
+    "token_a_hex": "5b",
+    "token_b_hex": "5a",
+    "merged_hex": "5b5a",
+    "decoded_text": "[Z"
+  },
+  {
+    "rank": 422,
+    "pair_ids": [
+      51,
+      287
+    ],
+    "new_token_id": 681,
+    "token_a_hex": "2f",
+    "token_b_hex": "2270",
+    "merged_hex": "2f2270",
+    "decoded_text": "/\"p"
+  },
+  {
+    "rank": 423,
+    "pair_ids": [
+      99,
+      85
+    ],
+    "new_token_id": 682,
+    "token_a_hex": "5f",
+    "token_b_hex": "51",
+    "merged_hex": "5f51",
+    "decoded_text": "_Q"
+  },
+  {
+    "rank": 424,
+    "pair_ids": [
+      70,
+      70
+    ],
+    "new_token_id": 683,
+    "token_a_hex": "42",
+    "token_b_hex": "42",
+    "merged_hex": "4242",
+    "decoded_text": "BB"
+  },
+  {
+    "rank": 425,
+    "pair_ids": [
+      96,
+      99
+    ],
+    "new_token_id": 684,
+    "token_a_hex": "5c",
+    "token_b_hex": "5f",
+    "merged_hex": "5c5f",
+    "decoded_text": "\\_"
+  },
+  {
+    "rank": 426,
+    "pair_ids": [
+      40,
+      49
+    ],
+    "new_token_id": 685,
+    "token_a_hex": "24",
+    "token_b_hex": "2d",
+    "merged_hex": "242d",
+    "decoded_text": "$-"
+  },
+  {
+    "rank": 427,
+    "pair_ids": [
+      97,
+      75
+    ],
+    "new_token_id": 686,
+    "token_a_hex": "5d",
+    "token_b_hex": "47",
+    "merged_hex": "5d47",
+    "decoded_text": "]G"
+  },
+  {
+    "rank": 428,
+    "pair_ids": [
+      95,
+      74
+    ],
+    "new_token_id": 687,
+    "token_a_hex": "5b",
+    "token_b_hex": "46",
+    "merged_hex": "5b46",
+    "decoded_text": "[F"
+  },
+  {
+    "rank": 429,
+    "pair_ids": [
+      91,
+      68
+    ],
+    "new_token_id": 688,
+    "token_a_hex": "57",
+    "token_b_hex": "40",
+    "merged_hex": "5740",
+    "decoded_text": "W@"
+  },
+  {
+    "rank": 430,
+    "pair_ids": [
+      94,
+      91
+    ],
+    "new_token_id": 689,
+    "token_a_hex": "5a",
+    "token_b_hex": "57",
+    "merged_hex": "5a57",
+    "decoded_text": "ZW"
+  },
+  {
+    "rank": 431,
+    "pair_ids": [
+      53,
+      294
+    ],
+    "new_token_id": 690,
+    "token_a_hex": "31",
+    "token_b_hex": "5c10",
+    "merged_hex": "315c10",
+    "decoded_text": "1\\\u0010"
+  },
+  {
+    "rank": 432,
+    "pair_ids": [
+      51,
+      37
+    ],
+    "new_token_id": 691,
+    "token_a_hex": "2f",
+    "token_b_hex": "21",
+    "merged_hex": "2f21",
+    "decoded_text": "/!"
+  },
+  {
+    "rank": 433,
+    "pair_ids": [
+      96,
+      85
+    ],
+    "new_token_id": 692,
+    "token_a_hex": "5c",
+    "token_b_hex": "51",
+    "merged_hex": "5c51",
+    "decoded_text": "\\Q"
+  },
+  {
+    "rank": 434,
+    "pair_ids": [
+      343,
+      536
+    ],
+    "new_token_id": 693,
+    "token_a_hex": "1257",
+    "token_b_hex": "2f2a6c",
+    "merged_hex": "12572f2a6c",
+    "decoded_text": "\u0012W/*l"
+  },
+  {
+    "rank": 435,
+    "pair_ids": [
+      57,
+      64
+    ],
+    "new_token_id": 694,
+    "token_a_hex": "35",
+    "token_b_hex": "3c",
+    "merged_hex": "353c",
+    "decoded_text": "5<"
+  },
+  {
+    "rank": 436,
+    "pair_ids": [
+      407,
+      20
+    ],
+    "new_token_id": 695,
+    "token_a_hex": "315e",
+    "token_b_hex": "10",
+    "merged_hex": "315e10",
+    "decoded_text": "1^\u0010"
+  },
+  {
+    "rank": 437,
+    "pair_ids": [
+      98,
+      91
+    ],
+    "new_token_id": 696,
+    "token_a_hex": "5e",
+    "token_b_hex": "57",
+    "merged_hex": "5e57",
+    "decoded_text": "^W"
+  },
+  {
+    "rank": 438,
+    "pair_ids": [
+      493,
+      290
+    ],
+    "new_token_id": 697,
+    "token_a_hex": "5b5f",
+    "token_b_hex": "5c16",
+    "merged_hex": "5b5f5c16",
+    "decoded_text": "[_\\\u0016"
+  },
+  {
+    "rank": 439,
+    "pair_ids": [
+      91,
+      95
+    ],
+    "new_token_id": 698,
+    "token_a_hex": "57",
+    "token_b_hex": "5b",
+    "merged_hex": "575b",
+    "decoded_text": "W["
+  },
+  {
+    "rank": 440,
+    "pair_ids": [
+      73,
+      92
+    ],
+    "new_token_id": 699,
+    "token_a_hex": "45",
+    "token_b_hex": "58",
+    "merged_hex": "4558",
+    "decoded_text": "EX"
+  },
+  {
+    "rank": 441,
+    "pair_ids": [
+      263,
+      40
+    ],
+    "new_token_id": 700,
+    "token_a_hex": "2b6c",
+    "token_b_hex": "24",
+    "merged_hex": "2b6c24",
+    "decoded_text": "+l$"
+  },
+  {
+    "rank": 442,
+    "pair_ids": [
+      46,
+      61
+    ],
+    "new_token_id": 701,
+    "token_a_hex": "2a",
+    "token_b_hex": "39",
+    "merged_hex": "2a39",
+    "decoded_text": "*9"
+  },
+  {
+    "rank": 443,
+    "pair_ids": [
+      72,
+      87
+    ],
+    "new_token_id": 702,
+    "token_a_hex": "44",
+    "token_b_hex": "53",
+    "merged_hex": "4453",
+    "decoded_text": "DS"
+  },
+  {
+    "rank": 444,
+    "pair_ids": [
+      97,
+      94
+    ],
+    "new_token_id": 703,
+    "token_a_hex": "5d",
+    "token_b_hex": "5a",
+    "merged_hex": "5d5a",
+    "decoded_text": "]Z"
+  },
+  {
+    "rank": 445,
+    "pair_ids": [
+      73,
+      544
+    ],
+    "new_token_id": 704,
+    "token_a_hex": "45",
+    "token_b_hex": "514116",
+    "merged_hex": "45514116",
+    "decoded_text": "EQA\u0016"
+  },
+  {
+    "rank": 446,
+    "pair_ids": [
+      36,
+      49
+    ],
+    "new_token_id": 705,
+    "token_a_hex": "20",
+    "token_b_hex": "2d",
+    "merged_hex": "202d",
+    "decoded_text": " -"
+  },
+  {
+    "rank": 447,
+    "pair_ids": [
+      56,
+      65
+    ],
+    "new_token_id": 706,
+    "token_a_hex": "34",
+    "token_b_hex": "3d",
+    "merged_hex": "343d",
+    "decoded_text": "4="
+  },
+  {
+    "rank": 448,
+    "pair_ids": [
+      98,
+      87
+    ],
+    "new_token_id": 707,
+    "token_a_hex": "5e",
+    "token_b_hex": "53",
+    "merged_hex": "5e53",
+    "decoded_text": "^S"
+  },
+  {
+    "rank": 449,
+    "pair_ids": [
+      38,
+      41
+    ],
+    "new_token_id": 708,
+    "token_a_hex": "22",
+    "token_b_hex": "25",
+    "merged_hex": "2225",
+    "decoded_text": "\"%"
+  },
+  {
+    "rank": 450,
+    "pair_ids": [
+      87,
+      74
+    ],
+    "new_token_id": 709,
+    "token_a_hex": "53",
+    "token_b_hex": "46",
+    "merged_hex": "5346",
+    "decoded_text": "SF"
+  },
+  {
+    "rank": 451,
+    "pair_ids": [
+      41,
+      47
+    ],
+    "new_token_id": 710,
+    "token_a_hex": "25",
+    "token_b_hex": "2b",
+    "merged_hex": "252b",
+    "decoded_text": "%+"
+  },
+  {
+    "rank": 452,
+    "pair_ids": [
+      57,
+      363
+    ],
+    "new_token_id": 711,
+    "token_a_hex": "35",
+    "token_b_hex": "2b2870",
+    "merged_hex": "352b2870",
+    "decoded_text": "5+(p"
+  },
+  {
+    "rank": 453,
+    "pair_ids": [
+      36,
+      53
+    ],
+    "new_token_id": 712,
+    "token_a_hex": "20",
+    "token_b_hex": "31",
+    "merged_hex": "2031",
+    "decoded_text": " 1"
+  },
+  {
+    "rank": 454,
+    "pair_ids": [
+      22,
+      123
+    ],
+    "new_token_id": 713,
+    "token_a_hex": "12",
+    "token_b_hex": "77",
+    "merged_hex": "1277",
+    "decoded_text": "\u0012w"
+  },
+  {
+    "rank": 455,
+    "pair_ids": [
+      98,
+      77
+    ],
+    "new_token_id": 714,
+    "token_a_hex": "5e",
+    "token_b_hex": "49",
+    "merged_hex": "5e49",
+    "decoded_text": "^I"
+  },
+  {
+    "rank": 456,
+    "pair_ids": [
+      93,
+      413
+    ],
+    "new_token_id": 715,
+    "token_a_hex": "59",
+    "token_b_hex": "276e",
+    "merged_hex": "59276e",
+    "decoded_text": "Y'n"
+  },
+  {
+    "rank": 457,
+    "pair_ids": [
+      87,
+      89
+    ],
+    "new_token_id": 716,
+    "token_a_hex": "53",
+    "token_b_hex": "55",
+    "merged_hex": "5355",
+    "decoded_text": "SU"
+  },
+  {
+    "rank": 458,
+    "pair_ids": [
+      372,
+      116
+    ],
+    "new_token_id": 717,
+    "token_a_hex": "213e",
+    "token_b_hex": "70",
+    "merged_hex": "213e70",
+    "decoded_text": "!>p"
+  },
+  {
+    "rank": 459,
+    "pair_ids": [
+      44,
+      64
+    ],
+    "new_token_id": 718,
+    "token_a_hex": "28",
+    "token_b_hex": "3c",
+    "merged_hex": "283c",
+    "decoded_text": "(<"
+  },
+  {
+    "rank": 460,
+    "pair_ids": [
+      95,
+      86
+    ],
+    "new_token_id": 719,
+    "token_a_hex": "5b",
+    "token_b_hex": "52",
+    "merged_hex": "5b52",
+    "decoded_text": "[R"
+  },
+  {
+    "rank": 461,
+    "pair_ids": [
+      304,
+      87
+    ],
+    "new_token_id": 720,
+    "token_a_hex": "12445a",
+    "token_b_hex": "53",
+    "merged_hex": "12445a53",
+    "decoded_text": "\u0012DZS"
+  },
+  {
+    "rank": 462,
+    "pair_ids": [
+      51,
+      43
+    ],
+    "new_token_id": 721,
+    "token_a_hex": "2f",
+    "token_b_hex": "27",
+    "merged_hex": "2f27",
+    "decoded_text": "/'"
+  },
+  {
+    "rank": 463,
+    "pair_ids": [
+      338,
+      86
+    ],
+    "new_token_id": 722,
+    "token_a_hex": "515c",
+    "token_b_hex": "52",
+    "merged_hex": "515c52",
+    "decoded_text": "Q\\R"
+  },
+  {
+    "rank": 464,
+    "pair_ids": [
+      85,
+      91
+    ],
+    "new_token_id": 723,
+    "token_a_hex": "51",
+    "token_b_hex": "57",
+    "merged_hex": "5157",
+    "decoded_text": "QW"
+  },
+  {
+    "rank": 465,
+    "pair_ids": [
+      39,
+      43
+    ],
+    "new_token_id": 724,
+    "token_a_hex": "23",
+    "token_b_hex": "27",
+    "merged_hex": "2327",
+    "decoded_text": "#'"
+  },
+  {
+    "rank": 466,
+    "pair_ids": [
+      22,
+      95
+    ],
+    "new_token_id": 725,
+    "token_a_hex": "12",
+    "token_b_hex": "5b",
+    "merged_hex": "125b",
+    "decoded_text": "\u0012["
+  },
+  {
+    "rank": 467,
+    "pair_ids": [
+      51,
+      63
+    ],
+    "new_token_id": 726,
+    "token_a_hex": "2f",
+    "token_b_hex": "3b",
+    "merged_hex": "2f3b",
+    "decoded_text": "/;"
+  },
+  {
+    "rank": 468,
+    "pair_ids": [
+      51,
+      64
+    ],
+    "new_token_id": 727,
+    "token_a_hex": "2f",
+    "token_b_hex": "3c",
+    "merged_hex": "2f3c",
+    "decoded_text": "/<"
+  },
+  {
+    "rank": 469,
+    "pair_ids": [
+      97,
+      69
+    ],
+    "new_token_id": 728,
+    "token_a_hex": "5d",
+    "token_b_hex": "41",
+    "merged_hex": "5d41",
+    "decoded_text": "]A"
+  },
+  {
+    "rank": 470,
+    "pair_ids": [
+      22,
+      97
+    ],
+    "new_token_id": 729,
+    "token_a_hex": "12",
+    "token_b_hex": "5d",
+    "merged_hex": "125d",
+    "decoded_text": "\u0012]"
+  },
+  {
+    "rank": 471,
+    "pair_ids": [
+      67,
+      57
+    ],
+    "new_token_id": 730,
+    "token_a_hex": "3f",
+    "token_b_hex": "35",
+    "merged_hex": "3f35",
+    "decoded_text": "?5"
+  },
+  {
+    "rank": 472,
+    "pair_ids": [
+      364,
+      112
+    ],
+    "new_token_id": 731,
+    "token_a_hex": "2e3c",
+    "token_b_hex": "6c",
+    "merged_hex": "2e3c6c",
+    "decoded_text": ".<l"
+  },
+  {
+    "rank": 473,
+    "pair_ids": [
+      41,
+      38
+    ],
+    "new_token_id": 732,
+    "token_a_hex": "25",
+    "token_b_hex": "22",
+    "merged_hex": "2522",
+    "decoded_text": "%\""
+  },
+  {
+    "rank": 474,
+    "pair_ids": [
+      95,
+      95
+    ],
+    "new_token_id": 733,
+    "token_a_hex": "5b",
+    "token_b_hex": "5b",
+    "merged_hex": "5b5b",
+    "decoded_text": "[["
+  },
+  {
+    "rank": 475,
+    "pair_ids": [
+      57,
+      47
+    ],
+    "new_token_id": 734,
+    "token_a_hex": "35",
+    "token_b_hex": "2b",
+    "merged_hex": "352b",
+    "decoded_text": "5+"
+  },
+  {
+    "rank": 476,
+    "pair_ids": [
+      97,
+      68
+    ],
+    "new_token_id": 735,
+    "token_a_hex": "5d",
+    "token_b_hex": "40",
+    "merged_hex": "5d40",
+    "decoded_text": "]@"
+  },
+  {
+    "rank": 477,
+    "pair_ids": [
+      99,
+      26
+    ],
+    "new_token_id": 736,
+    "token_a_hex": "5f",
+    "token_b_hex": "16",
+    "merged_hex": "5f16",
+    "decoded_text": "_\u0016"
+  },
+  {
+    "rank": 478,
+    "pair_ids": [
+      45,
+      53
+    ],
+    "new_token_id": 737,
+    "token_a_hex": "29",
+    "token_b_hex": "31",
+    "merged_hex": "2931",
+    "decoded_text": ")1"
+  },
+  {
+    "rank": 479,
+    "pair_ids": [
+      36,
+      116
+    ],
+    "new_token_id": 738,
+    "token_a_hex": "20",
+    "token_b_hex": "70",
+    "merged_hex": "2070",
+    "decoded_text": " p"
+  },
+  {
+    "rank": 480,
+    "pair_ids": [
+      87,
+      93
+    ],
+    "new_token_id": 739,
+    "token_a_hex": "53",
+    "token_b_hex": "59",
+    "merged_hex": "5359",
+    "decoded_text": "SY"
+  },
+  {
+    "rank": 481,
+    "pair_ids": [
+      398,
+      101
+    ],
+    "new_token_id": 740,
+    "token_a_hex": "5d50",
+    "token_b_hex": "61",
+    "merged_hex": "5d5061",
+    "decoded_text": "]Pa"
+  },
+  {
+    "rank": 482,
+    "pair_ids": [
+      56,
+      36
+    ],
+    "new_token_id": 741,
+    "token_a_hex": "34",
+    "token_b_hex": "20",
+    "merged_hex": "3420",
+    "decoded_text": "4 "
+  },
+  {
+    "rank": 483,
+    "pair_ids": [
+      386,
+      532
+    ],
+    "new_token_id": 742,
+    "token_a_hex": "5f2f",
+    "token_b_hex": "296c",
+    "merged_hex": "5f2f296c",
+    "decoded_text": "_/)l"
+  },
+  {
+    "rank": 484,
+    "pair_ids": [
+      69,
+      98
+    ],
+    "new_token_id": 743,
+    "token_a_hex": "41",
+    "token_b_hex": "5e",
+    "merged_hex": "415e",
+    "decoded_text": "A^"
+  },
+  {
+    "rank": 485,
+    "pair_ids": [
+      495,
+      291
+    ],
+    "new_token_id": 744,
+    "token_a_hex": "5b59",
+    "token_b_hex": "2f6e",
+    "merged_hex": "5b592f6e",
+    "decoded_text": "[Y/n"
+  },
+  {
+    "rank": 486,
+    "pair_ids": [
+      299,
+      101
+    ],
+    "new_token_id": 745,
+    "token_a_hex": "5b58",
+    "token_b_hex": "61",
+    "merged_hex": "5b5861",
+    "decoded_text": "[Xa"
+  },
+  {
+    "rank": 487,
+    "pair_ids": [
+      43,
+      557
+    ],
+    "new_token_id": 746,
+    "token_a_hex": "27",
+    "token_b_hex": "534312",
+    "merged_hex": "27534312",
+    "decoded_text": "'SC\u0012"
+  },
+  {
+    "rank": 488,
+    "pair_ids": [
+      88,
+      389
+    ],
+    "new_token_id": 747,
+    "token_a_hex": "54",
+    "token_b_hex": "5f40",
+    "merged_hex": "545f40",
+    "decoded_text": "T_@"
+  },
+  {
+    "rank": 489,
+    "pair_ids": [
+      41,
+      65
+    ],
+    "new_token_id": 748,
+    "token_a_hex": "25",
+    "token_b_hex": "3d",
+    "merged_hex": "253d",
+    "decoded_text": "%="
+  },
+  {
+    "rank": 490,
+    "pair_ids": [
+      87,
+      68
+    ],
+    "new_token_id": 749,
+    "token_a_hex": "53",
+    "token_b_hex": "40",
+    "merged_hex": "5340",
+    "decoded_text": "S@"
+  },
+  {
+    "rank": 491,
+    "pair_ids": [
+      44,
+      46
+    ],
+    "new_token_id": 750,
+    "token_a_hex": "28",
+    "token_b_hex": "2a",
+    "merged_hex": "282a",
+    "decoded_text": "(*"
+  },
+  {
+    "rank": 492,
+    "pair_ids": [
+      99,
+      91
+    ],
+    "new_token_id": 751,
+    "token_a_hex": "5f",
+    "token_b_hex": "57",
+    "merged_hex": "5f57",
+    "decoded_text": "_W"
+  },
+  {
+    "rank": 493,
+    "pair_ids": [
+      97,
+      96
+    ],
+    "new_token_id": 752,
+    "token_a_hex": "5d",
+    "token_b_hex": "5c",
+    "merged_hex": "5d5c",
+    "decoded_text": "]\\"
+  },
+  {
+    "rank": 494,
+    "pair_ids": [
+      350,
+      61
+    ],
+    "new_token_id": 753,
+    "token_a_hex": "2f38",
+    "token_b_hex": "39",
+    "merged_hex": "2f3839",
+    "decoded_text": "/89"
+  },
+  {
+    "rank": 495,
+    "pair_ids": [
+      92,
+      262
+    ],
+    "new_token_id": 754,
+    "token_a_hex": "58",
+    "token_b_hex": "5716",
+    "merged_hex": "585716",
+    "decoded_text": "XW\u0016"
+  },
+  {
+    "rank": 496,
+    "pair_ids": [
+      40,
+      39
+    ],
+    "new_token_id": 755,
+    "token_a_hex": "24",
+    "token_b_hex": "23",
+    "merged_hex": "2423",
+    "decoded_text": "$#"
+  },
+  {
+    "rank": 497,
+    "pair_ids": [
+      54,
+      42
+    ],
+    "new_token_id": 756,
+    "token_a_hex": "32",
+    "token_b_hex": "26",
+    "merged_hex": "3226",
+    "decoded_text": "2&"
+  },
+  {
+    "rank": 498,
+    "pair_ids": [
+      85,
+      320
+    ],
+    "new_token_id": 757,
+    "token_a_hex": "51",
+    "token_b_hex": "4616",
+    "merged_hex": "514616",
+    "decoded_text": "QF\u0016"
+  },
+  {
+    "rank": 499,
+    "pair_ids": [
+      45,
+      55
+    ],
+    "new_token_id": 758,
+    "token_a_hex": "29",
+    "token_b_hex": "33",
+    "merged_hex": "2933",
+    "decoded_text": ")3"
+  },
+  {
+    "rank": 500,
+    "pair_ids": [
+      101,
+      437
+    ],
+    "new_token_id": 759,
+    "token_a_hex": "61",
+    "token_b_hex": "272270",
+    "merged_hex": "61272270",
+    "decoded_text": "a'\"p"
+  }
+]

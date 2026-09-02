@@ -97,4 +97,6 @@ dist/
 .Trashes
 ehthumbs.db
 Thumbs.db
+tests/
+plan.md
 upload_to_hf.py
