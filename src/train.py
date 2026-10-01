@@ -41,6 +41,7 @@ from src.utils import (
     evaluate_text_metrics,
     get_peak_memory_mb,
     init_wandb_run,
+    load_checkpoint,
     move_batch_to_device,
     plot_training_curves,
     reset_peak_memory_stats,
@@ -373,6 +374,8 @@ def run_experiment(
     epochs_override: int | None = None,
     batch_size_override: int | None = None,
     disable_wandb: bool = False,
+    evaluate_only: bool = False,
+    checkpoint_path: str | Path | None = None,
 ) -> dict[str, Any]:
     """Train one configuration end-to-end and persist every artifact."""
     if epochs_override is not None:
@@ -457,6 +460,28 @@ def run_experiment(
 
     model = build_model(config, src_vocab_size=src_vocab_size, tgt_vocab_size=tgt_vocab_size)
     model.to(device)
+
+    if checkpoint_path is not None:
+        print(f"[{config.run_name}] Loading checkpoint from: {checkpoint_path}")
+        load_checkpoint(checkpoint_path, model=model, map_location=device)
+
+    if evaluate_only:
+        print(f"[{config.run_name}] Evaluating model on test split (greedy decoding)...")
+        test_results = compute_test_predictions(
+            model,
+            test_loader,
+            config=config,
+            target_tokenizer=target_tokenizer,
+            device=device,
+        )
+        print(f"[{config.run_name}] Test metrics: {test_results['metrics']}")
+        for i, s in enumerate(test_results["samples"][:3], 1):
+            print(f"  Sample {i}:")
+            print(f"    Cipher: {s['source_cipher']}")
+            print(f"    Target: {s['reference']}")
+            print(f"    Pred:   {s['prediction']}")
+        return {"test_metrics": test_results["metrics"], "sample_predictions": test_results["samples"]}
+
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay
     )
@@ -567,10 +592,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train Assignment 1 configurations")
     parser.add_argument("--config", default="C1", help="Configuration id (C1-C5) or 'all'")
     parser.add_argument("--epochs", type=int, default=None, help="Override number of epochs")
-    parser.add_argument("--batch-size", type=int, default=None, help="Override batch size")
+    parser.add_argument("--batch-size", "--batch_size", type=int, default=None, help="Override batch size")
     parser.add_argument("--smoke", action="store_true", help="Tiny subset sanity run")
-    parser.add_argument("--no-wandb", action="store_true", help="Disable WandB logging")
+    parser.add_argument("--no-wandb", "--no_wandb", action="store_true", help="Disable WandB logging")
     parser.add_argument("--device", default=None, help="cpu, cuda, or leave unset for auto")
+    parser.add_argument("--evaluate-only", "--evaluate_only", action="store_true", help="Run evaluation on test split without training")
+    parser.add_argument("--checkpoint", type=str, default=None, help="Path to checkpoint file for evaluation or resumption")
     return parser.parse_args(argv)
 
 
@@ -587,6 +614,8 @@ def main(argv: Sequence[str] | None = None) -> None:
             epochs_override=args.epochs,
             batch_size_override=args.batch_size,
             disable_wandb=args.no_wandb,
+            evaluate_only=args.evaluate_only,
+            checkpoint_path=args.checkpoint,
         )
 
 
