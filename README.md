@@ -1,4 +1,4 @@
-# Assignment 1: Transformers from Scratch, Architectural Ablations, and Byte Latent Transformers (BLT)
+# Transformers from Scratch, Architectural Ablations, and Byte Latent Transformers (BLT)
 
 This repository contains a **from-scratch PyTorch implementation** of an Encoder-Decoder Sequence-to-Sequence Transformer designed to translate encrypted binary cipher sequences into plaintext English. It implements all core transformer components without using high-level PyTorch abstractions (such as `nn.Transformer` or `nn.MultiheadAttention`) and conducts a strictly controlled ablation study across five architectural configurations (**C1 through C5**).
 
