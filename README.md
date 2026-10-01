@@ -6,7 +6,8 @@ This repository contains a **from-scratch PyTorch implementation** of an Encoder
 
 ## 🔗 Project Links
 
-- **Hugging Face Model Checkpoints:** [https://huggingface.co/phani4104/Transformer](https://huggingface.co/phani4104/Transformer)
+- **Hugging Face Model Repository:** [https://huggingface.co/phani4104/Transformer](https://huggingface.co/phani4104/Transformer)
+- **Hugging Face Direct Files & Checkpoints Download:** [https://huggingface.co/phani4104/Transformer/tree/main](https://huggingface.co/phani4104/Transformer/tree/main)
 - **Weights & Biases (WandB) Project:** [https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1)
   - **C1 (Baseline):** [WandB Run rmflfhfi](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/rmflfhfi)
   - **C2 (RoPE):** [WandB Run p66vs720](https://wandb.ai/phani1729-iiit-hyderabad/ANLP_A1/runs/p66vs720)
@@ -109,18 +110,49 @@ pip install torch torchvision torchaudio numpy matplotlib wandb huggingface_hub 
 
 ---
 
-## 📦 Checkpoint Syncing (Hugging Face)
+## 📦 Checkpoint Syncing & Downloads (Hugging Face)
 
-All trained model weights for configurations **C1 through C5** are publicly available on Hugging Face:
-👉 [https://huggingface.co/phani4104/Transformer](https://huggingface.co/phani4104/Transformer)
+All trained model weights for configurations **C1 through C5** are hosted and publicly downloadable from Hugging Face:
+- 🌐 **Repository:** [https://huggingface.co/phani4104/Transformer](https://huggingface.co/phani4104/Transformer)
+- 📂 **Direct Files & Versions Tree:** [https://huggingface.co/phani4104/Transformer/tree/main](https://huggingface.co/phani4104/Transformer/tree/main)
 
-### 1. Download Checkpoints
-To download all pre-trained checkpoints into `outputs/checkpoints/`:
+### Direct Checkpoint Download Links
+
+You can download individual model weights directly using your browser or via the links below:
+
+| Configuration | Model Variant | Checkpoint File | Direct Download Link |
+| :--- | :--- | :--- | :--- |
+| **C1** | Baseline (Sinusoidal + MHA + LayerNorm) | `A1_C1_baseline_best.pt` | [Download C1 Best Checkpoint](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C1_baseline_best.pt) |
+| **C2** | Rotary Positional Embedding (RoPE) | `A1_C2_rope_best.pt` | [Download C2 Best Checkpoint](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C2_rope_best.pt) |
+| **C3** | Grouped-Query Attention (GQA) | `A1_C3_gqa_best.pt` | [Download C3 Best Checkpoint](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C3_gqa_best.pt) |
+| **C4** | Root Mean Square Norm (RMSNorm) | `A1_C4_rmsnorm_best.pt` | [Download C4 Best Checkpoint](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C4_rmsnorm_best.pt) |
+| **C5** | Byte Latent Transformer (BLT) | `A1_C5_blt_best.pt` | [Download C5 Best Checkpoint](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C5_blt_best.pt) |
+
+*(Final epoch checkpoints are also available in the repository tree: [`A1_C1_baseline_final.pt`](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C1_baseline_final.pt), [`A1_C2_rope_final.pt`](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C2_rope_final.pt), [`A1_C3_gqa_final.pt`](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C3_gqa_final.pt), [`A1_C4_rmsnorm_final.pt`](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C4_rmsnorm_final.pt), [`A1_C5_blt_final.pt`](https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C5_blt_final.pt))*
+
+---
+
+### Command-Line Download Methods
+
+#### Method 1: Automated Download Script (Recommended)
+Automatically download all checkpoints into `outputs/checkpoints/`:
 ```bash
 python upload_to_hf.py --action download
 ```
 
-### 2. Upload Checkpoints (for maintainers)
+#### Method 2: Direct `wget` / `curl` Download
+To download a specific checkpoint directly into `outputs/checkpoints/`:
+```bash
+mkdir -p outputs/checkpoints
+
+# Example: Download C2 (RoPE) checkpoint
+wget -P outputs/checkpoints/ https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C2_rope_best.pt
+
+# Or using curl:
+curl -L -o outputs/checkpoints/A1_C2_rope_best.pt https://huggingface.co/phani4104/Transformer/resolve/main/checkpoints/A1_C2_rope_best.pt
+```
+
+#### Method 3: Upload Checkpoints (for maintainers)
 ```bash
 python upload_to_hf.py --action upload --token <YOUR_HUGGINGFACE_TOKEN>
 ```
